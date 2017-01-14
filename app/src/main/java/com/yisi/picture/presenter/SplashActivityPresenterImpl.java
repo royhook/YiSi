@@ -1,11 +1,6 @@
 package com.yisi.picture.presenter;
 
-import android.content.Intent;
-
-import com.yisi.picture.MainActivity;
-import com.yisi.picture.activity.SplashActivity;
 import com.yisi.picture.activity.inter.ISplashActivity;
-import com.yisi.picture.application.YiSiApplication;
 import com.yisi.picture.presenter.inter.ISplashPresenter;
 
 /**

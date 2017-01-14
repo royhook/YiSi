@@ -1,10 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
-        applicationId "com.yisi.picture"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -16,9 +16,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':commenlibrary')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar'
+    compile 'com.android.support:support-v4:25.1.0'
 }
