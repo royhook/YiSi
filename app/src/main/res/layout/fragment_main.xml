@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px150"
+        android:background="#4499ee"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="YiSi"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/px80"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/main_fragment_slider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px600"
+        custom:auto_cycle="true"
+        android:layout_marginTop="@dimen/px150"
+        custom:indicator_visibility="visible"
+        custom:pager_animation="Accordion"
+        custom:pager_animation_span="1100">
+
+    </com.daimajia.slider.library.SliderLayout>
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/main_fragment_slidertab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px150"
+        android:layout_marginTop="@dimen/px750"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        custom:tl_indicator_color="#2C97DE"
+        custom:tl_indicator_height="@dimen/px5"
+        custom:tl_indicator_width="@dimen/px100"
+        custom:tl_tab_space_equal="true"
+        custom:tl_textBold="SELECT"
+        custom:tl_textSelectColor="#2C97DE"
+        custom:tl_textUnselectColor="#000000"
+        custom:tl_textsize="@dimen/px35"
+        custom:tl_underline_height="@dimen/px5">
+
+    </com.flyco.tablayout.SlidingTabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_fragment_vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/px950"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v4.view.ViewPager>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+

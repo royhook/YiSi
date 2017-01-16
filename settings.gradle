@@ -1,1 +1,1 @@
-include ':app', ':commenlibrary'
+include ':app', ':commenlibrary', ':image-slider',':FlycoTabLayout_Lib'

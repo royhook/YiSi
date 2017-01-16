@@ -32,7 +32,7 @@ public class YiSiApplication extends Application {
     private void initBmob() {
         BmobConfig config =new BmobConfig.Builder(this)
         //设置appkey
-        .setApplicationId("Your Application ID")
+        .setApplicationId("9b7629a191656e19839a10be2a27363b")
         //请求超时时间（单位为秒）：默认15s
         .setConnectTimeout(30)
         //文件分片上传时每片的大小（单位字节），默认512*1024
