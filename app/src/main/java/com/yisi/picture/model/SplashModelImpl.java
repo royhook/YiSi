@@ -1,7 +1,7 @@
 package com.yisi.picture.model;
 
 import com.yisi.picture.model.inter.ISplashModel;
-import com.yisi.picture.presenter.inter.ISplashPresenter;
+import com.yisi.picture.presenter.inter.ISplashPre;
 
 /**
  * Created by roy on 2017/1/13.
@@ -9,9 +9,9 @@ import com.yisi.picture.presenter.inter.ISplashPresenter;
 
 public class SplashModelImpl implements ISplashModel {
 
-    ISplashPresenter mSplashPresenter;
+    ISplashPre mSplashPresenter;
 
-    public SplashModelImpl(ISplashPresenter splashPresenter){
+    public SplashModelImpl(ISplashPre splashPresenter){
         mSplashPresenter = splashPresenter;
     }
 
