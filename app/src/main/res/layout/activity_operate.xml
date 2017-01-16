@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <com.yisi.picture.view.PinchViewPager
+        android:id="@+id/activity_operate_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+    </com.yisi.picture.view.PinchViewPager>
+
+    <TextView
+        android:id="@+id/activity_operate_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="1/20"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/px40" />
+
+    <master.flame.danmaku.ui.widget.DanmakuView
+        android:id="@+id/activity_operate_damu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

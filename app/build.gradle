@@ -21,4 +21,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':commenlibrary')
+    compile project(':image-slider')
+    compile project(':FlycoTabLayout_Lib')
+    compile project(':xrecyclerview')
 }

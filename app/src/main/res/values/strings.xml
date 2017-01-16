@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">YiSi</string>
+    
+    <string name="main_page">首页</string>
+    <string name="album">影集</string>
+    <string name="plans">套图</string>
+    <string name="user">我的</string>
+    <string name="next_plant">正在为您切换下一套专辑，请稍后</string>
+    <string name="no_plant">已经到头啦，请单机屏幕重新选择资源</string>
 </resources>
