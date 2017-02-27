@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    <!-- 如果需要精确定位的话请加上此权限 -->
 
     <application
         android:name=".application.YiSiApplication"
@@ -33,10 +35,19 @@
         </activity>
 
         <activity
-            android:theme="@style/AppThemeNoTitle"
             android:name=".activity.ImageOperateActivity"
+            android:exported="false"
+            android:theme="@style/AppThemeNoTitle" />
+        <activity
+            android:name=".activity.AlbumActivity"
             android:exported="false" />
-        <activity android:name=".activity.AlbumActivity" />
+
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" />
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
     </application>
 
 </manifest>

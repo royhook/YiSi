@@ -2,13 +2,12 @@ package com.yisi.picture.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.qq.e.ads.splash.SplashAD;
+import com.qq.e.ads.splash.SplashADListener;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ISplashAty;
-import com.yisi.picture.application.YiSiApplication;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.utils.GlideUtils;
 
@@ -21,6 +20,7 @@ import cn.bmob.v3.BmobConfig;
 
 public class SplashAty extends BaseActivity implements ISplashAty {
     public static final String BMOB_APPID = "9b7629a191656e19839a10be2a27363b";
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,33 @@ public class SplashAty extends BaseActivity implements ISplashAty {
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_splash);
-        ImageView imageView = (ImageView) findViewById(R.id.iv_splash_main);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_splash_in);
-        imageView.startAnimation(animation);
+        relativeLayout = findView(R.id.splash_ad_view);
+        new SplashAD(this, relativeLayout, "1105935915", "1030428031536851", new SplashADListener() {
+            @Override
+            public void onADDismissed() {
+                goMainPage();
+            }
+
+            @Override
+            public void onNoAD(int i) {
+                goMainPage();
+            }
+
+            @Override
+            public void onADPresent() {
+
+            }
+
+            @Override
+            public void onADClicked() {
+
+            }
+
+            @Override
+            public void onADTick(long l) {
+
+            }
+        });
     }
 
     @Override
@@ -49,14 +73,9 @@ public class SplashAty extends BaseActivity implements ISplashAty {
     }
 
     private void goMainPage() {
-        YiSiApplication.postDelay(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashAty.this, MainActivity.class);
-                startActivity(intent);
-                SplashAty.this.finish();
-            }
-        }, 3000);
+        Intent intent = new Intent(SplashAty.this, MainActivity.class);
+        startActivity(intent);
+        SplashAty.this.finish();
     }
 
 

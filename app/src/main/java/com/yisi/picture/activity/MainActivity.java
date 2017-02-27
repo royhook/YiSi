@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.qq.e.ads.interstitial.InterstitialAD;
+import com.qq.e.ads.interstitial.InterstitialADListener;
 import com.yisi.picture.R;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.fragment.AlbumFragment;
@@ -22,6 +24,7 @@ public class MainActivity extends BaseActivity {
     private Fragment mAlbumFragment;
     private Fragment mPlansFragment;
     private Fragment mMineFragment;
+    private InterstitialAD interstitialAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,7 @@ public class MainActivity extends BaseActivity {
         DirManager.getInstance().init();
         initDatas();
         initFragment();
-
+        showInterAd();
     }
 
     public void setmCommonTabLayoutVisible(int Visible) {
@@ -50,6 +53,46 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         mCommonTabLayout = findView(R.id.main_commenTab);
 
+    }
+
+    private void showInterAd() {
+        interstitialAD = new InterstitialAD(this, "1105935915", "2000624031341128");
+        interstitialAD.setADListener(new InterstitialADListener() {
+            @Override
+            public void onADReceive() {
+                interstitialAD.show();
+            }
+
+            @Override
+            public void onNoAD(int i) {
+
+            }
+
+            @Override
+            public void onADOpened() {
+
+            }
+
+            @Override
+            public void onADExposure() {
+
+            }
+
+            @Override
+            public void onADClicked() {
+
+            }
+
+            @Override
+            public void onADLeftApplication() {
+
+            }
+
+            @Override
+            public void onADClosed() {
+
+            }
+        });
     }
 
     @Override
