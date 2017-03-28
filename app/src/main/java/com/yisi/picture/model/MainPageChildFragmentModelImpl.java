@@ -25,14 +25,19 @@ public class MainPageChildFragmentModelImpl extends BaseModelImpl<IMainPageChild
     public void request(int type_id, int page, boolean readCache) {
         new BmobRequest.Builder()
                 .addEqualTo("type_id", type_id)
-                .addEqualTo("page", page)
+                .setSkip(10 * page)
+                .setLimit(10)
                 .setReadCache(readCache)
                 .build()
                 .request(new FindListener<YiSiImage>() {
                     @Override
                     public void done(List<YiSiImage> list, BmobException e) {
                         if (e == null) {
-                            mPresenter.onSuccess(list);
+                            if (list.size() != 0)
+                                mPresenter.onSuccess(list);
+                            else {
+                                mPresenter.onEmpty();
+                            }
                         } else
                             mPresenter.onError(e.getErrorCode());
                     }

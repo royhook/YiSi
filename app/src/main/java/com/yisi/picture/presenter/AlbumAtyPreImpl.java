@@ -69,12 +69,6 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         return new AlbumAtyModelImpl(this);
     }
 
-    @Override
-    public void onFail(int errorCode) {
-
-    }
-
-
     private void decodeAlbum() {
         String json_album = mView.getAlbumIntent().getStringExtra(IntentKey.KEY_ALBUM);
         mAlbum = GsonFactory.createGson().fromJson(json_album, Album.class);
@@ -87,7 +81,15 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     }
 
     @Override
-    public void onClick(View view, int position) {
+    public void onEmpty() {
+        getRecyclerView().loadMoreComplete();
+        currentPage--;
+        mView.dataRunOut();
+    }
+
+    @Override
+    public void onSuccess(List<AlbumImage> t) {
+        super.onSuccess(t);
         for (AlbumImage albumImage : currentList) {
             YiSiImage yisi = new YiSiImage();
             yisi.setImg_url(albumImage.getImg_url());
@@ -95,6 +97,10 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
             yisi.setType_id(albumImage.getType_id());
             mYiSiImgs.add(yisi);
         }
+    }
+
+    @Override
+    public void onClick(View view, int position) {
         Gson gson = new Gson();
         String json = gson.toJson(mYiSiImgs);
         Intent intent = new Intent(mView.getViewContext(), ImageOperateActivity.class);
@@ -102,4 +108,15 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, position);
         mView.getViewContext().startActivity(intent);
     }
+
+    @Override
+    public void initViewDatas() {
+        mView.setToolBarTitle(mAlbum.getTitle());
+    }
+
+    @Override
+    public void onFail(int errorCode) {
+        currentPage--;
+        mView.dataRunOut();
+     }
 }

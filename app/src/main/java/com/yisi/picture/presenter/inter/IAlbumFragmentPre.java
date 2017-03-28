@@ -15,4 +15,6 @@ public interface IAlbumFragmentPre extends IBasePresenter {
     void onSuccess(List<Album> albumList);
 
     void onFail(int errorCode);
+
+    void onEmpty();
 }

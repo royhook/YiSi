@@ -44,6 +44,11 @@ public class AlbumFragmentPreImpl extends BasePresenterImpl<AlbumFragment, Album
 
     }
 
+    @Override
+    public void onEmpty() {
+        
+    }
+
     private class SorTlist implements Comparator<Album> {
 
         @Override

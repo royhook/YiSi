@@ -14,7 +14,6 @@ import com.yisi.picture.presenter.ImageOperateOperaPreImpl;
 import com.yisi.picture.presenter.inter.IImageOperaPre;
 import com.yisi.picture.view.PinchViewPager;
 
-import master.flame.danmaku.ui.widget.DanmakuView;
 
 /**
  * Created by roy on 2017/1/20.
@@ -25,13 +24,11 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     IImageOperaPre iImageOperaPre;
     PinchViewPager vp;
     TextView mNumTextView;
-    DanmakuView danmakuView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
-
     }
 
     @Override
@@ -44,7 +41,6 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
         setContentView(R.layout.activity_operate);
         vp = findView(R.id.activity_operate_vp);
         mNumTextView = findView(R.id.activity_operate_num);
-        danmakuView = findView(R.id.activity_operate_damu);
     }
 
     @Override

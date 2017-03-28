@@ -16,6 +16,8 @@ import java.util.List;
 
 public class MainPageChildFragmentPreImpl extends BasePresenterImpl<IMainPageChildFragment, IMainPageChildFragmentModel> implements IMainPageChildFragmentPre {
 
+    int page;
+
     public MainPageChildFragmentPreImpl(IMainPageChildFragment baseView) {
         super(baseView);
     }
@@ -31,11 +33,6 @@ public class MainPageChildFragmentPreImpl extends BasePresenterImpl<IMainPageChi
             if (yiSiImages.size() != 0) {
                 //下拉刷新
                 if (mView.isLoadMoreOrRefresh()) {
-                    //先判断url是否相等
-                    if (yiSiImages.get(0).getImg_url().equals(mView.getYiSiImages().get(0).getImg_url())) {
-                        mView.onNoLastestData();
-                        return;
-                    }
                     if (mView.getYiSiImages().size() != 0)
                         mView.getYiSiImages().clear();
                     mView.getYiSiImages().addAll(yiSiImages);
@@ -54,10 +51,23 @@ public class MainPageChildFragmentPreImpl extends BasePresenterImpl<IMainPageChi
     @Override
     public void onError(int errorCode) {
         LogUtils.d(errorCode + "");
+        refreshPage();
+    }
+
+    @Override
+    public void onEmpty() {
+        page = mView.getCurrentPage();
+        refreshPage();
     }
 
     @Override
     public void request(int type_id, int page, boolean readCache) {
         mModel.request(type_id, page, readCache);
+    }
+
+    private void refreshPage() {
+        page = mView.getCurrentPage();
+        mView.setCurrentPage(page--);
+        mView.onDataRunOut();
     }
 }

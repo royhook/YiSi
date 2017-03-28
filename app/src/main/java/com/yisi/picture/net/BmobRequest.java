@@ -34,6 +34,7 @@ public class BmobRequest {
         bmobQuery.setMaxCacheAge(mBuilder.cacheTime);
         bmobQuery.setLimit(mBuilder.getLimit());
         bmobQuery.order(mBuilder.getOrder());
+        bmobQuery.setSkip(mBuilder.getSkip());
         bmobQuery.findObjects(listener);
     }
 
@@ -44,6 +45,7 @@ public class BmobRequest {
         private long cacheTime = 1000 * 60 * 60 * 24;//默认一天
         private boolean putCache;
         private boolean readCache;
+        private int skip;
 
         public Builder() {
 
@@ -64,6 +66,15 @@ public class BmobRequest {
         public Builder addEqualTo(String key, Object values) {
             whereEqualTo.put(key, values);
             return this;
+        }
+
+        public Builder setSkip(int skip) {
+            this.skip = skip;
+            return this;
+        }
+
+        public int getSkip() {
+            return skip;
         }
 
         public Builder setWhereEqualTo(HashMap<String, Object> whereEqualTo) {

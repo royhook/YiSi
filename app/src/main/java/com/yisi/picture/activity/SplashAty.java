@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
-import com.qq.e.ads.splash.SplashAD;
-import com.qq.e.ads.splash.SplashADListener;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ISplashAty;
 import com.yisi.picture.base.BaseActivity;
@@ -39,32 +37,6 @@ public class SplashAty extends BaseActivity implements ISplashAty {
     protected void initViews() {
         setContentView(R.layout.activity_splash);
         relativeLayout = findView(R.id.splash_ad_view);
-        new SplashAD(this, relativeLayout, "1105935915", "1030428031536851", new SplashADListener() {
-            @Override
-            public void onADDismissed() {
-                goMainPage();
-            }
-
-            @Override
-            public void onNoAD(int i) {
-                goMainPage();
-            }
-
-            @Override
-            public void onADPresent() {
-
-            }
-
-            @Override
-            public void onADClicked() {
-
-            }
-
-            @Override
-            public void onADTick(long l) {
-
-            }
-        });
     }
 
     @Override
@@ -85,7 +57,7 @@ public class SplashAty extends BaseActivity implements ISplashAty {
                 .setApplicationId(BMOB_APPID)
                 //请求超时时间（单位为秒）：默认15s
                 .setConnectTimeout(30)
-                //文件分片上传时每片的大小（单位字节），默认512*1024
+                //文件分片上传时每片的大小（单位字节），默认512*icon
                 .setUploadBlockSize(1024 * 1024)
                 //文件的过期时间(单位为秒)：默认1800s
                 .setFileExpiration(2500)

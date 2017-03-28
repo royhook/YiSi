@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yisi.picture.base.inter.IBaseView;
+import com.yisi.picture.base.inter.IBaseAty;
 
 /**
  * Created by roy on 2017/1/14.
  */
 
-public abstract class BaseFragment extends Fragment implements IBaseView {
+public abstract class BaseFragment extends Fragment implements IBaseAty {
     private View cacheView;
 
     @Override
@@ -37,7 +37,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         onLoadingPage();
         return cacheView;
     }
-
 
     protected abstract void initViews();
 

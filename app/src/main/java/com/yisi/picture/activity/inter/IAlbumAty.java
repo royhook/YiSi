@@ -16,4 +16,8 @@ public interface IAlbumAty extends IBaseView {
     Intent getAlbumIntent();
 
     Context getViewContext();
+
+    void setToolBarTitle(String title);
+
+    void dataRunOut();
 }

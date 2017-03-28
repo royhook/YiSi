@@ -16,5 +16,7 @@ public interface IImageOperaPre extends IBasePresenter {
 
     void getData();
 
-    void onSuccess(List<YiSiImage> yiSiImages,int position);
+    void onSuccess(List<YiSiImage> yiSiImages, int position);
+
+    void onEmpty();
 }

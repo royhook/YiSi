@@ -1,38 +1,32 @@
 package com.yisi.picture.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.qq.e.ads.interstitial.InterstitialAD;
-import com.qq.e.ads.interstitial.InterstitialADListener;
 import com.yisi.picture.R;
+import com.yisi.picture.activity.inter.IMainAty;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.fragment.AlbumFragment;
 import com.yisi.picture.fragment.MainPageFragment;
-import com.yisi.picture.fragment.MineFragment;
 import com.yisi.picture.fragment.PlantFragment;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 import com.yisi.picture.utils.DirManager;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainAty {
 
     private CommonTabLayout mCommonTabLayout;
     private MainAtyPreImpl mMainAtyPre;
     private Fragment mMainFragment;
     private Fragment mAlbumFragment;
     private Fragment mPlansFragment;
-    private Fragment mMineFragment;
-    private InterstitialAD interstitialAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DirManager.getInstance().init();
-        initDatas();
         initFragment();
-        showInterAd();
     }
 
     public void setmCommonTabLayoutVisible(int Visible) {
@@ -45,59 +39,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initPresenter() {
-        mMainAtyPre = new MainAtyPreImpl();
+        mMainAtyPre = new MainAtyPreImpl(this);
     }
 
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_main);
         mCommonTabLayout = findView(R.id.main_commenTab);
-
-    }
-
-    private void showInterAd() {
-        interstitialAD = new InterstitialAD(this, "1105935915", "2000624031341128");
-        interstitialAD.setADListener(new InterstitialADListener() {
-            @Override
-            public void onADReceive() {
-                interstitialAD.show();
-            }
-
-            @Override
-            public void onNoAD(int i) {
-
-            }
-
-            @Override
-            public void onADOpened() {
-
-            }
-
-            @Override
-            public void onADExposure() {
-
-            }
-
-            @Override
-            public void onADClicked() {
-
-            }
-
-            @Override
-            public void onADLeftApplication() {
-
-            }
-
-            @Override
-            public void onADClosed() {
-
-            }
-        });
     }
 
     @Override
     protected void initData() {
-
+        mMainAtyPre.initDatas();
     }
 
     @Override
@@ -110,47 +63,14 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void initDatas() {
-        mCommonTabLayout.setTabData(mMainAtyPre.buildMaintTab(this));
-        mCommonTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelect(int position) {
-                switch (position) {
-                    case 0:
-                        showMainPage();
-                        break;
-
-                    case 1:
-                        showAlbumPage();
-                        break;
-
-                    case 2:
-                        showPlansPage();
-                        break;
-
-                    case 3:
-//                        showMinePage();
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabReselect(int position) {
-
-            }
-        });
-    }
-
     private void initFragment() {
         mMainFragment = new MainPageFragment();
         mAlbumFragment = new AlbumFragment();
         mPlansFragment = new PlantFragment();
-        mMineFragment = new MineFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_content, mMainFragment, "main")
                 .add(R.id.main_content, mAlbumFragment, "album")
                 .add(R.id.main_content, mPlansFragment, "plant")
-//                .add(R.id.main_content, mMineFragment)
                 .commitAllowingStateLoss();
         showMainPage();
         mCommonTabLayout.setCurrentTab(0);
@@ -164,34 +84,34 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction().show(fragment).commitAllowingStateLoss();
     }
 
-    private void showMainPage() {
+    @Override
+    public void showMainPage() {
         hideFragment(mAlbumFragment);
         hideFragment(mPlansFragment);
-//        hideFragment(mMineFragment);
         showFragment(mMainFragment);
     }
 
-    private void showAlbumPage() {
+    @Override
+    public void showAlbumPage() {
         hideFragment(mMainFragment);
         hideFragment(mPlansFragment);
-//        hideFragment(mMineFragment);
         showFragment(mAlbumFragment);
     }
 
-    private void showPlansPage() {
+    @Override
+    public void showPlansPage() {
         hideFragment(mMainFragment);
         hideFragment(mAlbumFragment);
-//        hideFragment(mMineFragment);
         showFragment(mPlansFragment);
-
     }
 
-    private void showMinePage() {
-        hideFragment(mMainFragment);
-        hideFragment(mAlbumFragment);
-        hideFragment(mPlansFragment);
-//        showFragment(mMineFragment);
+    @Override
+    public CommonTabLayout getCommonTab() {
+        return mCommonTabLayout;
     }
 
-
+    @Override
+    public Context getMainContext() {
+        return this;
+    }
 }

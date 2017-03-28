@@ -10,4 +10,6 @@ public interface IBaseRefreshPresenter<T> extends IBasePresenter {
     void onSuccess(List<T> t);
 
     void request(boolean readCache);
+
+    void onEmpty();
 }

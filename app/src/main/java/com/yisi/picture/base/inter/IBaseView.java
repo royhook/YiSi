@@ -5,9 +5,5 @@ package com.yisi.picture.base.inter;
  */
 
 public interface IBaseView {
-    void onLoadingPage();
 
-    void onLoadingSuccess();
-
-    void onLoadingFail();
 }

@@ -4,7 +4,6 @@ import com.yisi.picture.base.BaseModelImpl;
 import com.yisi.picture.bean.Album;
 import com.yisi.picture.model.inter.IAlbumFragmentModel;
 import com.yisi.picture.presenter.inter.IAlbumFragmentPre;
-import com.yisi.picture.utils.LogUtils;
 
 import java.util.List;
 
@@ -29,8 +28,10 @@ public class AlbumFragmentModelImpl extends BaseModelImpl<IAlbumFragmentPre> imp
             @Override
             public void done(List<Album> list, BmobException e) {
                 if (e == null) {
-                    LogUtils.d("album success");
-                    mPresenter.onSuccess(list);
+                    if (list.size() != 0)
+                        mPresenter.onSuccess(list);
+                    else
+                        mPresenter.onEmpty();
                 } else {
                     mPresenter.onFail(e.getErrorCode());
                 }

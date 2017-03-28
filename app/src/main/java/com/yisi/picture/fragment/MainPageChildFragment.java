@@ -28,9 +28,9 @@ import java.util.List;
  */
 
 public class MainPageChildFragment extends BaseRefreshFragment implements IMainPageChildFragment, OnItemClickListener {
-    private int currentPage;
+    private int currentPage = 0;
     private int type_id;
-    private boolean mLoadType;// true refresh  false loadmore
+    private boolean mLoadType = true;// true refresh  false loadmore
     private XRecyclerView mRecyclerView;
     private IMainPageChildFragmentPre mYiSiChildFragmentPre;
     private MainPageChildImageAdapter mMainPageChildImageAdapter;
@@ -93,7 +93,7 @@ public class MainPageChildFragment extends BaseRefreshFragment implements IMainP
 
     @Override
     public void bindRecylerViewRefresh(List<YiSiImage> yiSiImages) {
-        currentPage++;
+        currentPage = 0;
         mMainPageChildImageAdapter.notifyDataSetChanged();
         mRecyclerView.refreshComplete();
     }
@@ -116,6 +116,21 @@ public class MainPageChildFragment extends BaseRefreshFragment implements IMainP
     @Override
     public boolean isLoadMoreOrRefresh() {
         return mLoadType;
+    }
+
+    @Override
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    @Override
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    @Override
+    public XRecyclerView getRecycleView() {
+        return mRecyclerView;
     }
 
     @Override

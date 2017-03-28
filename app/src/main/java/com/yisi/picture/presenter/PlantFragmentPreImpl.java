@@ -75,4 +75,9 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
     public void request(boolean readCache) {
         mModel.request(currentPage, readCache);
     }
+
+    @Override
+    public void onEmpty() {
+
+    }
 }

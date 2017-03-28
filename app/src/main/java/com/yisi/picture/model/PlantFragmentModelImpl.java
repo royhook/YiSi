@@ -26,7 +26,6 @@ public class PlantFragmentModelImpl extends BaseModelImpl<IPlantFragmentPre<Plan
 
         new BmobRequest.Builder()
                 .setReadCache(readCache)
-                .addEqualTo("page", page)
                 .build()
                 .request(new FindListener<PlantBrowse>() {
                     @Override

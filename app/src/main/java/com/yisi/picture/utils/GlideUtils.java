@@ -9,7 +9,7 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
-import com.bumptech.glide.load.engine.cache.LruResourceCache;
+import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -47,10 +47,11 @@ public class GlideUtils {
      */
     public static void initGlide(Context context) {
         checkBuilder(context);
-        int memoryCacheSize = 3 * 1024 * 1024;
-        glideBuilder.setMemoryCache(new LruResourceCache(memoryCacheSize));//设置内存大小
+        MemorySizeCalculator calculator = new MemorySizeCalculator(context);
+        int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
+        int customBitmapPoolSize = (int) (1.2 * defaultBitmapPoolSize);
         glideBuilder.setDecodeFormat(DecodeFormat.PREFER_RGB_565);//这个格式不支持透明度，但是内存占用很小
-        glideBuilder.setBitmapPool(new LruBitmapPool(memoryCacheSize));//设置缓存内存大小
+        glideBuilder.setBitmapPool(new LruBitmapPool(customBitmapPoolSize));//设置缓存内存大小
     }
 
 
@@ -65,21 +66,23 @@ public class GlideUtils {
     private static void displayImage(final String imageUrl, final ImageView imageView, int defultRes, final LoaderListener
             loadListener) {
 
-        Glide.with(YiSiApplication.mGlobleContext).load(imageUrl).asBitmap().placeholder(defultRes).thumbnail(0.1f).listener(new RequestListener<String, Bitmap>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
-                if (loadListener != null)
-                    loadListener.loadFail(e.getMessage());
-                return false;
-            }
+        Glide.with(YiSiApplication.mGlobleContext).load(imageUrl).skipMemoryCache(true).thumbnail(0.1f).bitmapTransform(new ZipTransform(YiSiApplication
+                .mGlobleContext)).listener
+                (new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        if (loadListener != null)
+                            loadListener.loadFail(e.getMessage());
+                        return false;
+                    }
 
-            @Override
-            public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                if (loadListener != null)
-                    loadListener.loadSuccess();
-                return false;
-            }
-        }).into(imageView);
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        if (loadListener != null)
+                            loadListener.loadSuccess();
+                        return false;
+                    }
+                }).into(imageView);
     }
 
     public static void displayImage(String imageUrl, final ImageView imageView, int defultRes) {
@@ -88,7 +91,7 @@ public class GlideUtils {
 
 
     public static void displayImage(String imageUrl, ImageView imageView) {
-        Glide.with(YiSiApplication.mGlobleContext).load(imageUrl).into(imageView);
+        displayImage(imageUrl, imageView, 0, null);
     }
 
 
@@ -103,7 +106,8 @@ public class GlideUtils {
      * @param imageView
      */
     public static void displayImageWithThrun(String url, ImageView imageView, final LoaderListener loaderListener) {
-        Glide.with(YiSiApplication.mGlobleContext).load(url).thumbnail(0.1f).bitmapTransform(new CropTransform(YiSiApplication.mGlobleContext)).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(YiSiApplication.mGlobleContext).load(url).skipMemoryCache(true).thumbnail(0.1f).bitmapTransform(new CropTransform(YiSiApplication
+                .mGlobleContext)).listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                 if (loaderListener != null)
@@ -144,6 +148,23 @@ public class GlideUtils {
         @Override
         protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
             return BitmapUtils.cutImage(toTransform);
+        }
+
+        @Override
+        public String getId() {
+            return getClass().getName() + Math.round(radius);
+        }
+    }
+
+    private static class ZipTransform extends BitmapTransformation {
+
+        public ZipTransform(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+            return BitmapUtils.zipBitmap(toTransform);
         }
 
         @Override

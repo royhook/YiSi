@@ -1,5 +1,6 @@
 package com.yisi.picture.fragment.inter;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.base.inter.IBaseView;
 import com.yisi.picture.bean.YiSiImage;
 
@@ -21,4 +22,10 @@ public interface IMainPageChildFragment extends IBaseView {
     List<YiSiImage> getYiSiImages();
 
     boolean isLoadMoreOrRefresh();
+
+    int getCurrentPage();
+
+    void setCurrentPage(int currentPage);
+
+    XRecyclerView getRecycleView();
 }

@@ -11,6 +11,10 @@ import java.util.List;
 
 public interface IMainPageChildFragmentPre extends IBasePresenter {
     void onSuccess(List<YiSiImage> yiSiImages);
+
     void onError(int errorCode);
-    void request(int type_id,int page,boolean readcache);
+
+    void onEmpty();
+
+    void request(int type_id, int page, boolean readcache);
 }

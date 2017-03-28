@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.yisi.picture.utils.LogUtils;
 
 /**
@@ -16,12 +18,14 @@ public class YiSiApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     public static Context mGlobleContext;
     private static Handler mGlobleHandler = new Handler(Looper.getMainLooper());
+    private RefWatcher mRefWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
         LogUtils.d("onCreate");
         mGlobleContext = this;
+        mRefWatcher=LeakCanary.install(this);
     }
 
     public static void postMainThread(Runnable runnable) {

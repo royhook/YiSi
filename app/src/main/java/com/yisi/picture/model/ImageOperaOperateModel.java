@@ -48,19 +48,22 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
             BmobQuery<Plant> bmobquery = new BmobQuery<>();
             bmobquery.addWhereEqualTo("plant_id", id);
             bmobquery.order("createdAt");
-            bmobquery.setLimit(10);
             bmobquery.findObjects(new FindListener<Plant>() {
                 @Override
                 public void done(List<Plant> list, BmobException e) {
                     if (e == null) {
                         if (list != null) {
-                            LogUtils.d("success ");
+                            if (list.size() == 0) {
+                                mPresenter.onEmpty();
+                                return;
+                            }
                             List<YiSiImage> plants = new ArrayList<>();
                             for (int i = 0; i < list.size(); i++) {
                                 YiSiImage yiSiImage = new YiSiImage();
                                 yiSiImage.setImg_url(list.get(i).getImg_url());
                                 plants.add(yiSiImage);
                             }
+                            addChangeAlbum(plants);
                             mPresenter.onSuccess(plants, 1);
                         }
                     } else {
@@ -69,6 +72,17 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
                 }
             });
         }
+    }
+
+    /**
+     * 增加一张作为转换页面使用的
+     *
+     * @param yiSiImages
+     */
+    private void addChangeAlbum(List<YiSiImage> yiSiImages) {
+        YiSiImage yiSiImage = new YiSiImage();
+        yiSiImage.setImg_url("www");
+        yiSiImages.add(yiSiImage);
     }
 
 }

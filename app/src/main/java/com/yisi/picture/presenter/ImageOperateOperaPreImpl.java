@@ -25,6 +25,7 @@ import static com.yisi.picture.model.ImageOperaOperateModel.TYPE_ONLY_SHOW;
 public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActivity, IImageOperateModel> implements IImageOperaPre, ViewPager.OnPageChangeListener {
     private int type_id;
     private int open_type;
+    private int mAllNum;//图片的总数
 
     private List<YiSiImage> mYiSiImages;
     private ImageOperatePagerAdapter adapter;
@@ -53,29 +54,31 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void onSuccess(List<YiSiImage> yiSiImages, int position) {
-        if (yiSiImages != null) {
-            if (yiSiImages.size() == 0) {
-                Toast.makeText(mView, R.string.no_plant, Toast.LENGTH_SHORT).show();
+        mYiSiImages = yiSiImages;
+        if (adapter != null)
+            adapter = null;
+        adapter = new ImageOperatePagerAdapter(yiSiImages);
+        adapter.setOnPincherViewClickListener(new ImageOperatePagerAdapter.onPincherViewClickListener() {
+            @Override
+            public void onClick() {
+                mView.finish();
             }
-            addChangeAlbum(yiSiImages);
-            mYiSiImages = yiSiImages;
-            if (yiSiImages.size() != 0) {
-                if (adapter != null)
-                    adapter = null;
-                adapter = new ImageOperatePagerAdapter(yiSiImages);
-                adapter.setOnPincherViewClickListener(new ImageOperatePagerAdapter.onPincherViewClickListener() {
-                    @Override
-                    public void onClick() {
-                        mView.finish();
-                    }
-                });
-                mView.updataTextView(position + "/" + (mYiSiImages.size() - 1));
-                mView.setViewPagerAdapter(adapter);
-                mView.getViewPager().setCurrentItem(position - 1);
-                mView.getViewPager().clearOnPageChangeListeners();
-                mView.getViewPager().addOnPageChangeListener(this);
-            }
-        }
+        });
+        if (open_type == 2)
+            mAllNum = mYiSiImages.size() - 1;
+        else
+            mAllNum = mYiSiImages.size();
+        mView.updataTextView(position + "/" + mAllNum);
+        mView.setViewPagerAdapter(adapter);
+        mView.getViewPager().setCurrentItem(position - 1);
+        mView.getViewPager().clearOnPageChangeListeners();
+        mView.getViewPager().addOnPageChangeListener(this);
+    }
+
+    @Override
+    public void onEmpty() {
+        mView.finish();
+        Toast.makeText(mView, "已经到头啦", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -89,7 +92,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
             if (position != mYiSiImages.size() - 1)
                 mView.updataTextView(position + 1 + "/" + (mYiSiImages.size() - 1));
         } else
-            mView.updataTextView(position + 1 + "/" + (mYiSiImages.size() - 1));
+            mView.updataTextView(position + 1 + "/" + (mYiSiImages.size()));
 
         //仅仅在最后一张，并且套图模式的情况下 才请求下一套图
         if (position == mYiSiImages.size() - 1 && open_type == 2) {
@@ -101,16 +104,5 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void onPageScrollStateChanged(int state) {
-    }
-
-    /**
-     * 增加一张作为转换页面使用的
-     *
-     * @param yiSiImages
-     */
-    private void addChangeAlbum(List<YiSiImage> yiSiImages) {
-        YiSiImage yiSiImage = new YiSiImage();
-        yiSiImage.setImg_url("www");
-        yiSiImages.add(yiSiImage);
     }
 }
