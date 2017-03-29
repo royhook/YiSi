@@ -86,10 +86,11 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         currentPage--;
         mView.dataRunOut();
     }
-
     @Override
     public void onSuccess(List<AlbumImage> t) {
         super.onSuccess(t);
+        if (mYiSiImgs != null)
+            mYiSiImgs.clear();
         for (AlbumImage albumImage : currentList) {
             YiSiImage yisi = new YiSiImage();
             yisi.setImg_url(albumImage.getImg_url());
@@ -118,5 +119,5 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     public void onFail(int errorCode) {
         currentPage--;
         mView.dataRunOut();
-     }
+    }
 }

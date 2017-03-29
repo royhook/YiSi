@@ -31,6 +31,13 @@ public class BmobRequest {
                 bmobQuery.addWhereEqualTo(entry.getKey(), entry.getValue());
             }
         }
+
+        if (mBuilder.whereNotEqualTo != null) {
+            for (Map.Entry<String, Object> entry : mBuilder.whereNotEqualTo.entrySet()) {
+                bmobQuery.addWhereNotEqualTo(entry.getKey(), entry.getValue());
+            }
+        }
+
         bmobQuery.setMaxCacheAge(mBuilder.cacheTime);
         bmobQuery.setLimit(mBuilder.getLimit());
         bmobQuery.order(mBuilder.getOrder());
@@ -40,12 +47,16 @@ public class BmobRequest {
 
     public static class Builder {
         private HashMap<String, Object> whereEqualTo = new HashMap<>();
+        private HashMap<String, Object> whereNotEqualTo = new HashMap<>();
+
         private int limit = 10;
         private String order = "-createdAt";
         private long cacheTime = 1000 * 60 * 60 * 24;//默认一天
         private boolean putCache;
         private boolean readCache;
         private int skip;
+        //过滤数据
+
 
         public Builder() {
 
@@ -82,6 +93,11 @@ public class BmobRequest {
             return this;
         }
 
+        public Builder setWhereNotEqualTo(HashMap<String, Object> whereNotEqualTo) {
+            this.whereNotEqualTo = whereNotEqualTo;
+            return this;
+        }
+
         public Builder setLimit(int limit) {
             this.limit = limit;
             return this;
@@ -97,8 +113,9 @@ public class BmobRequest {
             return this;
         }
 
-        public void setCacheTime(long cacheTime) {
+        public Builder setCacheTime(long cacheTime) {
             this.cacheTime = cacheTime;
+            return this;
         }
 
         public long getCacheTime() {

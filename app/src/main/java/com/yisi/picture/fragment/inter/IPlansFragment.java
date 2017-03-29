@@ -15,4 +15,6 @@ public interface IPlansFragment extends IBaseView {
 
     Context getViewContext();
 
+    void dataOut();
+
 }

@@ -27,6 +27,7 @@ public class MainFragmentModelImpl extends BaseModelImpl<IMainFragmentPre> imple
     public void requestBannerData() {
         new BmobRequest.Builder()
                 .addEqualTo("page", -1)
+                .setCacheTime(1000 * 60 * 5)
                 .setReadCache(true)
                 .build()
                 .request(new FindListener<PlantBrowse>() {

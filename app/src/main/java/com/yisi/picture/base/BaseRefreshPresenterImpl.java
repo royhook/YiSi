@@ -15,9 +15,9 @@ import java.util.List;
 
 public abstract class BaseRefreshPresenterImpl<V extends IBaseView, M extends IBaseModel, T> extends BasePresenterImpl<V, M> implements IBaseRefreshPresenter<T>, XRecyclerView.LoadingListener {
     protected int currentPage = 0;
-    private static int REFRESH_TYPE = 0;
-    private static final int REFRESH_REFRESH = 1;
-    private static final int REFRESH_LOADMORE = 2;
+    protected static int REFRESH_TYPE = 0;
+    protected static final int REFRESH_REFRESH = 1;
+    protected static final int REFRESH_LOADMORE = 2;
     protected List<T> currentList;
 
 

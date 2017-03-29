@@ -47,7 +47,6 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
         else {
             BmobQuery<Plant> bmobquery = new BmobQuery<>();
             bmobquery.addWhereEqualTo("plant_id", id);
-            bmobquery.order("createdAt");
             bmobquery.findObjects(new FindListener<Plant>() {
                 @Override
                 public void done(List<Plant> list, BmobException e) {

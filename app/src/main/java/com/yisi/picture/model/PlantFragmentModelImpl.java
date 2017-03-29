@@ -6,6 +6,7 @@ import com.yisi.picture.model.inter.IPlantModel;
 import com.yisi.picture.net.BmobRequest;
 import com.yisi.picture.presenter.inter.IPlantFragmentPre;
 
+import java.util.HashMap;
 import java.util.List;
 
 import cn.bmob.v3.exception.BmobException;
@@ -23,15 +24,24 @@ public class PlantFragmentModelImpl extends BaseModelImpl<IPlantFragmentPre<Plan
 
     @Override
     public void request(int page, boolean readCache) {
-
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("page", -1);
+        hashMap.put("divide", -1);
         new BmobRequest.Builder()
                 .setReadCache(readCache)
+                .setLimit(10)
+                .setSkip(10 * page)
+                .setWhereNotEqualTo(hashMap)
                 .build()
                 .request(new FindListener<PlantBrowse>() {
                     @Override
                     public void done(List<PlantBrowse> list, BmobException e) {
                         if (e == null) {
-                            mPresenter.onSuccess(list);
+                            if (list.size() == 0) {
+                                mPresenter.onEmpty();
+                            } else {
+                                mPresenter.onSuccess(list);
+                            }
                         } else
                             mPresenter.onError(e.getErrorCode());
                     }

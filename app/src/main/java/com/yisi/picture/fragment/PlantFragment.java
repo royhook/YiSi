@@ -45,6 +45,11 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
     }
 
     @Override
+    public void dataOut() {
+        mXRecyclerView.setNoMore(true);
+    }
+
+    @Override
     public void onLoadingPage() {
 
     }

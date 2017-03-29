@@ -78,6 +78,6 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
     @Override
     public void onEmpty() {
-
+        mView.dataOut();
     }
 }
