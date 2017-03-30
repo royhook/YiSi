@@ -35,7 +35,8 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
         String json = mPresenter.getChildIntent().getStringExtra(IntentKey.KEY_IMAGE_OPERA);
         int postion = mPresenter.getChildIntent().getIntExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, 0);
         int openType = mPresenter.getChildIntent().getIntExtra(IntentKey.KEY_OPEN_TYPE, TYPE_ONLY_SHOW);
-//        int plant_type = mPresenter.getChildIntent().getIntExtra(IntentKey.KEY_PLANT_TYPE, 0);
+        //套图是请求后展示，非套图直接展示
+
         //直接展示
         if (openType == TYPE_ONLY_SHOW) {
             Gson gson = new Gson();
@@ -47,6 +48,7 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
         else {
             BmobQuery<Plant> bmobquery = new BmobQuery<>();
             bmobquery.addWhereEqualTo("plant_id", id);
+            bmobquery.addWhereNotEqualTo("divide", -1);
             bmobquery.findObjects(new FindListener<Plant>() {
                 @Override
                 public void done(List<Plant> list, BmobException e) {
