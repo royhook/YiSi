@@ -8,6 +8,7 @@ import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ISplashAty;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.utils.GlideUtils;
+import com.yisi.picture.utils.PreferencesUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -52,9 +53,10 @@ public class SplashAty extends BaseActivity implements ISplashAty {
 
 
     private void initBmob() {
+        String bmobId = PreferencesUtils.getString(this, PreferencesUtils.KEY.KEY_BMOB_ID, BMOB_APPID);
         BmobConfig config = new BmobConfig.Builder(this)
                 //设置appkey
-                .setApplicationId(BMOB_APPID)
+                .setApplicationId(bmobId)
                 //请求超时时间（单位为秒）：默认15s
                 .setConnectTimeout(30)
                 //文件分片上传时每片的大小（单位字节），默认512*icon

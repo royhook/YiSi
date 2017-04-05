@@ -86,6 +86,7 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         currentPage--;
         mView.dataRunOut();
     }
+
     @Override
     public void onSuccess(List<AlbumImage> t) {
         super.onSuccess(t);
@@ -117,7 +118,7 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
 
     @Override
     public void onFail(int errorCode) {
-        currentPage--;
+        super.onFail(errorCode);
         mView.dataRunOut();
     }
 }

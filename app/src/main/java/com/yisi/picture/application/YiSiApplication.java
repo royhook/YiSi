@@ -8,7 +8,6 @@ import android.os.Looper;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-import com.yisi.picture.utils.LogUtils;
 
 /**
  * Created by roy on 2017/1/13.
@@ -23,7 +22,6 @@ public class YiSiApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtils.d("onCreate");
         mGlobleContext = this;
         mRefWatcher=LeakCanary.install(this);
     }

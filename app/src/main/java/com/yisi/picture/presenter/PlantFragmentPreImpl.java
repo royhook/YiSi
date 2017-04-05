@@ -74,9 +74,4 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
     public void onEmpty() {
         mView.dataOut();
     }
-
-    @Override
-    public void onFail(int errorCode) {
-
-    }
 }
