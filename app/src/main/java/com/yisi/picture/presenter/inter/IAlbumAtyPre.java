@@ -8,6 +8,4 @@ import com.yisi.picture.base.inter.IBaseRefreshPresenter;
 
 public interface IAlbumAtyPre<T> extends IBaseRefreshPresenter<T> {
     void initViewDatas();
-
-    void onFail(int errorCode);
 }

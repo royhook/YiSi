@@ -13,5 +13,4 @@ public abstract class BaseModelImpl<T extends IBasePresenter> implements IBaseMo
     protected BaseModelImpl(T basePresenter) {
         this.mPresenter = basePresenter;
     }
-
 }

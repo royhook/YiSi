@@ -43,7 +43,7 @@ public class PlantFragmentModelImpl extends BaseModelImpl<IPlantFragmentPre<Plan
                                 mPresenter.onSuccess(list);
                             }
                         } else
-                            mPresenter.onError(e.getErrorCode());
+                            mPresenter.onFail(e.getErrorCode());
                     }
                 });
     }

@@ -12,4 +12,7 @@ public interface IBaseRefreshPresenter<T> extends IBasePresenter {
     void request(boolean readCache);
 
     void onEmpty();
+
+    void onFail(int errorCode);
+
 }

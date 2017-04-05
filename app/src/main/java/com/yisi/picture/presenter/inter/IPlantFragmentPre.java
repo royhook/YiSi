@@ -7,5 +7,4 @@ import com.yisi.picture.base.inter.IBaseRefreshPresenter;
  */
 
 public interface IPlantFragmentPre<T> extends IBaseRefreshPresenter<T> {
-    void onError(int code);
 }

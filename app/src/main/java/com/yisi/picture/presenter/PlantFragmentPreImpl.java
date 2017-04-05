@@ -17,7 +17,6 @@ import com.yisi.picture.model.PlantFragmentModelImpl;
 import com.yisi.picture.model.inter.IPlantModel;
 import com.yisi.picture.presenter.inter.IPlantFragmentPre;
 import com.yisi.picture.utils.IntentKey;
-import com.yisi.picture.utils.LogUtils;
 
 /**
  * Created by roy on 2017/2/16.
@@ -58,11 +57,6 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
 
     @Override
-    public void onError(int code) {
-        LogUtils.d(code + "");
-    }
-
-    @Override
     public void onClick(View view, int position) {
         int id = currentList.get(position - 1).getPlant_id();
         Intent intent = new Intent(mView.getViewContext(), ImageOperateActivity.class);
@@ -79,5 +73,10 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
     @Override
     public void onEmpty() {
         mView.dataOut();
+    }
+
+    @Override
+    public void onFail(int errorCode) {
+
     }
 }
