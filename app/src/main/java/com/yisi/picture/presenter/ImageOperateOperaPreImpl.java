@@ -12,7 +12,9 @@ import com.yisi.picture.bean.YiSiImage;
 import com.yisi.picture.model.ImageOperaOperateModel;
 import com.yisi.picture.model.inter.IImageOperateModel;
 import com.yisi.picture.presenter.inter.IImageOperaPre;
+import com.yisi.picture.utils.GlideUtils;
 import com.yisi.picture.utils.IntentKey;
+import com.yisi.picture.utils.PermissionUtils;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     private int type_id;
     private int open_type;
     private int mAllNum;//图片的总数
-
+    private int mCurrentPosition;
     private List<YiSiImage> mYiSiImages;
     private ImageOperatePagerAdapter adapter;
 
@@ -82,12 +84,32 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     }
 
     @Override
+    public void downloadImg() {
+        PermissionUtils.requestWriteSDCard(new PermissionUtils.OnRequestCallback() {
+            @Override
+            public void onSuccess() {
+                YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+                if (yiSiImage != null)
+                    GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url());
+            }
+
+            @Override
+            public void onFail() {
+                Toast.makeText(mView, "您拒绝了读取权限，保存失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
 
     @Override
     public void onPageSelected(int position) {
+        mCurrentPosition = position;
         if (open_type == 2) {
             if (position != mYiSiImages.size() - 1)
                 mView.updataTextView(position + 1 + "/" + (mYiSiImages.size() - 1));

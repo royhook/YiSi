@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -41,7 +40,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private IMainFragmentPre mainFragmentPre;
     private ViewPager mViewPager;
     private ProgressBar progressBar;
-    private CoordinatorLayout coordinatorLayout;
     private AppBarLayout mAppBarLayout;
 
     @Override
@@ -57,7 +55,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
         mViewPager = findview(R.id.main_fragment_vp_content);
         progressBar = findview(R.id.main_fragment_process);
-        coordinatorLayout = findview(R.id.mian_fragment_coor);
         mAppBarLayout = findview(R.id.main_appbar);
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override

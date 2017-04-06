@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IImageOperaAty;
@@ -24,6 +27,7 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     IImageOperaPre iImageOperaPre;
     PinchViewPager vp;
     TextView mNumTextView;
+    ImageView mImageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
         setContentView(R.layout.activity_operate);
         vp = findView(R.id.activity_operate_vp);
         mNumTextView = findView(R.id.activity_operate_num);
+        mImageView = findView(R.id.activity_operate_download);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iImageOperaPre.downloadImg();
+                Toast.makeText(ImageOperateActivity.this, "下载成功", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

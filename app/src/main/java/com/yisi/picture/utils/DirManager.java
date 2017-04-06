@@ -11,6 +11,7 @@ import java.io.File;
 public class DirManager {
     private String localPathDirName = "YiSi";
     private String localCacheDirName = "cache";
+    private String localDownloadDirName = "download";
 
     private DirManager() {
 
@@ -30,6 +31,7 @@ public class DirManager {
         if (!file.exists())
             file.mkdirs();
         initCachePath();
+        initDownloadPath();
     }
 
     public String getLocalPath() {
@@ -48,5 +50,15 @@ public class DirManager {
         return getLocalPath() + "/" + localCacheDirName;
     }
 
+    public String getDownloadPath() {
+        return getLocalPath() + "/" + localDownloadDirName;
+    }
 
+    private void initDownloadPath() {
+        String cachePath = getLocalPath() + "/" + localDownloadDirName;
+        File file = new File(cachePath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+    }
 }

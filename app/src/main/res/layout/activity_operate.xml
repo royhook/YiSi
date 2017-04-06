@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#000000"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#000000"
+                android:orientation="vertical">
 
     <com.yisi.picture.view.PinchViewPager
         android:id="@+id/activity_operate_vp"
@@ -23,6 +23,34 @@
         android:gravity="center"
         android:text="1/20"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/px40" />
+        android:textSize="@dimen/px40"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/px100"
+        android:layout_marginEnd="@dimen/px20"
+        android:layout_marginRight="@dimen/px20"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/activity_operate_collect"
+            android:layout_width="@dimen/px80"
+            android:layout_height="@dimen/px80"
+            android:layout_marginBottom="@dimen/px60"
+            android:src="@mipmap/favorite_unselect"/>
+
+        <ImageView
+            android:id="@+id/activity_operate_download"
+            android:layout_width="@dimen/px80"
+            android:layout_height="@dimen/px80"
+            android:src="@mipmap/download"/>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>
