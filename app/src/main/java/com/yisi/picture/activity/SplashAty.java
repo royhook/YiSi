@@ -18,7 +18,7 @@ import cn.bmob.v3.BmobConfig;
  */
 
 public class SplashAty extends BaseActivity implements ISplashAty {
-    public static final String BMOB_APPID = "9b7629a191656e19839a10be2a27363b";
+    public static final String BMOB_APPID = "bd680cd370f7e8716b941d9d37872d2e";
     RelativeLayout relativeLayout;
 
     @Override

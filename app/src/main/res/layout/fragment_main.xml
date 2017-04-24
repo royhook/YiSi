@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/main_fragment_process"
         android:layout_width="@dimen/px200"
         android:layout_height="@dimen/px200"
-       android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/mian_fragment_coor"
@@ -26,24 +26,30 @@
             android:background="#FFFFFF"
             android:orientation="vertical">
 
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/mian_fragment_toolbar"
+                android:layout_width="match_parent"
+                android:background="@color/colorPrimary"
+                custom:layout_scrollFlags="scroll"
+                android:layout_height="@dimen/px150"/>
+
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/main_fragment_slider"
-                custom:layout_scrollFlags="scroll"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px600"
                 custom:auto_cycle="true"
                 custom:indicator_visibility="visible"
-                custom:layout_collapseMode="parallax"
-                custom:pager_animation="Accordion"
+                custom:layout_scrollFlags="scroll"
                 custom:pager_animation_span="1100">
 
             </com.daimajia.slider.library.SliderLayout>
 
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/main_fragment_slidertab"
-                android:minHeight="@dimen/px150"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px150"
+                android:minHeight="@dimen/px150"
                 custom:tl_indicator_color="#2C97DE"
                 custom:tl_indicator_height="@dimen/px5"
                 custom:tl_indicator_width="@dimen/px100"

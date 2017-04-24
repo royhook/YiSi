@@ -91,15 +91,14 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
                 YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
                 if (yiSiImage != null)
                     GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url());
+                Toast.makeText(mView, mView.getResources().getString(R.string.download_success), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFail() {
-                Toast.makeText(mView, "您拒绝了读取权限，保存失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mView, mView.getResources().getString(R.string.download_fail_perssion_refused), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -122,6 +121,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
             Toast.makeText(mView, R.string.next_plant, Toast.LENGTH_SHORT).show();
             getData();
         }
+        mView.refreshFeaturesState();
     }
 
     @Override

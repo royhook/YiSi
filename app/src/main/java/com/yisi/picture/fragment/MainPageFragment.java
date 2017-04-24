@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -41,12 +41,12 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private ViewPager mViewPager;
     private ProgressBar progressBar;
     private AppBarLayout mAppBarLayout;
+    private Toolbar mToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainFragmentPre = new MainFragmentPreImpl(this);
-
     }
 
     @Override
@@ -56,11 +56,22 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mViewPager = findview(R.id.main_fragment_vp_content);
         progressBar = findview(R.id.main_fragment_process);
         mAppBarLayout = findview(R.id.main_appbar);
+        mToolbar = findview(R.id.mian_fragment_toolbar);
+        mToolbar.setTitle("爱Yisi");
+        mToolbar.setTitleTextColor(0xffffffff);
+        mToolbar.setNavigationIcon(R.mipmap.category);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).openDrawer();
+            }
+        });
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (getResources().getDimensionPixelOffset(R.dimen.px600) == Math.abs(verticalOffset)) {
+                if (getResources().getDimensionPixelOffset(R.dimen.px750) == Math.abs(verticalOffset)) {
                     appBarLayout.removeView(mSliderLayout);
+                    appBarLayout.removeView(mToolbar);
                     ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
                 }
             }
@@ -100,9 +111,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
             mSliderLayout.addSlider(textSliderView);
         }
 
-        mSliderLayout.setPresetTransformer(SliderLayout.Transformer.Tablet);
         mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
-        mSliderLayout.setCustomAnimation(new DescriptionAnimation());
         mSliderLayout.setDuration(4000);
     }
 
@@ -137,6 +146,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         if (((MainActivity) getActivity()).getmCommonTabLayoutVisiablity() == View.GONE) {
             ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.VISIBLE);
             mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
+            mAppBarLayout.addView(mToolbar, 0);
             mainFragmentPre.onRecoverState(mSlidingTabLayout.getCurrentTab());
             return true;
         } else {

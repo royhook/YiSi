@@ -2,7 +2,14 @@ package com.yisi.picture.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
+import android.view.MenuItem;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.yisi.picture.R;
@@ -14,13 +21,15 @@ import com.yisi.picture.fragment.PlantFragment;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 import com.yisi.picture.utils.DirManager;
 
-public class MainActivity extends BaseActivity implements IMainAty {
+public class MainActivity extends BaseActivity implements IMainAty, NavigationView.OnNavigationItemSelectedListener {
 
     private CommonTabLayout mCommonTabLayout;
     private MainAtyPreImpl mMainAtyPre;
     private Fragment mMainFragment;
     private Fragment mAlbumFragment;
     private Fragment mPlansFragment;
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,14 @@ public class MainActivity extends BaseActivity implements IMainAty {
     protected void initViews() {
         setContentView(R.layout.activity_main);
         mCommonTabLayout = findView(R.id.main_commenTab);
+        mNavigationView = findView(R.id.nav_view);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawer, R.string.open, R.string.close);
+        mDrawer.setDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -53,8 +70,16 @@ public class MainActivity extends BaseActivity implements IMainAty {
         mMainAtyPre.initDatas();
     }
 
+    public void openDrawer() {
+        mDrawer.openDrawer(GravityCompat.START);
+    }
+
     @Override
     public void onBackPressed() {
+        if (mDrawer.isDrawerOpen(Gravity.LEFT)) {
+            mDrawer.closeDrawer(Gravity.LEFT);
+            return;
+        }
         //这些应该都移动到P层才对,赶时间 先不移动了吧
         MainPageFragment fragment = (MainPageFragment) getSupportFragmentManager().findFragmentByTag("main");
         if (fragment != null) {
@@ -113,5 +138,10 @@ public class MainActivity extends BaseActivity implements IMainAty {
     @Override
     public Context getMainContext() {
         return this;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }
