@@ -14,6 +14,7 @@ import com.yisi.picture.activity.inter.IImageOperaAty;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.presenter.ImageOperateOperaPreImpl;
 import com.yisi.picture.presenter.inter.IImageOperaPre;
+import com.yisi.picture.view.OpertePopList;
 import com.yisi.picture.view.PinchViewPager;
 
 
@@ -26,9 +27,8 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     IImageOperaPre iImageOperaPre;
     PinchViewPager vp;
     TextView mNumTextView;
-    ImageView mImageView;
-    ImageView mDownLoadImageView;
-    ImageView mCollectionView;
+    ImageView mOperateImage;
+    OpertePopList mOpertePopList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,16 +46,16 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
         setContentView(R.layout.activity_operate);
         vp = findView(R.id.activity_operate_vp);
         mNumTextView = findView(R.id.activity_operate_num);
-        mImageView = findView(R.id.activity_operate_download);
-        mDownLoadImageView = findView(R.id.activity_operate_download);
-        mCollectionView = findView(R.id.activity_operate_collect);
-        mImageView.setOnClickListener(new View.OnClickListener() {
+        mOperateImage = findView(R.id.iv_operate);
+        mOpertePopList = new OpertePopList(this);
+        mOperateImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iImageOperaPre.downloadImg();
-                mDownLoadImageView.setImageResource(R.mipmap.download_selected);
+                mOpertePopList.showPopList();
             }
         });
+//      iImageOperaPre.downloadImg();
+
     }
 
     @Override
@@ -105,6 +105,6 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     }
 
     public void refreshFeaturesState() {
-        mDownLoadImageView.setImageResource(R.mipmap.download);
+
     }
 }

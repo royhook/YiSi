@@ -25,32 +25,16 @@
         android:textColor="#FFFFFF"
         android:textSize="@dimen/px40"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+    <ImageView
+        android:id="@+id/iv_operate"
+        android:layout_width="@dimen/px80"
+        android:layout_height="@dimen/px50"
+        android:layout_marginTop="@dimen/px150"
+        android:layout_marginRight="@dimen/px100"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/px80"
-        android:layout_marginEnd="@dimen/px20"
-        android:layout_marginRight="@dimen/px20"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/activity_operate_collect"
-            android:layout_width="@dimen/px80"
-            android:layout_height="@dimen/px80"
-            android:layout_marginBottom="@dimen/px60"
-            android:src="@mipmap/favorite_unselect"/>
-
-        <ImageView
-            android:id="@+id/activity_operate_download"
-            android:layout_width="@dimen/px80"
-            android:layout_height="@dimen/px80"
-            android:src="@mipmap/download"/>
-
-
-    </LinearLayout>
+        android:scaleType="center"
+        android:background="@drawable/shape_bottom_bar_overview"
+        android:src="@drawable/selector_opera_image"/>
 
 
 

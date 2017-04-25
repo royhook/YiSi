@@ -16,6 +16,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        tl:headerLayout="@layout/nav_header_main"
         />
 
 

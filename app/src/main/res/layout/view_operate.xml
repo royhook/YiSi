@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    app:divider="@drawable/shape_line"
+    app:showDividers="end">
+
+    <TextView
+        android:id="@+id/tv_operate_save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px200"
+        android:gravity="center"
+        android:text="@string/download_picture"
+        android:textSize="@dimen/px50"/>
+
+    <TextView
+        android:id="@+id/tv_operate_collect"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px200"
+        android:gravity="center"
+        android:text="@string/collect_picture"
+        android:textSize="@dimen/px50"/>
+
+
+    <TextView
+        android:id="@+id/tv_operate_set"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px200"
+        android:gravity="center"
+        android:text="@string/set_wallpaper"
+        android:textSize="@dimen/px50"/>
+
+    <TextView
+        android:id="@+id/tv_operate_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px200"
+        android:gravity="center"
+        android:text="@string/operate_list_cancel"
+        android:textSize="@dimen/px60"/>
+
+
+</android.support.v7.widget.LinearLayoutCompat>

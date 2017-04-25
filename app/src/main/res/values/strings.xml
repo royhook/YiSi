@@ -11,4 +11,8 @@
     <string name="download_fail_perssion_refused">您拒绝了读取权限，保存失败</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="download_picture">保存图片</string>
+    <string name="collect_picture">收藏图片</string>
+    <string name="set_wallpaper">设置为壁纸</string>
+    <string name="operate_list_cancel">取消</string>
 </resources>

@@ -21,5 +21,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RC_Pop" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/rp_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/rp_bottom_out</item>
+    </style>
+
 
 </resources>
