@@ -1,9 +1,13 @@
 package com.yisi.picture.presenter;
 
+import android.app.WallpaperManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.ImageOperateActivity;
 import com.yisi.picture.adapter.ImageOperatePagerAdapter;
@@ -16,6 +20,7 @@ import com.yisi.picture.utils.GlideUtils;
 import com.yisi.picture.utils.IntentKey;
 import com.yisi.picture.utils.PermissionUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.yisi.picture.model.ImageOperaOperateModel.TYPE_ONLY_SHOW;
@@ -56,6 +61,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void onSuccess(List<YiSiImage> yiSiImages, int position) {
+        mCurrentPosition = position - 1;
         mYiSiImages = yiSiImages;
         if (adapter != null)
             adapter = null;
@@ -99,6 +105,24 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
                 Toast.makeText(mView, mView.getResources().getString(R.string.download_fail_perssion_refused), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void setWallPaper() {
+        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(mView);
+        YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+        if (yiSiImage != null)
+            GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url(), new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    try {
+                        wallpaperManager.setBitmap(resource);
+                        Toast.makeText(mView, mView.getString(R.string.set_wapper_success), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
     }
 
     @Override

@@ -70,7 +70,10 @@ public class GlideUtils {
 
             }
         });
+    }
 
+    public static void displayImageAndDownLoad(String url, SimpleTarget<Bitmap> target) {
+        Glide.with(YiSiApplication.mGlobleContext).load(url).asBitmap().into(target);
     }
 
 

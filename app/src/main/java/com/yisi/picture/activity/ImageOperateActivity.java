@@ -14,21 +14,22 @@ import com.yisi.picture.activity.inter.IImageOperaAty;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.presenter.ImageOperateOperaPreImpl;
 import com.yisi.picture.presenter.inter.IImageOperaPre;
-import com.yisi.picture.view.OpertePopList;
+import com.yisi.picture.view.OperatePopList;
 import com.yisi.picture.view.PinchViewPager;
+import com.yisi.picture.view.inter.IPopListClick;
 
 
 /**
  * Created by roy on 2017/1/20.
  */
 
-public class ImageOperateActivity extends BaseActivity implements IImageOperaAty {
+public class ImageOperateActivity extends BaseActivity implements IImageOperaAty, IPopListClick {
 
     IImageOperaPre iImageOperaPre;
     PinchViewPager vp;
     TextView mNumTextView;
     ImageView mOperateImage;
-    OpertePopList mOpertePopList;
+    OperatePopList mOperatePopList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,21 +48,20 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
         vp = findView(R.id.activity_operate_vp);
         mNumTextView = findView(R.id.activity_operate_num);
         mOperateImage = findView(R.id.iv_operate);
-        mOpertePopList = new OpertePopList(this);
+        mOperatePopList = new OperatePopList(this);
+        mOperatePopList.setPopListClickListener(this);
         mOperateImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOpertePopList.showPopList();
+                mOperatePopList.showPopList();
             }
         });
-//      iImageOperaPre.downloadImg();
-
     }
 
     @Override
     public void finish() {
-        super.finish();
         overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
+        super.finish();
     }
 
     @Override
@@ -106,5 +106,20 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
 
     public void refreshFeaturesState() {
 
+    }
+
+    @Override
+    public void onDownLoadClick() {
+        iImageOperaPre.downloadImg();
+    }
+
+    @Override
+    public void onCollectionClick() {
+
+    }
+
+    @Override
+    public void onSettingWallPageClick() {
+        iImageOperaPre.setWallPaper();
     }
 }

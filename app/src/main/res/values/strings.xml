@@ -15,4 +15,5 @@
     <string name="collect_picture">收藏图片</string>
     <string name="set_wallpaper">设置为壁纸</string>
     <string name="operate_list_cancel">取消</string>
+    <string name="set_wapper_success">设置壁纸成功</string>
 </resources>

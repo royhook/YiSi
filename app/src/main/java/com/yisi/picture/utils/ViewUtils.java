@@ -1,5 +1,7 @@
 package com.yisi.picture.utils;
 
+import android.view.View;
+
 import com.yisi.picture.application.YiSiApplication;
 
 /**
@@ -9,5 +11,9 @@ import com.yisi.picture.application.YiSiApplication;
 public class ViewUtils {
     public static int getDimen(int resId) {
         return YiSiApplication.mGlobleContext.getResources().getDimensionPixelOffset(resId);
+    }
+
+    public static <T> T findView(View view, int id) {
+        return (T) view.findViewById(id);
     }
 }
