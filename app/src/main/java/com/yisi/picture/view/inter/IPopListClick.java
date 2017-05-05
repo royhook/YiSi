@@ -10,4 +10,6 @@ public interface IPopListClick {
     void onCollectionClick();
 
     void onSettingWallPageClick();
+
+    void onSystemSettingWallPageClick();
 }

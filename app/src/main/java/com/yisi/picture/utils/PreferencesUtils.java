@@ -250,5 +250,6 @@ public class PreferencesUtils {
 
     public interface KEY {
         String KEY_BMOB_ID = "key_bmob_id";
+        String KEY_PRE_BMOB_ID = "key_pre_bmob_id";
     }
 }

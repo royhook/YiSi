@@ -15,11 +15,21 @@ import com.yisi.picture.adapter.inter.OnItemClickListener;
 public class AlbumViewHolder extends BaseViewHolder {
     ImageView mImageView;//图片
     TextView mTextView;//标题
+    TextView mTodayUpdate;//今日更新
+    View mRootView;
 
     public AlbumViewHolder(View itemView, OnItemClickListener onItemClickListener) {
         super(itemView, onItemClickListener);
+        if (itemView != null)
+            mRootView = itemView;
         mImageView = getView(R.id.adapter_album_img);
         mTextView = getView(R.id.adapter_album_title);
+        mTodayUpdate = getView(R.id.adapter_album_title_update);
+
+    }
+
+    public TextView getTodayUpdate() {
+        return mTodayUpdate;
     }
 
     public ImageView getmImageView() {
@@ -28,5 +38,9 @@ public class AlbumViewHolder extends BaseViewHolder {
 
     public TextView getmTextView() {
         return mTextView;
+    }
+
+    public View getRootView() {
+        return mRootView;
     }
 }

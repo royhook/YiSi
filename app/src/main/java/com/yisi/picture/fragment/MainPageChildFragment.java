@@ -35,7 +35,15 @@ public class MainPageChildFragment extends BaseRefreshFragment implements IMainP
     private IMainPageChildFragmentPre mYiSiChildFragmentPre;
     private MainPageChildImageAdapter mMainPageChildImageAdapter;
     private List<YiSiImage> mYiSiImages;
+    private boolean mIsPtr = false;
 
+    public boolean isPtr() {
+        return mIsPtr;
+    }
+
+    public void setPtr(boolean ptr) {
+        mIsPtr = ptr;
+    }
 
     public XRecyclerView getmRecyclerView() {
         return mRecyclerView;
@@ -54,6 +62,12 @@ public class MainPageChildFragment extends BaseRefreshFragment implements IMainP
     @Override
     protected void initViews() {
         mRecyclerView = findview(R.id.hot_fragment_recycler);
+        if (((MainPageFragment)getParentFragment()).isHasPictureMode()){
+            mIsPtr = true;
+        }else {
+            mIsPtr = false;
+        }
+        mRecyclerView.setPullRefreshEnabled(mIsPtr);
         mRecyclerView.setLoadingListener(this);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
@@ -171,5 +185,9 @@ public class MainPageChildFragment extends BaseRefreshFragment implements IMainP
     @Override
     public void onLoadingFail() {
 
+    }
+
+    public void refreshState() {
+        mRecyclerView.setPullRefreshEnabled(mIsPtr);
     }
 }

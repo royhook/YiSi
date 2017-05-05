@@ -18,7 +18,7 @@
             android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px10"
-            android:src="@mipmap/back_icon"/>
+            android:src="@mipmap/back"/>
 
         <TextView
             android:id="@+id/aty_album_title"

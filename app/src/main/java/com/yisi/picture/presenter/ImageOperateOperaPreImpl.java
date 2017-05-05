@@ -3,11 +3,16 @@ package com.yisi.picture.presenter;
 import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.ImageOperateActivity;
 import com.yisi.picture.adapter.ImageOperatePagerAdapter;
@@ -19,8 +24,11 @@ import com.yisi.picture.presenter.inter.IImageOperaPre;
 import com.yisi.picture.utils.GlideUtils;
 import com.yisi.picture.utils.IntentKey;
 import com.yisi.picture.utils.PermissionUtils;
+import com.yisi.picture.utils.PreferenceKey;
+import com.yisi.picture.utils.PreferencesUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.yisi.picture.model.ImageOperaOperateModel.TYPE_ONLY_SHOW;
@@ -124,6 +132,52 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
                 }
             });
     }
+
+    @Override
+    public void setSystemWallPaper() {
+
+        PermissionUtils.requestWriteSDCard(new PermissionUtils.OnRequestCallback() {
+            @Override
+            public void onSuccess() {
+                YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+                if (yiSiImage != null)
+                    GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url(), new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            Intent intent = new Intent(Intent.ACTION_ATTACH_DATA);
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            intent.putExtra("mimeType", "image/*");
+                            Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(mView.getContentResolver(), resource, null, null));
+                            intent.setData(uri);
+                            mView.startActivityForResult(intent, 100);
+                        }
+                    });
+            }
+
+            @Override
+            public void onFail() {
+                Toast.makeText(mView, mView.getResources().getString(R.string.wallpaper_fail_perssion_refused), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void collectImg() {
+        List<YiSiImage> list = null;
+        String result = PreferencesUtils.getString(mView, PreferenceKey.MY_COLLECT_IMAGE);
+        if (TextUtils.isEmpty(result)) {
+            list = new ArrayList<>();
+        } else {
+            list = new Gson().fromJson(result, new TypeToken<List<YiSiImage>>() {
+            }.getType());
+        }
+        YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+        if (list != null)
+            list.add(yiSiImage);
+        PreferencesUtils.putString(mView, PreferenceKey.MY_COLLECT_IMAGE, new Gson().toJson(list));
+        Toast.makeText(mView, mView.getString(R.string.collect_success), Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -23,4 +23,8 @@ public interface IImageOperaPre extends IBasePresenter {
     void downloadImg();
 
     void setWallPaper();
+
+    void setSystemWallPaper();
+
+    void collectImg();
 }

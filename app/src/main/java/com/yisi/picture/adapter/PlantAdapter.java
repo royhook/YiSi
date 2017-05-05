@@ -37,7 +37,6 @@ public class PlantAdapter extends BaseAdapter<PlantViewHolder, PlantBrowse> {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) holder.getImgView().getLayoutParams();
             layoutParams.leftMargin = YiSiApplication.mGlobleContext.getResources().getDimensionPixelOffset(R.dimen.px1);
             holder.getImgView().setLayoutParams(layoutParams);
-
         }
         GlideUtils.displayImage(mDataList.get(position).getImg_url(), holder.getImgView(), R.mipmap.defult);
         holder.getTitleView().setText(mDataList.get(position).getTitle());

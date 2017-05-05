@@ -30,18 +30,45 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/mian_fragment_toolbar"
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/px150"
                 android:background="@color/colorPrimary"
+                custom:layout_scrollFlags="scroll"/>
+
+            <LinearLayout
+                android:id="@+id/ll_everyday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
                 custom:layout_scrollFlags="scroll"
-                android:layout_height="@dimen/px150"/>
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/px20"
+                    android:layout_marginLeft="@dimen/px20"
+                    android:layout_height="@dimen/px20"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_dot"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px100"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingLeft="@dimen/px20"
+                    android:paddingTop="@dimen/px20"
+                    android:text="今日推荐"
+                    android:textColor="#8E8E8E"
+                    android:textSize="@dimen/px40"
+                   />
+
+            </LinearLayout>
 
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/main_fragment_slider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px600"
-                custom:auto_cycle="true"
+                custom:auto_cycle="false"
                 custom:indicator_visibility="visible"
-                custom:layout_scrollFlags="scroll"
-                custom:pager_animation_span="1100">
+                custom:layout_scrollFlags="scroll">
 
             </com.daimajia.slider.library.SliderLayout>
 

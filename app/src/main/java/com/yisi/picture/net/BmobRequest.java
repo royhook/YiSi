@@ -1,5 +1,9 @@
 package com.yisi.picture.net;
 
+import android.util.Log;
+
+import com.yisi.picture.application.YiSiApplication;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +25,10 @@ public class BmobRequest {
     public <T> void request(final FindListener<T> listener) {
 
         BmobQuery<T> bmobQuery = new BmobQuery<>();
+        if (YiSiApplication.isChange) {
+            mBuilder.readCache = false;
+        }
+        Log.d("tag", "readcache:" + mBuilder.readCache);
         if (mBuilder.readCache) {
             bmobQuery.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
         } else {

@@ -47,4 +47,19 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
     protected <T> T findview(int id) {
         return (T) cacheView.findViewById(id);
     }
+
+    @Override
+    public void onLoadingSuccess() {
+
+    }
+
+    @Override
+    public void onLoadingFail() {
+
+    }
+
+    @Override
+    public void onLoadingPage() {
+        
+    }
 }

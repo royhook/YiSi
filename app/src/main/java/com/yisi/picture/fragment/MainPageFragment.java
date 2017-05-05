@@ -42,6 +42,13 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private ProgressBar progressBar;
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
+    private View mEveryDayView;
+    private boolean mHasPictureMode = false;
+
+
+    public boolean isHasPictureMode() {
+        return mHasPictureMode;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mViewPager = findview(R.id.main_fragment_vp_content);
         progressBar = findview(R.id.main_fragment_process);
         mAppBarLayout = findview(R.id.main_appbar);
+        mEveryDayView = findview(R.id.ll_everyday);
         mToolbar = findview(R.id.mian_fragment_toolbar);
         mToolbar.setTitle("爱Yisi");
         mToolbar.setTitleTextColor(0xffffffff);
@@ -69,13 +77,24 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (getResources().getDimensionPixelOffset(R.dimen.px750) == Math.abs(verticalOffset)) {
+                if (getResources().getDimensionPixelOffset(R.dimen.px850) == Math.abs(verticalOffset)) {
                     appBarLayout.removeView(mSliderLayout);
                     appBarLayout.removeView(mToolbar);
+                    appBarLayout.removeView(mEveryDayView);
                     ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
+                    refreshChildRefreshState(true);
                 }
             }
         });
+    }
+
+    private void refreshChildRefreshState(boolean refresh) {
+        mHasPictureMode = refresh;
+        List<Fragment> fragments = getChildFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
+            ((MainPageChildFragment) fragment).setPtr(refresh);
+            ((MainPageChildFragment) fragment).refreshState();
+        }
     }
 
     @Override
@@ -111,8 +130,8 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
             mSliderLayout.addSlider(textSliderView);
         }
 
-        mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
-        mSliderLayout.setDuration(4000);
+//        mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
+//        mSliderLayout.setDuration(4000);
     }
 
     @Override
@@ -146,8 +165,10 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         if (((MainActivity) getActivity()).getmCommonTabLayoutVisiablity() == View.GONE) {
             ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.VISIBLE);
             mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
+            mAppBarLayout.addView(mEveryDayView, 0);
             mAppBarLayout.addView(mToolbar, 0);
             mainFragmentPre.onRecoverState(mSlidingTabLayout.getCurrentTab());
+            refreshChildRefreshState(false);
             return true;
         } else {
             return false;

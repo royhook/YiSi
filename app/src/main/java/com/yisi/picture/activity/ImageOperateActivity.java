@@ -60,8 +60,8 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
 
     @Override
     public void finish() {
-        overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
         super.finish();
+        overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
     }
 
     @Override
@@ -115,11 +115,16 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
 
     @Override
     public void onCollectionClick() {
-
+        iImageOperaPre.collectImg();
     }
 
     @Override
     public void onSettingWallPageClick() {
         iImageOperaPre.setWallPaper();
+    }
+
+    @Override
+    public void onSystemSettingWallPageClick() {
+        iImageOperaPre.setSystemWallPaper();
     }
 }

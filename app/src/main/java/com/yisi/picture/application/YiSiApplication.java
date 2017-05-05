@@ -18,12 +18,13 @@ public class YiSiApplication extends Application {
     public static Context mGlobleContext;
     private static Handler mGlobleHandler = new Handler(Looper.getMainLooper());
     private RefWatcher mRefWatcher;
+    public static boolean isChange = false;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mGlobleContext = this;
-        mRefWatcher=LeakCanary.install(this);
+        mRefWatcher = LeakCanary.install(this);
     }
 
     public static void postMainThread(Runnable runnable) {

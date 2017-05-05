@@ -6,19 +6,22 @@ import android.widget.RelativeLayout;
 
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ISplashAty;
+import com.yisi.picture.application.YiSiApplication;
 import com.yisi.picture.base.BaseActivity;
 import com.yisi.picture.utils.GlideUtils;
 import com.yisi.picture.utils.PreferencesUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by roy on 2017/1/13.
  */
 
 public class SplashAty extends BaseActivity implements ISplashAty {
-    public static final String BMOB_APPID = "bd680cd370f7e8716b941d9d37872d2e";
+    public static final String BMOB_APPID = "9b7629a191656e19839a10be2a27363b";
+    public static final String BMOB_YISI_APPID = "bd680cd370f7e8716b941d9d37872d2e";
     RelativeLayout relativeLayout;
 
     @Override
@@ -49,11 +52,21 @@ public class SplashAty extends BaseActivity implements ISplashAty {
         Intent intent = new Intent(SplashAty.this, MainActivity.class);
         startActivity(intent);
         SplashAty.this.finish();
+        ShareSDK.initSDK(this);
     }
 
 
     private void initBmob() {
         String bmobId = PreferencesUtils.getString(this, PreferencesUtils.KEY.KEY_BMOB_ID, BMOB_APPID);
+        String preBmobId = PreferencesUtils.getString(this, PreferencesUtils.KEY.KEY_PRE_BMOB_ID, BMOB_APPID);
+        //如果没有发生改变，就不改变
+        if (bmobId.equals(preBmobId)) {
+            YiSiApplication.isChange = false;
+        }
+        //发生了改变
+        else {
+            YiSiApplication.isChange = true;
+        }
         BmobConfig config = new BmobConfig.Builder(this)
                 //设置appkey
                 .setApplicationId(bmobId)
@@ -65,5 +78,6 @@ public class SplashAty extends BaseActivity implements ISplashAty {
                 .setFileExpiration(2500)
                 .build();
         Bmob.initialize(config);
+        PreferencesUtils.putString(this, PreferencesUtils.KEY.KEY_PRE_BMOB_ID, bmobId);
     }
 }
