@@ -18,6 +18,7 @@ import com.yisi.picture.R;
 import com.yisi.picture.activity.ImageOperateActivity;
 import com.yisi.picture.activity.MainActivity;
 import com.yisi.picture.adapter.MainContentPagerAdapter;
+import com.yisi.picture.application.YiSiApplication;
 import com.yisi.picture.base.BaseFragment;
 import com.yisi.picture.bean.PlantBrowse;
 import com.yisi.picture.fragment.inter.IMainFragment;
@@ -76,11 +77,16 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         });
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            public void onOffsetChanged(final AppBarLayout appBarLayout, int verticalOffset) {
                 if (getResources().getDimensionPixelOffset(R.dimen.px850) == Math.abs(verticalOffset)) {
-                    appBarLayout.removeView(mSliderLayout);
-                    appBarLayout.removeView(mToolbar);
-                    appBarLayout.removeView(mEveryDayView);
+                    YiSiApplication.postDelay(new Runnable() {
+                        @Override
+                        public void run() {
+                            appBarLayout.removeView(mSliderLayout);
+                            appBarLayout.removeView(mToolbar);
+                            appBarLayout.removeView(mEveryDayView);
+                        }
+                    },500);
                     ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
                     refreshChildRefreshState(true);
                 }

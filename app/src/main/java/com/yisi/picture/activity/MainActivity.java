@@ -155,8 +155,8 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
             case R.id.nav_collect:
                 Intent intent = new Intent(this, CollectionActivity.class);
                 startActivity(intent);
-                if (mDrawer.isDrawerOpen(Gravity.LEFT))
-                    mDrawer.closeDrawer(Gravity.LEFT);
+//                if (mDrawer.isDrawerOpen(Gravity.LEFT))
+//                    mDrawer.closeDrawer(Gravity.LEFT);
                 break;
 
             case R.id.nav_send:
@@ -182,8 +182,8 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
             case R.id.nav_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);
-                if (mDrawer.isDrawerOpen(Gravity.LEFT))
-                    mDrawer.closeDrawer(Gravity.LEFT);
+//                if (mDrawer.isDrawerOpen(Gravity.LEFT))
+//                    mDrawer.closeDrawer(Gravity.LEFT);
                 break;
         }
         return true;
@@ -218,7 +218,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
         // comment是我对这条分享的评论，仅在人人网和QQ空间使用
         oks.setComment("不错的应用，大家快下载");
         // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite("ShareSDK");
+        oks.setSite("Yisi");
         // siteUrl是分享此内容的网站地址，仅在QQ空间使用
         oks.setSiteUrl("http://sj.qq.com/myapp/detail.htm?apkName=com.yisi.picture");
 

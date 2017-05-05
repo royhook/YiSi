@@ -23,6 +23,10 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseView, M extends IB
 
     protected BaseRefreshPresenterImpl(V baseView) {
         super(baseView);
+        currentPage = 0;
+        if (currentList != null)
+            currentList.clear();
+        REFRESH_TYPE = 0;
     }
 
     public abstract void bindLayouManagerAndAdapter();
