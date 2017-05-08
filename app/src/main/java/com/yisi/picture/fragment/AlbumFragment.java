@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.yisi.picture.R;
 import com.yisi.picture.activity.AlbumActivity;
@@ -27,6 +28,7 @@ import java.util.List;
 
 public class AlbumFragment extends BaseFragment implements IAlbumFragment, OnItemClickListener {
     RecyclerView mAlbumRecyclerView;
+    ProgressBar mProgressBar;
     private IAlbumFragmentPre albumFragmentPre;
     private List<Album> mAlbumList;
 
@@ -39,6 +41,7 @@ public class AlbumFragment extends BaseFragment implements IAlbumFragment, OnIte
     @Override
     protected void initViews() {
         mAlbumRecyclerView = findview(R.id.album_rv);
+        mProgressBar = findview(R.id.fragment_clp);
     }
 
     @Override
@@ -71,12 +74,13 @@ public class AlbumFragment extends BaseFragment implements IAlbumFragment, OnIte
 
     @Override
     public void onLoadingPage() {
-
+        mAlbumRecyclerView.setVisibility(View.GONE);
     }
 
     @Override
     public void onLoadingSuccess() {
-
+        mProgressBar.setVisibility(View.GONE);
+        mAlbumRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

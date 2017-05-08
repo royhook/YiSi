@@ -37,11 +37,12 @@ public class AlbumFragmentPreImpl extends BasePresenterImpl<AlbumFragment, Album
             Collections.sort(albumList, new SorTlist());
             mView.bindRecycler(albumList);
         }
+        mView.onLoadingSuccess();
     }
 
     @Override
     public void onFail(int errorCode) {
-
+        mView.onLoadingFail();
     }
 
     @Override

@@ -78,7 +78,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(final AppBarLayout appBarLayout, int verticalOffset) {
-                if (getResources().getDimensionPixelOffset(R.dimen.px850) == Math.abs(verticalOffset)) {
+                if (getResources().getDimensionPixelOffset(R.dimen.px700) == Math.abs(verticalOffset)) {
                     YiSiApplication.postDelay(new Runnable() {
                         @Override
                         public void run() {
@@ -86,7 +86,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
                             appBarLayout.removeView(mToolbar);
                             appBarLayout.removeView(mEveryDayView);
                         }
-                    },500);
+                    }, 50);
                     ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
                     refreshChildRefreshState(true);
                 }
@@ -135,9 +135,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
                     .setOnSliderClickListener(this);
             mSliderLayout.addSlider(textSliderView);
         }
-
-//        mSliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Right_Bottom);
-//        mSliderLayout.setDuration(4000);
     }
 
     @Override
@@ -172,7 +169,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
             ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.VISIBLE);
             mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
             mAppBarLayout.addView(mEveryDayView, 0);
-            mAppBarLayout.addView(mToolbar, 0);
             mainFragmentPre.onRecoverState(mSlidingTabLayout.getCurrentTab());
             refreshChildRefreshState(false);
             return true;

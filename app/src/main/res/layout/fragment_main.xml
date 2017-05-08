@@ -5,16 +5,26 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-    <ProgressBar
+    <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/main_fragment_process"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="@dimen/px200"
         android:layout_height="@dimen/px200"
         android:layout_centerInParent="true"/>
+    
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/mian_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px150"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
+        custom:layout_scrollFlags="scroll"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/mian_fragment_coor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mian_fragment_toolbar">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/main_appbar"
@@ -26,27 +36,19 @@
             android:background="#FFFFFF"
             android:orientation="vertical">
 
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/mian_fragment_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/px150"
-                android:background="@color/colorPrimary"
-                custom:layout_scrollFlags="scroll"/>
-
             <LinearLayout
                 android:id="@+id/ll_everyday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#EDEDED"
-                custom:layout_scrollFlags="scroll"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                custom:layout_scrollFlags="scroll">
 
                 <View
                     android:layout_width="@dimen/px20"
-                    android:layout_marginLeft="@dimen/px20"
                     android:layout_height="@dimen/px20"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/px20"
                     android:background="@drawable/shape_dot"/>
 
                 <TextView
@@ -58,7 +60,7 @@
                     android:text="今日推荐"
                     android:textColor="#8E8E8E"
                     android:textSize="@dimen/px40"
-                   />
+                    />
 
             </LinearLayout>
 

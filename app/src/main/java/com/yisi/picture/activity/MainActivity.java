@@ -155,8 +155,6 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
             case R.id.nav_collect:
                 Intent intent = new Intent(this, CollectionActivity.class);
                 startActivity(intent);
-//                if (mDrawer.isDrawerOpen(Gravity.LEFT))
-//                    mDrawer.closeDrawer(Gravity.LEFT);
                 break;
 
             case R.id.nav_send:
@@ -182,8 +180,6 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
             case R.id.nav_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);
-//                if (mDrawer.isDrawerOpen(Gravity.LEFT))
-//                    mDrawer.closeDrawer(Gravity.LEFT);
                 break;
         }
         return true;
