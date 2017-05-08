@@ -5,13 +5,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/main_fragment_process"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="@dimen/px200"
-        android:layout_height="@dimen/px200"
-        android:layout_centerInParent="true"/>
-    
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/mian_fragment_toolbar"
         android:layout_width="match_parent"
@@ -103,6 +97,13 @@
         </android.support.v4.view.ViewPager>
 
     </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/main_fragment_process"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px200"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
 
