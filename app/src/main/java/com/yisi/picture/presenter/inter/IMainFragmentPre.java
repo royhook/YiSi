@@ -22,4 +22,8 @@ public interface IMainFragmentPre extends IBasePresenter {
 
     void onRecoverState(int currentFragment);
 
+    void onEmpty();
+
+    void onFail();
+
 }

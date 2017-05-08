@@ -27,8 +27,8 @@ public class AlbumFragmentPreImpl extends BasePresenterImpl<AlbumFragment, Album
 
 
     @Override
-    public void request(int type) {
-        mModel.request(type);
+    public void request() {
+        mModel.request();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AlbumFragmentPreImpl extends BasePresenterImpl<AlbumFragment, Album
 
     @Override
     public void onEmpty() {
-        
+        mView.onEmpty();
     }
 
     private class SorTlist implements Comparator<Album> {

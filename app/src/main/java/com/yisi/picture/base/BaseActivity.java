@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.classic.common.MultipleStatusView;
 import com.yisi.picture.R;
 import com.yisi.picture.base.inter.IBaseAty;
 
@@ -15,15 +16,21 @@ import com.yisi.picture.base.inter.IBaseAty;
 public abstract class BaseActivity extends AppCompatActivity implements IBaseAty {
 
 
+    private MultipleStatusView mMultipleStatusView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
         initPresenter();
         initViews();
+        initMultyView();
         initData();
     }
 
+    private void initMultyView() {
+        mMultipleStatusView = findView(R.id.base_multiplestatusview);
+    }
 
     protected abstract void initPresenter();
 
@@ -37,16 +44,25 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
 
     @Override
     public void onLoadingFail() {
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showError();
 
     }
 
     @Override
     public void onLoadingPage() {
-
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showLoading();
     }
 
     @Override
     public void onLoadingSuccess() {
 
+    }
+
+    @Override
+    public void onEmpty() {
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showEmpty();
     }
 }

@@ -22,7 +22,7 @@ public class AlbumFragmentModelImpl extends BaseModelImpl<IAlbumFragmentPre> imp
     }
 
     @Override
-    public void request(int type) {
+    public void request() {
         BmobQuery<Album> albumBmobQuery = new BmobQuery<>();
         albumBmobQuery.findObjects(new FindListener<Album>() {
             @Override

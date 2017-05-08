@@ -42,6 +42,7 @@ public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainF
     @Override
     public void requestContentAndShow() {
         mModel.requestContentData();
+        mView.onLoadingPage();
     }
 
     @Override
@@ -50,6 +51,16 @@ public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainF
         if (mainPageFragment != null)
             mainPageFragment.getmRecyclerView().smoothScrollToPosition(0);
 
+    }
+
+    @Override
+    public void onEmpty() {
+        mView.onEmpty();
+    }
+
+    @Override
+    public void onFail() {
+        mView.onLoadingFail();
     }
 
 
@@ -69,5 +80,6 @@ public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainF
             fragments.add(mainPageChildFragment);
         }
         mView.initMainPageChildPage(titles, fragments);
+        mView.onLoadingSuccess();
     }
 }

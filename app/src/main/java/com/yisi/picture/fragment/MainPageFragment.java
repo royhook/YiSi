@@ -40,7 +40,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private SlidingTabLayout mSlidingTabLayout;
     private IMainFragmentPre mainFragmentPre;
     private ViewPager mViewPager;
-    private ProgressBar progressBar;
     private AppBarLayout mAppBarLayout;
     private Toolbar mToolbar;
     private View mEveryDayView;
@@ -62,7 +61,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         mSliderLayout = findview(R.id.main_fragment_slider);
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
         mViewPager = findview(R.id.main_fragment_vp_content);
-        progressBar = findview(R.id.main_fragment_process);
         mAppBarLayout = findview(R.id.main_appbar);
         mEveryDayView = findview(R.id.ll_everyday);
         mToolbar = findview(R.id.mian_fragment_toolbar);
@@ -145,23 +143,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         onLoadingSuccess();
     }
 
-    @Override
-    public void onLoadingPage() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onLoadingSuccess() {
-        mSlidingTabLayout.setVisibility(View.VISIBLE);
-        mSliderLayout.setVisibility(View.VISIBLE);
-        mViewPager.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onLoadingFail() {
-
-    }
 
     public boolean onBackPressed() {
         //如果是View不可见的情况下，则back

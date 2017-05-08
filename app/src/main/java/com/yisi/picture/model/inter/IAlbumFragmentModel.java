@@ -8,5 +8,5 @@ import com.yisi.picture.base.inter.IBaseModel;
 
 public interface IAlbumFragmentModel extends IBaseModel {
 
-    void request(int type);
+    void request();
 }

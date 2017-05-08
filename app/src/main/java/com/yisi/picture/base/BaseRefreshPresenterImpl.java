@@ -2,9 +2,9 @@ package com.yisi.picture.base;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.adapter.base.BaseAdapter;
+import com.yisi.picture.base.inter.IBaseAty;
 import com.yisi.picture.base.inter.IBaseModel;
 import com.yisi.picture.base.inter.IBaseRefreshPresenter;
-import com.yisi.picture.base.inter.IBaseView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,8 @@ import java.util.List;
  * Created by roy on 2017/2/5.
  */
 
-public abstract class BaseRefreshPresenterImpl<V extends IBaseView, M extends IBaseModel, T> extends BasePresenterImpl<V, M> implements IBaseRefreshPresenter<T>, XRecyclerView.LoadingListener {
+public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBaseModel, T> extends BasePresenterImpl<V, M> implements IBaseRefreshPresenter<T>,
+        XRecyclerView.LoadingListener {
     protected int currentPage = 0;
     private static int REFRESH_TYPE = 0;
     private static final int REFRESH_REFRESH = 1;
@@ -72,10 +73,13 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseView, M extends IB
                 }
                 break;
         }
+        mView.onLoadingSuccess();
+
     }
 
     @Override
     public void onFail(int errorCode) {
         currentPage--;
+        mView.onLoadingFail();
     }
 }

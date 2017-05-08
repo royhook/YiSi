@@ -65,6 +65,7 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
         mView.getViewContext().startActivity(intent);
     }
 
+
     @Override
     public void request(boolean readCache) {
         mModel.request(currentPage, readCache);

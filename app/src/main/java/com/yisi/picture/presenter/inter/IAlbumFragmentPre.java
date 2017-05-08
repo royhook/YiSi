@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface IAlbumFragmentPre extends IBasePresenter {
-    void request(int type);
+    void request();
 
     void onSuccess(List<Album> albumList);
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/plans_fragment_recycler"
@@ -12,4 +12,11 @@
 
     </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
-</LinearLayout>
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/fragment_process"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px200"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

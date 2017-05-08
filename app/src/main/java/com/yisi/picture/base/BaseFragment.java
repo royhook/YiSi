@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.classic.common.MultipleStatusView;
+import com.yisi.picture.R;
 import com.yisi.picture.base.inter.IBaseAty;
 
 /**
@@ -15,12 +17,18 @@ import com.yisi.picture.base.inter.IBaseAty;
 
 public abstract class BaseFragment extends Fragment implements IBaseAty {
     private View cacheView;
+    private MultipleStatusView mMultipleStatusView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
+
+    private void initMultyView() {
+        mMultipleStatusView = findview(R.id.base_multiplestatusview);
+    }
+
 
     @Nullable
     @Override
@@ -33,6 +41,7 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
             parent.removeView(cacheView);
         }
         initViews();
+        initMultyView();
         initData();
         onLoadingPage();
         return cacheView;
@@ -50,16 +59,25 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
 
     @Override
     public void onLoadingSuccess() {
-
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showContent();
     }
 
     @Override
     public void onLoadingFail() {
-
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showError();
     }
 
     @Override
     public void onLoadingPage() {
-        
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showLoading();
+    }
+
+    @Override
+    public void onEmpty() {
+        if (mMultipleStatusView != null)
+            mMultipleStatusView.showEmpty();
     }
 }

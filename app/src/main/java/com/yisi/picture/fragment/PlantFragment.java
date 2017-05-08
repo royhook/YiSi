@@ -1,6 +1,8 @@
 package com.yisi.picture.fragment;
 
 import android.content.Context;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.view.View;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.R;
@@ -17,10 +19,12 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
 
     XRecyclerView mXRecyclerView;
     IPlantFragmentPre plantFragmentPre;
+    ContentLoadingProgressBar mContentLoadingProgressBar;
 
     @Override
     protected void initViews() {
         mXRecyclerView = findview(R.id.plans_fragment_recycler);
+        mContentLoadingProgressBar = findview(R.id.fragment_process);
         plantFragmentPre = new PlantFragmentPreImpl(this);
     }
 
@@ -51,12 +55,14 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
 
     @Override
     public void onLoadingPage() {
-
+        mContentLoadingProgressBar.setVisibility(View.VISIBLE);
+        mXRecyclerView.setVisibility(View.GONE);
     }
 
     @Override
     public void onLoadingSuccess() {
-
+        mContentLoadingProgressBar.setVisibility(View.GONE);
+        mXRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
