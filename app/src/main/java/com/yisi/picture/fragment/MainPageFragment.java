@@ -44,6 +44,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private Toolbar mToolbar;
     private View mEveryDayView;
     private boolean mHasPictureMode = false;
+    private boolean mHideSlider = false;
 
 
     public boolean isHasPictureMode() {
@@ -77,16 +78,24 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
             @Override
             public void onOffsetChanged(final AppBarLayout appBarLayout, int verticalOffset) {
                 if (getResources().getDimensionPixelOffset(R.dimen.px700) == Math.abs(verticalOffset)) {
+                    mHideSlider = true;
                     YiSiApplication.postDelay(new Runnable() {
                         @Override
                         public void run() {
-                            appBarLayout.removeView(mSliderLayout);
-                            appBarLayout.removeView(mToolbar);
-                            appBarLayout.removeView(mEveryDayView);
+                            if (mHideSlider) {
+                                appBarLayout.removeView(mSliderLayout);
+                                appBarLayout.removeView(mToolbar);
+                                appBarLayout.removeView(mEveryDayView);
+                                ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
+                                refreshChildRefreshState(true);
+                            }
                         }
-                    }, 50);
-                    ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
-                    refreshChildRefreshState(true);
+                    }, 500);
+                } else if (getResources().getDimensionPixelOffset(R.dimen.px700) < Math.abs(verticalOffset)) {
+                    mHideSlider = true;
+
+                } else {
+                    mHideSlider = false;
                 }
             }
         });
