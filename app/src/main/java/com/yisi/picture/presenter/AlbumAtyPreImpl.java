@@ -85,6 +85,7 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         getRecyclerView().loadMoreComplete();
         currentPage--;
         mView.dataRunOut();
+        mView.onEmpty();
     }
 
     @Override
@@ -99,6 +100,7 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
             yisi.setType_id(albumImage.getType_id());
             mYiSiImgs.add(yisi);
         }
+        mView.onLoadingSuccess();
     }
 
     @Override
@@ -120,5 +122,6 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     public void onFail(int errorCode) {
         super.onFail(errorCode);
         mView.dataRunOut();
+        mView.onLoadingFail();
     }
 }

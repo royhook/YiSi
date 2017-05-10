@@ -1,41 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<com.classic.common.MultipleStatusView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_multiplestatusview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    custom:contentView="@layout/activity_album_content"
+    custom:emptyView="@layout/custom_empty_view"
+    custom:errorView="@layout/custom_error_view"
+    custom:loadingView="@layout/custom_loading_view">
 
-    <RelativeLayout
-        android:id="@+id/aty_album_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        >
-
-        <ImageView
-            android:id="@+id/aty_album_back"
-            android:layout_width="@dimen/px100"
-            android:layout_height="@dimen/px100"
-            android:scaleType="fitXY"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px10"
-            android:src="@mipmap/back"/>
-
-        <TextView
-            android:id="@+id/aty_album_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:textSize="@dimen/px50"
-            />
-
-    </RelativeLayout>
-
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/aty_album_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.jcodecraeer.xrecyclerview.XRecyclerView>
-
-</LinearLayout>
+</com.classic.common.MultipleStatusView>

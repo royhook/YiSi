@@ -57,7 +57,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
 
     @Override
     public void onLoadingSuccess() {
-
+        if (mMultipleStatusView!=null)
+            mMultipleStatusView.showContent();
     }
 
     @Override

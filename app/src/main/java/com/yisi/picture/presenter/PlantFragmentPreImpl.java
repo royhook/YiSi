@@ -73,6 +73,9 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
     @Override
     public void onEmpty() {
+        if (currentList != null && currentList.size() == 0) {
+            mView.onEmpty();
+        }
         mView.dataOut();
     }
 }

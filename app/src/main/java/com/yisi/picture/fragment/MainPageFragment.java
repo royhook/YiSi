@@ -88,6 +88,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
                                 appBarLayout.removeView(mEveryDayView);
                                 ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.GONE);
                                 refreshChildRefreshState(true);
+                                mHideSlider = false;
                             }
                         }
                     }, 500);
@@ -157,8 +158,10 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         //如果是View不可见的情况下，则back
         if (((MainActivity) getActivity()).getmCommonTabLayoutVisiablity() == View.GONE) {
             ((MainActivity) getActivity()).setmCommonTabLayoutVisible(View.VISIBLE);
-            mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
-            mAppBarLayout.addView(mEveryDayView, 0);
+            if (mAppBarLayout != null) {
+                mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
+                mAppBarLayout.addView(mEveryDayView, 0);
+            }
             mainFragmentPre.onRecoverState(mSlidingTabLayout.getCurrentTab());
             refreshChildRefreshState(false);
             return true;

@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
+<com.classic.common.MultipleStatusView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_multiplestatusview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    custom:contentView="@layout/fragment_plans_content"
+    custom:emptyView="@layout/custom_empty_view"
+    custom:errorView="@layout/custom_error_view"
+    custom:loadingView="@layout/custom_loading_view">
 
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/plans_fragment_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </com.jcodecraeer.xrecyclerview.XRecyclerView>
-
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:id="@+id/fragment_process"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="@dimen/px200"
-        android:layout_height="@dimen/px200"
-        android:layout_centerInParent="true"/>
-
-</RelativeLayout>
+</com.classic.common.MultipleStatusView>

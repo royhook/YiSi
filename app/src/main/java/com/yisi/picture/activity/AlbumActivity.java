@@ -50,6 +50,7 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
 
     @Override
     protected void initData() {
+        onLoadingPage();
         mAlbumAtyPre.request(true);
     }
 
@@ -76,21 +77,6 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
     @Override
     public void dataRunOut() {
         mXRecyclerView.setNoMore(true);
-    }
-
-    @Override
-    public void onLoadingPage() {
-
-    }
-
-    @Override
-    public void onLoadingSuccess() {
-
-    }
-
-    @Override
-    public void onLoadingFail() {
-
     }
 
     @Override
