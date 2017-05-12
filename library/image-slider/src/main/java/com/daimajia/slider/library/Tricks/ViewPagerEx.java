@@ -49,7 +49,7 @@ import java.util.Comparator;
 /**
  * Layout manager that allows the user to flip left and right
  * through pages of data.  You supply an implementation of a
- * {@link PagerAdapter} to generate the pages that the view shows.
+ * {@link PagerAdapter} to generate the pages that the com.yisi.picture.baselib.view shows.
  *
  * <p>Note this class is currently under early design and
  * development.  The API will likely change in later updates of
@@ -223,7 +223,7 @@ public class ViewPagerEx extends ViewGroup{
 
     /**
      * Indicates that the pager is in an idle, settled state. The current page
-     * is fully in view and no animation is in progress.
+     * is fully in com.yisi.picture.baselib.view and no animation is in progress.
      */
     public static final int SCROLL_STATE_IDLE = 0;
 
@@ -544,7 +544,7 @@ public class ViewPagerEx extends ViewGroup{
         final int pageLimit = mOffscreenPageLimit;
         if (item > (mCurItem + pageLimit) || item < (mCurItem - pageLimit)) {
             // We are doing a jump by more than one page.  To avoid
-            // glitches, we want to keep all current pages in the view
+            // glitches, we want to keep all current pages in the com.yisi.picture.baselib.view
             // until the scroll ends.
             for (int i=0; i<mItems.size(); i++) {
                 mItems.get(i).scrolling = true;
@@ -674,7 +674,7 @@ public class ViewPagerEx extends ViewGroup{
 
     /**
      * Returns the number of pages that will be retained to either side of the
-     * current page in the view hierarchy in an idle state. Defaults to 1.
+     * current page in the com.yisi.picture.baselib.view hierarchy in an idle state. Defaults to 1.
      *
      * @return How many pages will be kept offscreen on either side
      * @see #setOffscreenPageLimit(int)
@@ -685,7 +685,7 @@ public class ViewPagerEx extends ViewGroup{
 
     /**
      * Set the number of pages that should be retained to either side of the
-     * current page in the view hierarchy in an idle state. Pages beyond this
+     * current page in the com.yisi.picture.baselib.view hierarchy in an idle state. Pages beyond this
      * limit will be recreated from the adapter when needed.
      *
      * <p>This is offered as an optimization. If you know in advance the number
@@ -693,7 +693,7 @@ public class ViewPagerEx extends ViewGroup{
      * on your pages, tweaking this setting can have benefits in perceived smoothness
      * of paging animations and interaction. If you have a small number of pages (3-4)
      * that you can keep active all at once, less time will be spent in layout for
-     * newly created view subtrees as the user pages back and forth.</p>
+     * newly created com.yisi.picture.baselib.view subtrees as the user pages back and forth.</p>
      *
      * <p>You should keep this limit low, especially if your pages have complex layouts.
      * This setting defaults to 1.</p>
@@ -955,7 +955,7 @@ public class ViewPagerEx extends ViewGroup{
         }
 
         // Also, don't populate until we are attached to a window.  This is to
-        // avoid trying to populate before we have restored our view hierarchy
+        // avoid trying to populate before we have restored our com.yisi.picture.baselib.view hierarchy
         // state and conflicting with what is restored.
         if (getWindowToken() == null) {
             return;
@@ -1018,7 +1018,7 @@ public class ViewPagerEx extends ViewGroup{
                         mAdapter.destroyItem(this, pos, ii.object);
                         if (DEBUG) {
                             Log.i(TAG, "populate() - destroyItem() with pos: " + pos +
-                                    " view: " + ((View) ii.object));
+                                    " com.yisi.picture.baselib.view: " + ((View) ii.object));
                         }
                         itemIndex--;
                         curIndex--;
@@ -1052,7 +1052,7 @@ public class ViewPagerEx extends ViewGroup{
                             mAdapter.destroyItem(this, pos, ii.object);
                             if (DEBUG) {
                                 Log.i(TAG, "populate() - destroyItem() with pos: " + pos +
-                                        " view: " + ((View) ii.object));
+                                        " com.yisi.picture.baselib.view: " + ((View) ii.object));
                             }
                             ii = itemIndex < mItems.size() ? mItems.get(itemIndex) : null;
                         }
@@ -1313,7 +1313,7 @@ public class ViewPagerEx extends ViewGroup{
         lp.isDecor |= child instanceof Decor;
         if (mInLayout) {
             if (lp != null && lp.isDecor) {
-                throw new IllegalStateException("Cannot add pager decor view during layout");
+                throw new IllegalStateException("Cannot add pager decor com.yisi.picture.baselib.view during layout");
             }
             lp.needsMeasure = true;
             addViewInLayout(child, index, params);
@@ -1380,7 +1380,7 @@ public class ViewPagerEx extends ViewGroup{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // For simple implementation, our internal size is always 0.
         // We depend on the container to specify the layout size of
-        // our view.  We can't really know what it is since we will be
+        // our com.yisi.picture.baselib.view.  We can't really know what it is since we will be
         // adding and removing different arbitrary views and do not
         // want the layout to change as this happens.
         setMeasuredDimension(getDefaultSize(0, widthMeasureSpec),
@@ -1753,7 +1753,7 @@ public class ViewPagerEx extends ViewGroup{
     private void completeScroll(boolean postEvents) {
         boolean needPopulate = mScrollState == SCROLL_STATE_SETTLING;
         if (needPopulate) {
-            // Done with scroll, no longer want to cache view drawing.
+            // Done with scroll, no longer want to cache com.yisi.picture.baselib.view drawing.
             setScrollingCacheEnabled(false);
             mScroller.abortAnimation();
             int oldX = getScrollX();
@@ -1858,7 +1858,7 @@ public class ViewPagerEx extends ViewGroup{
 
                 if (dx != 0 && !isGutterDrag(mLastMotionX, dx) &&
                         canScroll(this, false, (int) dx, (int) x, (int) y)) {
-                    // Nested view has scrollable area under this point. Let it be handled there.
+                    // Nested com.yisi.picture.baselib.view has scrollable area under this point. Let it be handled there.
                     mLastMotionX = x;
                     mLastMotionY = y;
                     mIsUnableToDrag = true;
@@ -2274,7 +2274,7 @@ public class ViewPagerEx extends ViewGroup{
      * Start a fake drag of the pager.
      *
      * <p>A fake drag can be useful if you want to synchronize the motion of the ViewPager
-     * with the touch scrolling of another view, while still letting the ViewPager
+     * with the touch scrolling of another com.yisi.picture.baselib.view, while still letting the ViewPager
      * control the snapping motion and fling behavior. (e.g. parallax-scrolling tabs.)
      * Call {@link #fakeDragBy(float)} to simulate the actual drag motion. Call
      * {@link #endFakeDrag()} to complete the fake drag and fling as necessary.
@@ -2458,7 +2458,7 @@ public class ViewPagerEx extends ViewGroup{
      * Tests scrollability within child views of v given a delta of dx.
      *
      * @param v View to test for horizontal scrollability
-     * @param checkV Whether the view v passed should itself be checked for scrollability (true),
+     * @param checkV Whether the com.yisi.picture.baselib.view v passed should itself be checked for scrollability (true),
      *               or just its children (false).
      * @param dx Delta scrolled in pixels
      * @param x X coordinate of the active touch point
@@ -2490,14 +2490,14 @@ public class ViewPagerEx extends ViewGroup{
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        // Let the focused view and/or our descendants get the key first
+        // Let the focused com.yisi.picture.baselib.view and/or our descendants get the key first
         return super.dispatchKeyEvent(event) || executeKeyEvent(event);
     }
 
     /**
-     * You can call this function yourself to have the scroll view perform
+     * You can call this function yourself to have the scroll com.yisi.picture.baselib.view perform
      * scrolling from a key event, just as if the event had been dispatched to
-     * it by the view hierarchy.
+     * it by the com.yisi.picture.baselib.view hierarchy.
      *
      * @param event The key event to execute.
      * @return Return true if the event was handled, else false.
@@ -2550,7 +2550,7 @@ public class ViewPagerEx extends ViewGroup{
                     sb.append(" => ").append(parent.getClass().getSimpleName());
                 }
                 Log.e(TAG, "arrowScroll tried to find focus based on non-child " +
-                        "current focused view " + sb.toString());
+                        "current focused com.yisi.picture.baselib.view " + sb.toString());
                 currentFocused = null;
             }
         }
@@ -2848,14 +2848,14 @@ public class ViewPagerEx extends ViewGroup{
      */
     public static class LayoutParams extends ViewGroup.LayoutParams {
         /**
-         * true if this view is a decoration on the pager itself and not
-         * a view supplied by the adapter.
+         * true if this com.yisi.picture.baselib.view is a decoration on the pager itself and not
+         * a com.yisi.picture.baselib.view supplied by the adapter.
          */
         public boolean isDecor;
 
         /**
          * Gravity setting for use on decor views only:
-         * Where to position the view page within the overall ViewPager
+         * Where to position the com.yisi.picture.baselib.view page within the overall ViewPager
          * container; constants are defined in {@link android.view.Gravity}.
          */
         public int gravity;
@@ -2866,18 +2866,18 @@ public class ViewPagerEx extends ViewGroup{
         float widthFactor = 0.f;
 
         /**
-         * true if this view was added during layout and needs to be measured
+         * true if this com.yisi.picture.baselib.view was added during layout and needs to be measured
          * before being positioned.
          */
         boolean needsMeasure;
 
         /**
-         * Adapter position this view is for if !isDecor
+         * Adapter position this com.yisi.picture.baselib.view is for if !isDecor
          */
         int position;
 
         /**
-         * Current child index within the ViewPager that this view occupies
+         * Current child index within the ViewPager that this com.yisi.picture.baselib.view occupies
          */
         int childIndex;
 

@@ -66,7 +66,7 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
         mArrowImageView = (ImageView) findViewById(R.id.listview_header_arrow);
         mStatusTextView = (TextView) findViewById(R.id.refresh_status_textview);
 
-        //init the progress view
+        //init the progress com.yisi.picture.baselib.view
         mProgressBar = (SimpleViewSwitcher) findViewById(R.id.listview_header_progressbar);
         AVLoadingIndicatorView progressView = new AVLoadingIndicatorView(getContext());
         progressView.setIndicatorColor(0xffB5B5B5);

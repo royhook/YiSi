@@ -55,7 +55,7 @@ public abstract class BaseTransformer implements ViewPagerEx.PageTransformer {
     }
 
     /**
-     * Indicates if the default animations of the view pager should be used.
+     * Indicates if the default animations of the com.yisi.picture.baselib.view pager should be used.
      *
      * @return
      */

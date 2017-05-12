@@ -56,8 +56,8 @@ public abstract class BaseIndicatorController {
 
     /**
      * make animation to start or end when target
-     * view was be Visible or Gone or Invisible.
-     * make animation to cancel when target view
+     * com.yisi.picture.baselib.view was be Visible or Gone or Invisible.
+     * make animation to cancel when target com.yisi.picture.baselib.view
      * be onDetachedFromWindow.
      * @param animStatus
      */

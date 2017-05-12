@@ -634,8 +634,8 @@ public class XRecyclerView extends RecyclerView {
          * RecyclerView.
          *
          * @param outRect The {@link Rect} of offsets to be added around the child
-         *                view
-         * @param view The child view to be decorated with an offset
+         *                com.yisi.picture.baselib.view
+         * @param view The child com.yisi.picture.baselib.view to be decorated with an offset
          * @param parent The RecyclerView onto which dividers are being added
          * @param state The current RecyclerView.State of the RecyclerView
          */

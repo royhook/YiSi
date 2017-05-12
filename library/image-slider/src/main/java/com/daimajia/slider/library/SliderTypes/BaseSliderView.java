@@ -15,7 +15,7 @@ import com.daimajia.slider.library.R;
 import java.io.File;
 
 /**
- * When you want to make your own slider view, you must extends from this class.
+ * When you want to make your own slider com.yisi.picture.baselib.view, you must extends from this class.
  * BaseSliderView provides some useful methods.
  * I provide two example: {@link com.daimajia.slider.library.SliderTypes.DefaultSliderView} and
  * {@link com.daimajia.slider.library.SliderTypes.TextSliderView}
@@ -194,9 +194,9 @@ public abstract class BaseSliderView {
     }
 
     /**
-     * When you want to implement your own slider view, please call this method in the end in `getView()` method
+     * When you want to implement your own slider com.yisi.picture.baselib.view, please call this method in the end in `getView()` method
      *
-     * @param v               the whole view
+     * @param v               the whole com.yisi.picture.baselib.view
      * @param targetImageView where to place image
      */
     protected void bindEventAndShow(final View v, final ImageView targetImageView) {
@@ -249,7 +249,7 @@ public abstract class BaseSliderView {
 
     /**
      * the extended class have to implement getView(), which is called by the adapter,
-     * every extended class response to render their own view.
+     * every extended class response to render their own com.yisi.picture.baselib.view.
      *
      * @return
      */

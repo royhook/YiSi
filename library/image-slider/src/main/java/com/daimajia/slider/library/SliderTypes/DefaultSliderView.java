@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.daimajia.slider.library.R;
 
 /**
- * a simple slider view, which just show an image. If you want to make your own slider view,
+ * a simple slider com.yisi.picture.baselib.view, which just show an image. If you want to make your own slider com.yisi.picture.baselib.view,
  *
  * just extend BaseSliderView, and implement getView() method.
  */
