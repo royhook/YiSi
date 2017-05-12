@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" filepath="$PROJECT_DIR$/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" filepath="$PROJECT_DIR$/library/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/YiSi.iml" filepath="$PROJECT_DIR$/YiSi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/commenlibrary/commenlibrary.iml" filepath="$PROJECT_DIR$/commenlibrary/commenlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/image-slider/image-slider.iml" filepath="$PROJECT_DIR$/image-slider/image-slider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/xrecyclerview/xrecyclerview.iml" filepath="$PROJECT_DIR$/xrecyclerview/xrecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/commenlibrary/commenlibrary.iml" filepath="$PROJECT_DIR$/library/commenlibrary/commenlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/image-slider/image-slider.iml" filepath="$PROJECT_DIR$/library/image-slider/image-slider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/xrecyclerview/xrecyclerview.iml" filepath="$PROJECT_DIR$/library/xrecyclerview/xrecyclerview.iml" />
     </modules>
   </component>
 </project>

@@ -9,11 +9,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/FlycoTabLayout_Lib" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/commenlibrary" />
-            <option value="$PROJECT_DIR$/image-slider" />
-            <option value="$PROJECT_DIR$/xrecyclerview" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/library/FlycoTabLayout_Lib" />
+            <option value="$PROJECT_DIR$/library/commenlibrary" />
+            <option value="$PROJECT_DIR$/library/image-slider" />
+            <option value="$PROJECT_DIR$/library/xrecyclerview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

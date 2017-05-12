@@ -7,7 +7,7 @@
     <RelativeLayout
         android:id="@+id/listview_header_content"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/px110"
+        android:layout_height="33dp"
         android:paddingTop="10dip"
         >
 
@@ -48,8 +48,8 @@
 
         <ImageView
             android:id="@+id/listview_header_arrow"
-            android:layout_width="@dimen/px50"
-            android:layout_height="@dimen/px50"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="10dp"
@@ -58,8 +58,8 @@
 
         <com.jcodecraeer.xrecyclerview.SimpleViewSwitcher
             android:id="@+id/listview_header_progressbar"
-            android:layout_width="@dimen/px40"
-            android:layout_height="@dimen/px40"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
             android:layout_toLeftOf="@id/listview_header_text"
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
