@@ -1,6 +1,6 @@
 package com.yisi.picture.model.inter;
 
-import com.yisi.picture.base.inter.IBaseModel;
+import com.yisi.picture.baselib.base.inter.IBaseModel;
 
 /**
  * Created by chenql on 2017/3/28.

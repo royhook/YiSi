@@ -1,4 +1,9 @@
-apply plugin: 'com.android.application'
+if (rootProject.ext.android.isModule) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -25,6 +30,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library:commenlibrary')
+    compile project(':library:image-slider')
+    compile project(':library:FlycoTabLayout_Lib')
+    compile project(':library:xrecyclerview')
 
 
 }

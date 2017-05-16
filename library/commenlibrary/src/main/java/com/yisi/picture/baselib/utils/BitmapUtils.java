@@ -1,5 +1,6 @@
 package com.yisi.picture.baselib.utils;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,8 +10,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.yisi.picture.R;
-import com.yisi.picture.application.YiSiApplication;
+import com.yisi.picture.baselib.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,6 +26,12 @@ import static android.R.attr.path;
  */
 
 public class BitmapUtils {
+    static Context mContext;
+
+    public static void initBitmapUtils(Context context) {
+        mContext = context;
+    }
+
     /**
      * 图片裁剪
      *
@@ -110,11 +116,11 @@ public class BitmapUtils {
 
         // 其次把文件插入到系统图库
         try {
-            MediaStore.Images.Media.insertImage(YiSiApplication.mGlobleContext.getContentResolver(), file.getAbsolutePath(), fileName, null);
+            MediaStore.Images.Media.insertImage(mContext.getContentResolver(), file.getAbsolutePath(), fileName, null);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         // 最后通知图库更新
-        YiSiApplication.mGlobleContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
+        mContext.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
     }
 }

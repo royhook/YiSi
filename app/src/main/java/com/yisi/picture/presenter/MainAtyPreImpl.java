@@ -4,7 +4,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
-import com.yisi.picture.base.BasePresenterImpl;
+import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.bean.MainTabEntity;
 import com.yisi.picture.model.MainAtyModel;
 import com.yisi.picture.model.inter.IMainAtyModel;
@@ -28,7 +28,7 @@ public class MainAtyPreImpl extends BasePresenterImpl<IMainAty, IMainAtyModel> i
         int[] selectedIcon = new int[]{R.mipmap.tab_home_select, R.mipmap.tab_image_select, R.mipmap.tab_all_select, R.mipmap.tab_contact_select};
         int[] unSelectedIcon = new int[]{R.mipmap.tab_home, R.mipmap.tab_image, R.mipmap.tab_all, R.mipmap.tab_contact_unselect};
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             MainTabEntity mainTabEntity = new MainTabEntity();
             mainTabEntity.setmTabTitle(mView.getMainContext().getResources().getString(titles[i]));
             mainTabEntity.setmSelectIcon(selectedIcon[i]);

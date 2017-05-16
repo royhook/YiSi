@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yisi.picture.R;
-import com.yisi.picture.base.BaseActivity;
+import com.yisi.picture.baselib.base.BaseActivity;
 
 /**
  * Created by chenql on 2017/5/5.

@@ -9,22 +9,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
-import com.yisi.picture.base.BaseActivity;
-import com.yisi.picture.fragment.AlbumFragment;
-import com.yisi.picture.fragment.MainPageFragment;
-import com.yisi.picture.fragment.PlantFragment;
+import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.baselib.utils.EnvUtils;
+import com.yisi.picture.baselib.utils.PreferencesUtils;
+import com.yisi.picture.picturemodel.fragment.MainPageFragment;
 import com.yisi.picture.presenter.MainAtyPreImpl;
-import com.yisi.picture.utils.DirManager;
-import com.yisi.picture.utils.EnvUtils;
-import com.yisi.picture.utils.PreferencesUtils;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -32,9 +27,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
     private CommonTabLayout mCommonTabLayout;
     private MainAtyPreImpl mMainAtyPre;
-    private Fragment mMainFragment;
-    private Fragment mAlbumFragment;
-    private Fragment mPlansFragment;
+    private MainPageFragment mMainFragment;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
     private int mClickTime = 0;
@@ -43,16 +36,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DirManager.getInstance().init();
         initFragment();
-    }
-
-    public void setmCommonTabLayoutVisible(int Visible) {
-        mCommonTabLayout.setVisibility(Visible);
-    }
-
-    public int getmCommonTabLayoutVisiablity() {
-        return mCommonTabLayout.getVisibility();
     }
 
     @Override
@@ -83,28 +67,17 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
         mDrawer.openDrawer(GravityCompat.START);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(Gravity.LEFT)) {
-            mDrawer.closeDrawer(Gravity.LEFT);
-            return;
-        }
-        //这些应该都移动到P层才对,赶时间 先不移动了吧
-        MainPageFragment fragment = (MainPageFragment) getSupportFragmentManager().findFragmentByTag("main");
-        if (fragment != null) {
-            if (!fragment.onBackPressed())
-                super.onBackPressed();
-        }
-    }
 
     private void initFragment() {
         mMainFragment = new MainPageFragment();
-        mAlbumFragment = new AlbumFragment();
-        mPlansFragment = new PlantFragment();
+        mMainFragment.setOnLeftViewClick(new MainPageFragment.onLeftViewClick() {
+            @Override
+            public void onClick() {
+                openDrawer();
+            }
+        });
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.main_content, mMainFragment, "main")
-                .add(R.id.main_content, mAlbumFragment, "album")
-                .add(R.id.main_content, mPlansFragment, "plant")
                 .commitAllowingStateLoss();
         showMainPage();
         mCommonTabLayout.setCurrentTab(0);
@@ -120,23 +93,16 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
     @Override
     public void showMainPage() {
-        hideFragment(mAlbumFragment);
-        hideFragment(mPlansFragment);
-        showFragment(mMainFragment);
     }
 
     @Override
     public void showAlbumPage() {
         hideFragment(mMainFragment);
-        hideFragment(mPlansFragment);
-        showFragment(mAlbumFragment);
     }
 
     @Override
     public void showPlansPage() {
         hideFragment(mMainFragment);
-        hideFragment(mAlbumFragment);
-        showFragment(mPlansFragment);
     }
 
     @Override
@@ -187,10 +153,8 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
     private void openYiSiMode() {
         if (EnvUtils.isYisiMode()) {
-            Log.d("tag", "putBmob");
             PreferencesUtils.putString(this, PreferencesUtils.KEY.KEY_BMOB_ID, SplashAty.BMOB_APPID);
         } else {
-            Log.d("tag", "putBmobYisi");
             PreferencesUtils.putString(this, PreferencesUtils.KEY.KEY_BMOB_ID, SplashAty.BMOB_YISI_APPID);
         }
     }

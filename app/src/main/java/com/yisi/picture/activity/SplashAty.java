@@ -6,10 +6,13 @@ import android.widget.RelativeLayout;
 
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ISplashAty;
-import com.yisi.picture.application.YiSiApplication;
-import com.yisi.picture.base.BaseActivity;
-import com.yisi.picture.utils.GlideUtils;
-import com.yisi.picture.utils.PreferencesUtils;
+import com.yisi.picture.baselib.application.YiSiApplication;
+import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.baselib.utils.DirManager;
+import com.yisi.picture.baselib.utils.EnvUtils;
+import com.yisi.picture.baselib.utils.GlideUtils;
+import com.yisi.picture.baselib.utils.PreferencesUtils;
+import com.yisi.picture.baselib.utils.ViewUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -29,7 +32,10 @@ public class SplashAty extends BaseActivity implements ISplashAty {
         super.onCreate(savedInstanceState);
         goMainPage();
         initBmob();
-        GlideUtils.initGlide(this);
+        GlideUtils.initGlide(YiSiApplication.mGlobleContext);
+        ViewUtils.init(YiSiApplication.mGlobleContext);
+        DirManager.getInstance().init();
+        EnvUtils.init(YiSiApplication.mGlobleContext);
     }
 
     @Override

@@ -22,7 +22,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
-        android:name=".application.YiSiApplication"
+        android:name=".baselib.application.YiSiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -43,20 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activity.ImageOperateActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeNoTitle"/>
-        <activity
-            android:name=".activity.AlbumActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeNoTitle"/>
-
-        <activity
-            android:name=".activity.AlbumDiagramDetilsActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeNoTitle"/>
 
         <activity
             android:name=".activity.CollectionActivity"
@@ -98,14 +84,6 @@
             </intent-filter>
 
         </activity>
-
-        <!--微信分享回调 -->
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     </application>
 
 </manifest>

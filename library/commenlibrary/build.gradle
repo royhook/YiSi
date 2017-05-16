@@ -40,6 +40,5 @@ dependencies {
     compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
     compile 'com.classic.common:multiple-status-view:1.2'
 
-
     compile project(path: ':library:xrecyclerview')
 }

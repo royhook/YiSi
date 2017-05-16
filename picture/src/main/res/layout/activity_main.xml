@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.yisi.picture.picturemodel.MainActivity">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                        xmlns:tl="http://schemas.android.com/apk/res-auto"
+                                        xmlns:tools="http://schemas.android.com/tools"
+                                        android:id="@+id/drawer_layout"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        tools:openDrawer="start">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </FrameLayout>
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/main_commenTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/px10"
+            android:paddingTop="@dimen/px10"
+            tl:tl_iconHeight="@dimen/px60"
+            tl:tl_iconWidth="@dimen/px60"
+            tl:tl_textSelectColor="#2C97DE"
+            tl:tl_textUnselectColor="#66000000"
+            tl:tl_textsize="@dimen/px28"
+            tl:tl_underline_height="@dimen/px5">
+
+        </com.flyco.tablayout.CommonTabLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="@dimen/px700"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        tl:headerLayout="@layout/view_header_main"
+        tl:menu="@menu/activity_main_drawer"
         />
 
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

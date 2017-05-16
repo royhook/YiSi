@@ -1,6 +1,6 @@
 package com.yisi.picture.model;
 
-import com.yisi.picture.base.BaseModelImpl;
+import com.yisi.picture.baselib.base.BaseModelImpl;
 import com.yisi.picture.model.inter.IMainAtyModel;
 import com.yisi.picture.presenter.inter.IMainAtyPre;
 

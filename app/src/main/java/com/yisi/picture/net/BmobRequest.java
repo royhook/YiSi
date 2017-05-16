@@ -2,7 +2,7 @@ package com.yisi.picture.net;
 
 import android.util.Log;
 
-import com.yisi.picture.application.YiSiApplication;
+import com.yisi.picture.baselib.application.YiSiApplication;
 
 import java.util.HashMap;
 import java.util.Map;

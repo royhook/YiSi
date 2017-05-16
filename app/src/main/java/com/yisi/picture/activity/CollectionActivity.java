@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ICollectAty;
-import com.yisi.picture.adapter.CollectionPagerAdapter;
-import com.yisi.picture.base.BaseActivity;
-import com.yisi.picture.fragment.AlbumCollectFragment;
-import com.yisi.picture.fragment.PictureCollectFragment;
-import com.yisi.picture.fragment.TaoCollectFragment;
+import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.picturemodel.adapter.CollectionPagerAdapter;
+import com.yisi.picture.picturemodel.fragment.AlbumCollectFragment;
+import com.yisi.picture.picturemodel.fragment.PictureCollectFragment;
+import com.yisi.picture.picturemodel.fragment.TaoCollectFragment;
 
 import java.util.ArrayList;
 

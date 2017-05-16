@@ -3,14 +3,18 @@ package com.yisi.picture.baselib.utils;
 import android.content.Context;
 import android.view.WindowManager;
 
-import com.yisi.picture.application.YiSiApplication;
-
 /**
  * Created by roy on 2017/2/12.
  */
 
 public class DisplayUtils {
-    private static WindowManager wm = (WindowManager) YiSiApplication.mGlobleContext.getSystemService(Context.WINDOW_SERVICE);
+    static Context mContext;
+
+    public static void init(Context context) {
+        mContext = context;
+    }
+
+    private static WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 
     public static int getScreenWidth() {
         return wm.getDefaultDisplay().getWidth();

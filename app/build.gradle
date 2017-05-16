@@ -9,6 +9,11 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+        javaCompileOptions {
+            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -24,4 +29,5 @@ dependencies {
     compile project(':library:image-slider')
     compile project(':library:FlycoTabLayout_Lib')
     compile project(':library:xrecyclerview')
+    compile project(':picture')
 }

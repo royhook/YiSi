@@ -1,6 +1,6 @@
 package com.yisi.picture.activity.inter;
 
-import com.yisi.picture.base.inter.IBaseView;
+import com.yisi.picture.baselib.base.inter.IBaseView;
 
 /**
  * Created by chenql on 2017/5/4.

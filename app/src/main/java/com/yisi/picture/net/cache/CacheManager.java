@@ -1,7 +1,8 @@
 package com.yisi.picture.net.cache;
 
-import com.yisi.picture.utils.DirManager;
-import com.yisi.picture.utils.FileUtil;
+
+import com.yisi.picture.baselib.utils.DirManager;
+import com.yisi.picture.baselib.utils.FileUtil;
 
 import java.io.File;
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/mian_fragment_coor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/main_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_everyday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:orientation="horizontal"
+                custom:layout_scrollFlags="scroll">
+
+                <View
+                    android:layout_width="@dimen/px20"
+                    android:layout_height="@dimen/px20"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/px20"
+                    android:background="@drawable/shape_dot"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/px100"
+                    android:paddingBottom="@dimen/px20"
+                    android:paddingLeft="@dimen/px20"
+                    android:paddingTop="@dimen/px20"
+                    android:text="今日推荐"
+                    android:textColor="#8E8E8E"
+                    android:textSize="@dimen/px40"
+                    />
+
+            </LinearLayout>
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/main_fragment_slider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px600"
+                custom:auto_cycle="false"
+                custom:indicator_visibility="visible"
+                custom:layout_scrollFlags="scroll">
+
+            </com.daimajia.slider.library.SliderLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/plans_fragment_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>

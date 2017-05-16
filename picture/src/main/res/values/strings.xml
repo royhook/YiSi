@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Picture</string>
+    <string name="app_name">YiSi</string>
+
+    <string name="main_page">首页</string>
+    <string name="album">影集</string>
+    <string name="plans">套图</string>
+    <string name="user">我的</string>
+    <string name="next_plant">正在为您切换下一套专辑，请稍后</string>
+    <string name="no_plant">已经到头啦，请单机屏幕重新选择资源</string>
+    <string name="download_success">下载成功，文件保存到根目录/Yisi/download</string>
+    <string name="download_fail_perssion_refused">您拒绝了读取权限，保存失败</string>
+    <string name="wallpaper_fail_perssion_refused">您拒绝了读取权限，我们无法为您设置壁纸</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="download_picture">保存图片</string>
+    <string name="collect_picture">收藏图片</string>
+    <string name="set_wallpaper">滚屏壁纸</string>
+    <string name="set_wallpaper_system">系统壁纸</string>
+    <string name="operate_list_cancel">取消</string>
+    <string name="set_wapper_success">设置壁纸成功</string>
+    <string name="collect_success">收藏成功</string>
 </resources>
