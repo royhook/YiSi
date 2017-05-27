@@ -1,9 +1,10 @@
 package com.yisi.picture.picturemodel.fragment.inter;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.yisi.picture.picturemodel.base.inter.IBaseAty;
+import com.yisi.picture.baselib.base.inter.IBaseAty;
 
 /**
  * Created by roy on 2017/2/16.
@@ -11,10 +12,12 @@ import com.yisi.picture.picturemodel.base.inter.IBaseAty;
 
 public interface IPlansFragment extends IBaseAty {
 
-    XRecyclerView getRecylerView();
+    RecyclerView getRecylerView();
 
     Context getViewContext();
 
     void dataOut();
+
+    SwipeRefreshLayout getSwipeRefresh();
 
 }

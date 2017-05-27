@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yisi.picture.baselib.adapter.BaseViewHolder;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
 import com.yisi.picture.picturemodel.R;
 
@@ -26,7 +26,7 @@ public class PlantViewHolder extends BaseViewHolder {
     }
 
     public PlantViewHolder(View itemView, OnItemClickListener onItemClickListener) {
-        super(itemView, onItemClickListener);
+        super(itemView);
         imgView = getView(R.id.adapter_plant_img);
         titleView = getView(R.id.adapter_plant_title);
     }

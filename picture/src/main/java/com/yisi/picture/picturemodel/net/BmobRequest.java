@@ -56,7 +56,7 @@ public class BmobRequest {
 
         private int limit = 10;
         private String order = "-createdAt";
-        private long cacheTime = 1000 * 60 * 60 * 24;//默认一天
+        private long cacheTime = 1000 * 2 * 60;//2分钟缓存
         private boolean putCache;
         private boolean readCache;
         private int skip;

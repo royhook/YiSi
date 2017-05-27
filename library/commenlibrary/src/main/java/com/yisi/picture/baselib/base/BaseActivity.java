@@ -65,4 +65,14 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
         if (mMultipleStatusView != null)
             mMultipleStatusView.showEmpty();
     }
+
+    @Override
+    public void onRefreshComlete() {
+
+    }
+
+    @Override
+    public void onLoadMoreComplete() {
+
+    }
 }

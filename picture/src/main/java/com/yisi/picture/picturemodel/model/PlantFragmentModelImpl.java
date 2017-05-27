@@ -1,7 +1,7 @@
 package com.yisi.picture.picturemodel.model;
 
 
-import com.yisi.picture.picturemodel.base.BaseModelImpl;
+import com.yisi.picture.baselib.base.BaseModelImpl;
 import com.yisi.picture.picturemodel.bean.PlantBrowse;
 import com.yisi.picture.picturemodel.model.inter.IPlantModel;
 import com.yisi.picture.picturemodel.net.BmobRequest;

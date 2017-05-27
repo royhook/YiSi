@@ -9,11 +9,11 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.AlbumActivity;
 import com.yisi.picture.picturemodel.adapter.AlbumAdapter;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 import com.yisi.picture.picturemodel.bean.Album;
 import com.yisi.picture.picturemodel.fragment.inter.IAlbumFragment;
 import com.yisi.picture.picturemodel.presenter.AlbumFragmentPreImpl;

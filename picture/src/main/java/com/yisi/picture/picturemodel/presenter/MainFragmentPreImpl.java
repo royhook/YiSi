@@ -2,7 +2,7 @@ package com.yisi.picture.picturemodel.presenter;
 
 import android.support.v4.app.Fragment;
 
-import com.yisi.picture.picturemodel.base.BasePresenterImpl;
+import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.picturemodel.bean.MainPage;
 import com.yisi.picture.picturemodel.bean.PlantBrowse;
 import com.yisi.picture.picturemodel.fragment.MainPageChildFragment;

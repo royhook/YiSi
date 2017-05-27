@@ -13,4 +13,8 @@ public interface IBaseAty extends IBaseView {
     void onLoadingFail();
 
     void onEmpty();
+
+    void onRefreshComlete();
+
+    void onLoadMoreComplete();
 }

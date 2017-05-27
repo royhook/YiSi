@@ -1,14 +1,13 @@
 package com.yisi.picture.picturemodel.adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import com.yisi.picture.baselib.adapter.BaseAdapter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.adapter.viewholder.PlantViewHolder;
 import com.yisi.picture.picturemodel.bean.PlantBrowse;
 
 import java.util.List;
@@ -17,27 +16,23 @@ import java.util.List;
  * Created by roy on 2017/2/16.
  */
 
-public class PlantAdapter extends BaseAdapter<PlantViewHolder, PlantBrowse> {
+public class PlantAdapter extends BaseQuickAdapter<PlantBrowse, BaseViewHolder> {
 
 
     public PlantAdapter(List<PlantBrowse> dataList) {
-        super(dataList);
+        super(R.layout.adapter_plant, dataList);
     }
 
     @Override
-    public PlantViewHolder holder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.adapter_plant, viewGroup, false);
-        return new PlantViewHolder(view, onItemClickListener);
-    }
-
-    @Override
-    protected void bindHolder(PlantViewHolder holder, int position) {
+    protected void convert(BaseViewHolder helper, PlantBrowse item, int position) {
+        ImageView imageView = helper.getView(R.id.adapter_plant_img);
+        TextView textView = helper.getView(R.id.adapter_plant_title);
         if (position % 2 != 0) {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) holder.getImgView().getLayoutParams();
-            layoutParams.leftMargin = holder.getImgView().getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
-            holder.getImgView().setLayoutParams(layoutParams);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+            layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
+            imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mDataList.get(position).getImg_url(), holder.getImgView(), R.mipmap.defult);
-        holder.getTitleView().setText(mDataList.get(position).getTitle());
+        GlideUtils.displayImage(mData.get(position).getImg_url(), imageView, R.mipmap.defult);
+        textView.setText(mData.get(position).getTitle());
     }
 }

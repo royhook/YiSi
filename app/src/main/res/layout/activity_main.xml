@@ -6,8 +6,8 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:orientation="vertical"
-                                        tools:openDrawer="start"
-                                        tools:context="com.yisi.picture.activity.MainActivity">
+                                        tools:context="com.yisi.picture.activity.MainActivity"
+                                        tools:openDrawer="start">
 
 
     <LinearLayout
@@ -15,6 +15,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tl_fragment_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px100"
+            android:background="?attr/colorPrimary"
+            >
+
+        </android.support.v7.widget.Toolbar>
 
         <FrameLayout
             android:id="@+id/main_content"
@@ -30,6 +38,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/px10"
             android:paddingTop="@dimen/px10"
+            android:visibility="gone"
             tl:tl_iconHeight="@dimen/px60"
             tl:tl_iconWidth="@dimen/px60"
             tl:tl_textSelectColor="#2C97DE"

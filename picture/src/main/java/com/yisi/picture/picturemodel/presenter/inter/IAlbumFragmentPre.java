@@ -1,6 +1,6 @@
 package com.yisi.picture.picturemodel.presenter.inter;
 
-import com.yisi.picture.picturemodel.base.inter.IBasePresenter;
+import com.yisi.picture.baselib.base.inter.IBasePresenter;
 import com.yisi.picture.picturemodel.bean.Album;
 
 import java.util.List;

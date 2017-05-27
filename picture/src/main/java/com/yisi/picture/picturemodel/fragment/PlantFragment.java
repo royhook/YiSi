@@ -2,12 +2,11 @@ package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;
-import android.view.View;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 import com.yisi.picture.picturemodel.fragment.inter.IPlansFragment;
 import com.yisi.picture.picturemodel.presenter.PlantFragmentPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
@@ -18,45 +17,32 @@ import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
 
 public class PlantFragment extends BaseFragment implements IPlansFragment {
 
-    XRecyclerView mXRecyclerView;
+    RecyclerView mRecyclerView;
     IPlantFragmentPre plantFragmentPre;
-    private SliderLayout mSliderLayout;
-    private View mEveryDayView;
-    private boolean mHideSlider = false;
     private AppBarLayout mAppBarLayout;
-    private boolean mHadRemove = false;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     @Override
     protected void initViews() {
-        mXRecyclerView = findview(R.id.plans_fragment_recycler);
+        mRecyclerView = findview(R.id.plans_fragment_recycler);
         plantFragmentPre = new PlantFragmentPreImpl(this);
         mAppBarLayout = findview(R.id.main_appbar);
-        mEveryDayView = findview(R.id.ll_everyday);
-        mSliderLayout = findview(R.id.main_fragment_slider);
-        mXRecyclerView.setPullRefreshEnabled(false);
+        mSwipeRefreshLayout = findview(R.id.sr_fragment_plans);
+        mSwipeRefreshLayout.setProgressViewOffset(true, -20, 100);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(final AppBarLayout appBarLayout, int verticalOffset) {
-//                if (getResources().getDimensionPixelOffset(R.dimen.px700) <= Math.abs(verticalOffset)) {
-//                    mHideSlider = true;
-//                    YiSiApplication.postDelay(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            if (mHideSlider) {
-//                                appBarLayout.removeView(mSliderLayout);
-//                                appBarLayout.removeView(mEveryDayView);
-//                                mXRecyclerView.setPullRefreshEnabled(true);
-//                                mHadRemove = true;
-//                            }
-//                        }
-//                    }, 500);
-//                } else {
-//                    mHideSlider = false;
-//                }
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    mSwipeRefreshLayout.setEnabled(true);
+                } else {
+                    mSwipeRefreshLayout.setEnabled(false);
+                }
             }
         });
     }
+
 
     @Override
     protected int getContentResouce() {
@@ -69,8 +55,8 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
     }
 
     @Override
-    public XRecyclerView getRecylerView() {
-        return mXRecyclerView;
+    public RecyclerView getRecylerView() {
+        return mRecyclerView;
     }
 
     @Override
@@ -80,21 +66,16 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
 
     @Override
     public void dataOut() {
-        mXRecyclerView.setNoMore(true);
     }
 
+    @Override
+    public SwipeRefreshLayout getSwipeRefresh() {
+        return mSwipeRefreshLayout;
+    }
 
-//    public boolean onBackPressed() {
-//        if (mHadRemove) {
-//            if (mAppBarLayout != null) {
-//                mAppBarLayout.addView(mSliderLayout, 0);//放在最上面
-//                mAppBarLayout.addView(mEveryDayView, 0);
-//            }
-//            mXRecyclerView.setPullRefreshEnabled(false);
-//            mHideSlider = false;
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    @Override
+    public void onRefreshComlete() {
+        super.onRefreshComlete();
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
 }

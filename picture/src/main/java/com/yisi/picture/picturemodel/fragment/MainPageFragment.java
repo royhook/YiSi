@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.MainContentPagerAdapter;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 import com.yisi.picture.picturemodel.bean.PlantBrowse;
 import com.yisi.picture.picturemodel.fragment.inter.IMainFragment;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
@@ -35,17 +35,13 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private ViewPager mViewPager;
     //    private Toolbar mToolbar;
     private ArrayList<Fragment> fragments;
-    private boolean mHasPictureMode = false;
     ImageView mImageView;
+    private Toolbar mToolbar;
     private MainContentPagerAdapter mAdapter;
     private onLeftViewClick mOnLeftViewClick;
 
     public void setOnLeftViewClick(onLeftViewClick onLeftViewClick) {
         mOnLeftViewClick = onLeftViewClick;
-    }
-
-    public boolean isHasPictureMode() {
-        return mHasPictureMode;
     }
 
     @Override
@@ -58,14 +54,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     protected void initViews() {
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
         mViewPager = findview(R.id.main_fragment_vp_content);
-        mImageView = findview(R.id.iv_fragment_main_cate);
-        mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnLeftViewClick != null)
-                    mOnLeftViewClick.onClick();
-            }
-        });
         initMainPageChildPage();
     }
 
@@ -100,7 +88,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
         fragments = new ArrayList<>();
 
         MainPageChildFragment mainPageChildFragment = new MainPageChildFragment();
-        mainPageChildFragment.setType_id(1);
         fragments.add(mainPageChildFragment);
         AlbumFragment albumFragment = new AlbumFragment();
         PlantFragment plantFragment = new PlantFragment();

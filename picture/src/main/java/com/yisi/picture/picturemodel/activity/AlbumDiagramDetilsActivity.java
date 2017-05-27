@@ -1,8 +1,8 @@
 package com.yisi.picture.picturemodel.activity;
 
 
+import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.base.BaseActivity;
 import com.yisi.picture.picturemodel.fragment.AlbumDiagramDetilsFragment;
 
 /**

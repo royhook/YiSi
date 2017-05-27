@@ -1,8 +1,8 @@
 package com.yisi.picture.picturemodel.fragment;
 
 
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 
 /**
  * Created by chenql on 2017/5/4.

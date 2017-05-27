@@ -1,32 +1,20 @@
 package com.yisi.picture.picturemodel.fragment.inter;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.yisi.picture.picturemodel.base.inter.IBaseView;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 
-import java.util.List;
+import com.yisi.picture.baselib.base.inter.IBaseRefreshAty;
 
 
 /**
  * Created by roy on 2017/1/19.
  */
 
-public interface IMainPageChildFragment extends IBaseView {
-    void bindRecylerViewLoadMore(List<YiSiImage> yiSiImages);
+public interface IMainPageChildFragment extends IBaseRefreshAty {
 
-    void bindRecylerViewRefresh(List<YiSiImage> yiSiImages);
 
-    void onDataRunOut();
+    RecyclerView getRecycleView();
 
-    void onNoLastestData();
+    void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener);
 
-    List<YiSiImage> getYiSiImages();
-
-    boolean isLoadMoreOrRefresh();
-
-    int getCurrentPage();
-
-    void setCurrentPage(int currentPage);
-
-    XRecyclerView getRecycleView();
 }

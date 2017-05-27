@@ -80,4 +80,14 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
         if (mMultipleStatusView != null)
             mMultipleStatusView.showEmpty();
     }
+
+    @Override
+    public void onRefreshComlete() {
+
+    }
+
+    @Override
+    public void onLoadMoreComplete() {
+
+    }
 }

@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.inter.IAlbumAty;
-import com.yisi.picture.picturemodel.base.BaseActivity;
 import com.yisi.picture.picturemodel.presenter.AlbumAtyPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IAlbumAtyPre;
 
@@ -22,7 +24,7 @@ import com.yisi.picture.picturemodel.presenter.inter.IAlbumAtyPre;
 public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnClickListener {
 
     private IAlbumAtyPre mAlbumAtyPre;
-    private XRecyclerView mXRecyclerView;
+    private RecyclerView mXRecyclerView;
     private TextView mTextView;
     private ImageView mBackImageView;
 
@@ -55,11 +57,6 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
     }
 
     @Override
-    public XRecyclerView getRecyclerView() {
-        return mXRecyclerView;
-    }
-
-    @Override
     public Intent getAlbumIntent() {
         return getIntent();
     }
@@ -76,7 +73,6 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
 
     @Override
     public void dataRunOut() {
-        mXRecyclerView.setNoMore(true);
     }
 
     @Override
@@ -84,5 +80,15 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
         if (v.getId() == R.id.aty_album_back) {
             AlbumActivity.this.finish();
         }
+    }
+
+    @Override
+    public void bindLayoutManager(LinearLayoutManager manager) {
+        mXRecyclerView.setLayoutManager(manager);
+    }
+
+    @Override
+    public void bindAdapter(BaseQuickAdapter adapter) {
+        mXRecyclerView.setAdapter(adapter);
     }
 }

@@ -3,9 +3,9 @@ package com.yisi.picture.picturemodel.fragment;
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 
 
 /**

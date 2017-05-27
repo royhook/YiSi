@@ -3,7 +3,7 @@ package com.yisi.picture.picturemodel.adapter.viewholder;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.yisi.picture.baselib.adapter.BaseViewHolder;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
 import com.yisi.picture.picturemodel.R;
 
@@ -17,7 +17,7 @@ public class MainPageChildViewHolder extends BaseViewHolder {
     private ImageView imageView;
 
     public MainPageChildViewHolder(View itemView, OnItemClickListener onItemClickListener) {
-        super(itemView, onItemClickListener);
+        super(itemView);
         imageView = getView(R.id.adapter_hot_iv);
     }
 

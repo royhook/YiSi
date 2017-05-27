@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.inter.IImageOperaAty;
-import com.yisi.picture.picturemodel.base.BaseActivity;
 import com.yisi.picture.picturemodel.presenter.ImageOperateOperaPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IImageOperaPre;
 import com.yisi.picture.picturemodel.view.OperatePopList;

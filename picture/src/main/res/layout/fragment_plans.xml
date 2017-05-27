@@ -10,5 +10,4 @@
     custom:emptyView="@layout/custom_empty_view"
     custom:errorView="@layout/custom_error_view"
     custom:loadingView="@layout/custom_loading_view">
-
 </com.classic.common.MultipleStatusView>

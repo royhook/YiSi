@@ -4,12 +4,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sr_fragment_plans"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/mian_fragment_coor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/main_appbar"
@@ -61,15 +67,16 @@
         </android.support.design.widget.AppBarLayout>
 
 
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/plans_fragment_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             custom:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </com.jcodecraeer.xrecyclerview.XRecyclerView>
+        </android.support.v7.widget.RecyclerView>
 
     </android.support.design.widget.CoordinatorLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
 
 
 </RelativeLayout>

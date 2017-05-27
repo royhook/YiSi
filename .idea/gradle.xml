@@ -5,7 +5,7 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.14.1" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.3" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/library/FlycoTabLayout_Lib" />
             <option value="$PROJECT_DIR$/library/commenlibrary" />
             <option value="$PROJECT_DIR$/library/image-slider" />
+            <option value="$PROJECT_DIR$/library/radapter" />
             <option value="$PROJECT_DIR$/library/xrecyclerview" />
             <option value="$PROJECT_DIR$/picture" />
           </set>

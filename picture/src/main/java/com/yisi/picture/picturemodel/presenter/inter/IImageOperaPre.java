@@ -2,7 +2,7 @@ package com.yisi.picture.picturemodel.presenter.inter;
 
 import android.content.Intent;
 
-import com.yisi.picture.picturemodel.base.inter.IBasePresenter;
+import com.yisi.picture.baselib.base.inter.IBasePresenter;
 import com.yisi.picture.picturemodel.bean.YiSiImage;
 
 import java.util.List;

@@ -8,13 +8,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
+import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.baselib.utils.PreferenceKey;
 import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.PictureCollectAdapter;
-import com.yisi.picture.picturemodel.base.BaseFragment;
 import com.yisi.picture.picturemodel.bean.YiSiImage;
 
 import java.util.List;

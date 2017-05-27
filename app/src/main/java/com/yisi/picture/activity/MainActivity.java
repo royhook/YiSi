@@ -2,6 +2,7 @@ package com.yisi.picture.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,7 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
@@ -30,6 +33,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     private MainPageFragment mMainFragment;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
+    private Toolbar mToolbar;
     private int mClickTime = 0;
     private boolean mCanClick = true;
 
@@ -49,6 +53,16 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
         setContentView(R.layout.activity_main);
         mCommonTabLayout = findView(R.id.main_commenTab);
         mNavigationView = findView(R.id.nav_view);
+        mToolbar = findView(R.id.tl_fragment_main);
+        mToolbar.setTitle("首页");
+        mToolbar.setNavigationIcon(R.mipmap.category);
+        mToolbar.setTitleTextColor(Color.WHITE);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDrawer();
+            }
+        });
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, R.string.open, R.string.close);

@@ -1,7 +1,7 @@
 package com.yisi.picture.picturemodel.presenter;
 
 
-import com.yisi.picture.picturemodel.base.BasePresenterImpl;
+import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.picturemodel.bean.Album;
 import com.yisi.picture.picturemodel.fragment.AlbumFragment;
 import com.yisi.picture.picturemodel.model.AlbumFragmentModelImpl;

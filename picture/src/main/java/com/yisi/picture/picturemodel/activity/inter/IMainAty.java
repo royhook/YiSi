@@ -3,7 +3,7 @@ package com.yisi.picture.picturemodel.activity.inter;
 import android.content.Context;
 
 import com.flyco.tablayout.CommonTabLayout;
-import com.yisi.picture.picturemodel.base.inter.IBaseView;
+import com.yisi.picture.baselib.base.inter.IBaseView;
 
 
 /**

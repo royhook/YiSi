@@ -1,7 +1,7 @@
 package com.yisi.picture.picturemodel.fragment.inter;
 
 
-import com.yisi.picture.picturemodel.base.inter.IBaseView;
+import com.yisi.picture.baselib.base.inter.IBaseView;
 import com.yisi.picture.picturemodel.bean.Album;
 
 import java.util.List;

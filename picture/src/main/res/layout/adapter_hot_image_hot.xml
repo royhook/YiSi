@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/px100"
+              android:layout_marginTop="@dimen/px20"
+              android:layout_marginBottom="@dimen/px20"
+              android:background="#EDEDED"
+              android:orientation="horizontal">
+
+    <View
+        android:layout_width="@dimen/px20"
+        android:layout_height="@dimen/px20"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/px20"
+        android:layout_marginTop="@dimen/px40"
+        android:layout_marginBottom="@dimen/px40"
+        android:background="@drawable/shape_dot"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/px20"
+        android:gravity="center"
+        android:text="热门美图"
+        android:textSize="@dimen/px40"/>
+
+</LinearLayout>

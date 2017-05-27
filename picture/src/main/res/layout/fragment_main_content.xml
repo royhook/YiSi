@@ -6,46 +6,39 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/iv_fragment_main_cate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px60"
-            android:src="@mipmap/category_seclct"/>
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical">
 
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/main_fragment_slidertab"
-            android:layout_width="@dimen/px600"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/px150"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:minHeight="@dimen/px150"
-            android:layout_centerInParent="true"
-            custom:tl_indicator_color="#2C97DE"
+            custom:tl_indicator_color="#FFFFFF"
             custom:tl_indicator_height="@dimen/px5"
             custom:tl_indicator_width="@dimen/px100"
             custom:tl_tab_space_equal="true"
             custom:tl_textBold="SELECT"
-            custom:tl_textSelectColor="#2C97DE"
-            custom:tl_textUnselectColor="#000000"
+            custom:tl_textSelectColor="#ffffff"
+            custom:tl_textUnselectColor="#fff5f5f5"
             custom:tl_textsize="@dimen/px35"
+            custom:tl_underline_color="?attr/colorPrimary"
             custom:tl_underline_height="@dimen/px5">
         </com.flyco.tablayout.SlidingTabLayout>
 
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/main_fragment_vp_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        custom:layout_behavior="@string/appbar_scrolling_view_behavior">
+        >
 
     </android.support.v4.view.ViewPager>
 

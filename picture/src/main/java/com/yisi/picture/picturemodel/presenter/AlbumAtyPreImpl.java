@@ -4,16 +4,16 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.yisi.picture.baselib.adapter.BaseAdapter;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
+import com.yisi.picture.baselib.base.BaseRefreshPresenterImpl;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.activity.AlbumActivity;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.activity.inter.IAlbumAty;
 import com.yisi.picture.picturemodel.adapter.AlbumDetilsAdapter;
-import com.yisi.picture.picturemodel.base.BaseRefreshPresenterImpl;
 import com.yisi.picture.picturemodel.bean.Album;
 import com.yisi.picture.picturemodel.bean.AlbumImage;
 import com.yisi.picture.picturemodel.bean.YiSiImage;
@@ -44,22 +44,16 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     public void bindLayouManagerAndAdapter() {
         if (albumDetilsAdapter == null) {
             albumDetilsAdapter = new AlbumDetilsAdapter(currentList);
-            mView.getRecyclerView().setLayoutManager(new GridLayoutManager(mView.getViewContext(), 2, 1, false));
-            mView.getRecyclerView().setAdapter(albumDetilsAdapter);
-            mView.getRecyclerView().setLoadingListener(this);
-            albumDetilsAdapter.setOnItemClickListener(this);
+            mView.bindLayoutManager(new GridLayoutManager(mView.getViewContext(), 2, 1, false));
+            mView.bindAdapter(albumDetilsAdapter);
+            albumDetilsAdapter.setOnItemClickListener(null);
         }
     }
 
 
     @Override
-    public BaseAdapter getRefreshAdapter() {
+    public BaseQuickAdapter getRefreshAdapter() {
         return albumDetilsAdapter;
-    }
-
-    @Override
-    protected XRecyclerView getRecyclerView() {
-        return mView.getRecyclerView();
     }
 
 
@@ -81,7 +75,6 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
 
     @Override
     public void onEmpty() {
-        getRecyclerView().loadMoreComplete();
         currentPage--;
         mView.dataRunOut();
         mView.onEmpty();
