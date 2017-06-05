@@ -60,6 +60,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
 
     @Override
     public void onSuccess(List<T> t) {
+        mView.onLoadingSuccess();
         if (currentList == null) {
             currentList = new ArrayList<>();
             currentList.addAll(t);
@@ -89,7 +90,6 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
                 getRefreshAdapter().loadMoreComplete();
                 break;
         }
-        mView.onLoadingSuccess();
     }
 
     @Override
