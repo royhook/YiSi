@@ -39,6 +39,7 @@ dependencies {
     compile 'com.github.ctiao:DanmakuFlameMaster:0.6.4'
     compile 'com.github.ctiao:ndkbitmap-armv7a:0.6.4'
     compile 'com.mylhyl:acp:1.1.7'
+    compile 'com.lzy.net:okgo:2.1.4'        //可以单独使用，不需要依赖下方的扩展包
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
@@ -46,4 +47,5 @@ dependencies {
     compile 'com.classic.common:multiple-status-view:1.2'
     compile project(path: ':library:xrecyclerview')
     compile project(':library:radapter')
+    compile 'com.android.support:cardview-v7:26.0.0-alpha1'
 }

@@ -10,4 +10,6 @@ public class IntentKey {
     public static String KEY_IMAGE_OPERA_POSITION = "key_image_opera_position";
     public static String KEY_OPEN_TYPE = "key_open_type";
     public static String KEY_PLANT_TYPE = "key_plant_type";
+    public static String KEY_KIND_ID = "key_kind_id";
+    public static String kEY_KIND_NAME = "key_kind_name";
 }

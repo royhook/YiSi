@@ -65,7 +65,7 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
                                 plants.add(yiSiImage);
                             }
                             addChangeAlbum(plants);
-                            mPresenter.onSuccess(plants, 1);
+                            mPresenter.onSuccess(plants, 0);
                         }
                     } else {
                         LogUtils.d(e.toString());

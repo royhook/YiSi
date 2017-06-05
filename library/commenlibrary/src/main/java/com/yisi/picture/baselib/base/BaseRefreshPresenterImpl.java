@@ -17,6 +17,7 @@ import java.util.List;
 
 public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBaseModel, T> extends BasePresenterImpl<V, M> implements IBaseRefreshPresenter<T>,
         XRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
+    protected int initPage = 0;
     protected int currentPage = 0;
     private static int REFRESH_NORMAL = 1;
     private static int REFRESH_TYPE = REFRESH_NORMAL;
@@ -24,10 +25,14 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
     private static final int REFRESH_LOADMORE = 3;
     protected List<T> currentList;
 
+    public void setInitPage(int initPage) {
+        this.initPage = initPage;
+        currentPage = initPage;
+    }
 
     protected BaseRefreshPresenterImpl(V baseView) {
         super(baseView);
-        currentPage = 0;
+        currentPage = initPage;
         if (currentList != null)
             currentList.clear();
         REFRESH_TYPE = 0;
@@ -36,6 +41,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
     public abstract void bindLayouManagerAndAdapter();
 
     public abstract BaseQuickAdapter getRefreshAdapter();
+
 
     @Override
     public void onLoadMore() {
@@ -47,7 +53,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
     @Override
     public void onRefresh() {
         REFRESH_TYPE = REFRESH_REFRESH;
-        currentPage = 0;
+        currentPage = initPage;
         request(false);
     }
 
@@ -69,6 +75,10 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
                 break;
 
             case REFRESH_LOADMORE:
+                if (t.size() == 0) {
+                    getRefreshAdapter().loadMoreEnd();
+                    return;
+                }
                 currentList.addAll(t);
                 if (currentList.size() - t.size() >= 0) {
                     getRefreshAdapter().notifyItemChanged(currentList.size() - t.size() + 1, currentList.size());
@@ -76,6 +86,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
                 }
                 REFRESH_TYPE = REFRESH_NORMAL;
                 mView.onLoadMoreComplete();
+                getRefreshAdapter().loadMoreComplete();
                 break;
         }
         mView.onLoadingSuccess();
@@ -83,8 +94,10 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
 
     @Override
     public void onEmpty() {
-        if (REFRESH_TYPE != REFRESH_NORMAL) {
+        if (REFRESH_TYPE != REFRESH_LOADMORE) {
             mView.onEmpty();
+        }else {
+            getRefreshAdapter().loadMoreEnd();
         }
     }
 

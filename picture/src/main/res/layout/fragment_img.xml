@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.classic.common.MultipleStatusView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_multiplestatusview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    custom:contentView="@layout/fragment_image_content"
+    custom:emptyView="@layout/custom_empty_view"
+    custom:errorView="@layout/custom_error_view"
+    custom:loadingView="@layout/custom_loading_view">
+</com.classic.common.MultipleStatusView>

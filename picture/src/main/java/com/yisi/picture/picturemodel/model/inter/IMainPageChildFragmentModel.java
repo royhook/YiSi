@@ -9,4 +9,7 @@ import com.yisi.picture.baselib.base.inter.IBaseModel;
 
 public interface IMainPageChildFragmentModel extends IBaseModel {
     void request(int type_id, int page, boolean readCache);
+
+    void requestAli();
+
 }

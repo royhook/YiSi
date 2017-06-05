@@ -70,7 +70,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void onSuccess(List<YiSiImage> yiSiImages, int position) {
-        mCurrentPosition = position - 1;
+        mCurrentPosition = position;
         mYiSiImages = yiSiImages;
         if (adapter != null)
             adapter = null;
@@ -85,9 +85,9 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
             mAllNum = mYiSiImages.size() - 1;
         else
             mAllNum = mYiSiImages.size();
-        mView.updataTextView(position + "/" + mAllNum);
+        mView.updataTextView((position + 1) + "/" + mAllNum);
         mView.setViewPagerAdapter(adapter);
-        mView.getViewPager().setCurrentItem(position - 1);
+        mView.getViewPager().setCurrentItem(position);
         mView.getViewPager().clearOnPageChangeListeners();
         mView.getViewPager().addOnPageChangeListener(this);
     }

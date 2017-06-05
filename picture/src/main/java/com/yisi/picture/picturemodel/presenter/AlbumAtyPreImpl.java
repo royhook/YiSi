@@ -46,7 +46,18 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
             albumDetilsAdapter = new AlbumDetilsAdapter(currentList);
             mView.bindLayoutManager(new GridLayoutManager(mView.getViewContext(), 2, 1, false));
             mView.bindAdapter(albumDetilsAdapter);
-            albumDetilsAdapter.setOnItemClickListener(null);
+            albumDetilsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    startAlbumActivity(position);
+                }
+            });
+            albumDetilsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                @Override
+                public void onLoadMoreRequested() {
+                    onLoadMore();
+                }
+            });
         }
     }
 
@@ -76,8 +87,6 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     @Override
     public void onEmpty() {
         currentPage--;
-        mView.dataRunOut();
-        mView.onEmpty();
     }
 
     @Override
@@ -105,9 +114,23 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
         mView.getViewContext().startActivity(intent);
     }
 
+    private void startAlbumActivity(int position) {
+        Gson gson = new Gson();
+        String json = gson.toJson(mYiSiImgs);
+        Intent intent = new Intent(mView.getViewContext(), ImageOperateActivity.class);
+        intent.putExtra(IntentKey.KEY_IMAGE_OPERA, json);
+        intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, position);
+        mView.getViewContext().startActivity(intent);
+    }
+
     @Override
     public void initViewDatas() {
         mView.setToolBarTitle(mAlbum.getTitle());
+    }
+
+    @Override
+    public BaseQuickAdapter getAdapter() {
+        return albumDetilsAdapter;
     }
 
     @Override

@@ -91,4 +91,9 @@ public class AlbumActivity extends BaseActivity implements IAlbumAty, View.OnCli
     public void bindAdapter(BaseQuickAdapter adapter) {
         mXRecyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onEmpty() {
+        super.onEmpty();
+    }
 }

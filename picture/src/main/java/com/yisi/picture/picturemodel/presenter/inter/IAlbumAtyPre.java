@@ -1,6 +1,7 @@
 package com.yisi.picture.picturemodel.presenter.inter;
 
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yisi.picture.baselib.base.inter.IBaseRefreshPresenter;
 
 /**
@@ -9,4 +10,5 @@ import com.yisi.picture.baselib.base.inter.IBaseRefreshPresenter;
 
 public interface IAlbumAtyPre<T> extends IBaseRefreshPresenter<T> {
     void initViewDatas();
+    BaseQuickAdapter getAdapter();
 }

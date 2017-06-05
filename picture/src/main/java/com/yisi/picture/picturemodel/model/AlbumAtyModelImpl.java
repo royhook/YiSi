@@ -36,10 +36,7 @@ public class AlbumAtyModelImpl extends BaseModelImpl<IAlbumAtyPre<AlbumImage>> i
                     public void done(List<AlbumImage> list, BmobException e) {
                         if (e == null) {
                             if (list != null) {
-                                if (list.size() != 0)
-                                    mPresenter.onSuccess(list);
-                                else
-                                    mPresenter.onEmpty();
+                                mPresenter.onSuccess(list);
                             }
                         } else {
                             mPresenter.onFail(e.getErrorCode());

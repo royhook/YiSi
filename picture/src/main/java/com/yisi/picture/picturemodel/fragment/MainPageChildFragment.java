@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yisi.picture.baselib.base.BaseFragment;
@@ -21,6 +23,7 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     private RecyclerView mRecyclerView;
     private IMainPageChildFragmentPre mYiSiChildFragmentPre;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mHeadRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
             mRecyclerView = findview(R.id.hot_fragment_recycler);
             mSwipeRefreshLayout = findview(R.id.sr_fragment_hot);
             mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
+            mHeadRecyclerView = new RecyclerView(getContext());
         }
     }
 
@@ -46,6 +50,7 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     protected void initData() {
         //防止重复请求数据
         mYiSiChildFragmentPre.request(true);
+        mYiSiChildFragmentPre.requestAli();
     }
 
     @Override
@@ -56,6 +61,26 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     @Override
     public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener) {
         mSwipeRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    @Override
+    public RecyclerView getHeadView() {
+        return mHeadRecyclerView;
+    }
+
+    @Override
+    public View getTitleView() {
+        return LayoutInflater.from(getContext()).inflate(R.layout.view_ali_header, null, false);
+    }
+
+    @Override
+    public View getDivideView() {
+        return LayoutInflater.from(getContext()).inflate(R.layout.view_divide, null, false);
+    }
+
+    @Override
+    public View getLastView() {
+        return  LayoutInflater.from(getContext()).inflate(R.layout.view_divide_last, null, false);
     }
 
     @Override
@@ -70,28 +95,25 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     }
 
     @Override
-    public void onLoadingPage() {
-
-    }
-
-    @Override
     public void onLoadingSuccess() {
+        super.onLoadingSuccess();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onLoadingFail() {
+        super.onLoadingFail();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
 
     @Override
     public void bindLayoutManager(LinearLayoutManager manager) {
-        mRecyclerView.setLayoutManager(manager);
+        mHeadRecyclerView.setLayoutManager(manager);
     }
 
     @Override
     public void bindAdapter(BaseQuickAdapter adapter) {
-        mRecyclerView.setAdapter(adapter);
+        mHeadRecyclerView.setAdapter(adapter);
     }
 }

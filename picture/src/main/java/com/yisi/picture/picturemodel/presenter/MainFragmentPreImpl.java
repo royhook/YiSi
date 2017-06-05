@@ -1,17 +1,13 @@
 package com.yisi.picture.picturemodel.presenter;
 
-import android.support.v4.app.Fragment;
-
 import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.picturemodel.bean.MainPage;
 import com.yisi.picture.picturemodel.bean.PlantBrowse;
-import com.yisi.picture.picturemodel.fragment.MainPageChildFragment;
 import com.yisi.picture.picturemodel.fragment.inter.IMainFragment;
 import com.yisi.picture.picturemodel.model.MainFragmentModelImpl;
 import com.yisi.picture.picturemodel.model.inter.IMainFragmentModel;
 import com.yisi.picture.picturemodel.presenter.inter.IMainFragmentPre;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +16,6 @@ import java.util.List;
 
 public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainFragmentModel> implements IMainFragmentPre {
 
-
-    private MainPageChildFragment mainPageChildFragment;
-    private ArrayList<Fragment> fragments;
 
     public MainFragmentPreImpl(IMainFragment baseView) {
         super(baseView);
@@ -47,9 +40,6 @@ public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainF
 
     @Override
     public void onRecoverState(int currentFragment) {
-//        MainPageChildFragment mainPageFragment = (MainPageChildFragment) fragments.get(currentFragment);
-//        if (mainPageFragment != null)
-//            mainPageFragment.getmRecyclerView().smoothScrollToPosition(0);
 
     }
 
@@ -71,19 +61,6 @@ public class MainFragmentPreImpl extends BasePresenterImpl<IMainFragment, IMainF
 
     @Override
     public void onContentSuccess(List<MainPage> mainContents) {
-//        String[] titles = new String[mainContents.size()];
-//        fragments = new ArrayList<>();
-//        for (int i = 0; i < mainContents.size(); i++) {
-//            titles[i] = mainContents.get(i).getTitle();
-//        }
-//        mainPageChildFragment = new MainPageChildFragment();
-//        mainPageChildFragment.setType_id(mainContents.get(0).getType_id());
-//        fragments.add(mainPageChildFragment);
-//        AlbumFragment albumFragment = new AlbumFragment();
-//        PlantFragment plantFragment = new PlantFragment();
-//        fragments.add(albumFragment);
-//        fragments.add(plantFragment);
-//        mView.initMainPageChildPage(titles, fragments);
         mView.onLoadingSuccess();
     }
 }

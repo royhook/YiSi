@@ -23,6 +23,7 @@ public class YiSiApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         mGlobleContext = this;
         mRefWatcher = LeakCanary.install(this);
     }

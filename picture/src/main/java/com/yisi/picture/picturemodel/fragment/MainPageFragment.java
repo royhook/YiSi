@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
 
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
@@ -35,13 +33,9 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     private ViewPager mViewPager;
     //    private Toolbar mToolbar;
     private ArrayList<Fragment> fragments;
-    ImageView mImageView;
-    private Toolbar mToolbar;
     private MainContentPagerAdapter mAdapter;
-    private onLeftViewClick mOnLeftViewClick;
 
     public void setOnLeftViewClick(onLeftViewClick onLeftViewClick) {
-        mOnLeftViewClick = onLeftViewClick;
     }
 
     @Override
@@ -54,6 +48,7 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     protected void initViews() {
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
         mViewPager = findview(R.id.main_fragment_vp_content);
+        mMultipleStatusView = findview(R.id.base_multiplestatusview);
         initMainPageChildPage();
     }
 
@@ -84,15 +79,39 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     }
 
     public void initMainPageChildPage() {
-        String[] titles = new String[]{"推荐", "分类", "专辑"};
+        String[] titles = new String[]{"推荐", "精选壁纸分类", "壁纸专辑", "明星", "娱乐", "风景", "街拍", "萌宠", "校花", "日韩美女", "自然"};
         fragments = new ArrayList<>();
 
         MainPageChildFragment mainPageChildFragment = new MainPageChildFragment();
         fragments.add(mainPageChildFragment);
         AlbumFragment albumFragment = new AlbumFragment();
         PlantFragment plantFragment = new PlantFragment();
+        ImageFragment firstImgFragment = new ImageFragment();
+        ImageFragment secondImgFragment = new ImageFragment();
+        ImageFragment thridImgFragment = new ImageFragment();
+        ImageFragment fourthImgFragment = new ImageFragment();
+        ImageFragment fifthImgFragment = new ImageFragment();
+        ImageFragment schoolFlowerFragment = new ImageFragment();
+        ImageFragment beautyFragment = new ImageFragment();
+        ImageFragment foodFragment = new ImageFragment();
+        firstImgFragment.setId(2001);
+        secondImgFragment.setId(3001);
+        thridImgFragment.setId(6004);
+        fourthImgFragment.setId(4006);
+        fifthImgFragment.setId(6002);
+        schoolFlowerFragment.setId(4004);
+        beautyFragment.setId(4014);
+        foodFragment.setId(6006);
         fragments.add(albumFragment);
         fragments.add(plantFragment);
+        fragments.add(firstImgFragment);
+        fragments.add(secondImgFragment);
+        fragments.add(thridImgFragment);
+        fragments.add(fourthImgFragment);
+        fragments.add(fifthImgFragment);
+        fragments.add(schoolFlowerFragment);
+        fragments.add(beautyFragment);
+        fragments.add(foodFragment);
 
         mAdapter = new MainContentPagerAdapter(getChildFragmentManager(), fragments);
         mViewPager.setAdapter(mAdapter);

@@ -17,7 +17,7 @@ import com.yisi.picture.baselib.base.inter.IBaseAty;
 
 public abstract class BaseFragment extends Fragment implements IBaseAty {
     private View cacheView;
-    private MultipleStatusView mMultipleStatusView;
+    protected MultipleStatusView mMultipleStatusView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +35,8 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (cacheView == null) {
             cacheView = inflater.inflate(getContentResouce(), container, false);
+        } else {
+            return cacheView;
         }
         ViewGroup parent = (ViewGroup) cacheView.getParent();
         if (parent != null) {

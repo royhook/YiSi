@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/px20"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/px20"
+                android:orientation="vertical">
 
     <ImageView
         android:id="@+id/adapter_plant_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px800"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/adapter_plant_title"
@@ -18,8 +18,11 @@
         android:layout_below="@+id/adapter_plant_img"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/px20"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/px50"
+        android:paddingRight="@dimen/px50"
         android:text="美丽少妇竟然..."
         android:textColor="#000000"
-        android:textSize="@dimen/px30" />
+        android:textSize="@dimen/px30"/>
 
 </RelativeLayout>

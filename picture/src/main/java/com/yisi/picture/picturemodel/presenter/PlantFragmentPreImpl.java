@@ -36,6 +36,12 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
             mView.getRecylerView().setAdapter(mPlantAdapter);
             mView.getSwipeRefresh().setOnRefreshListener(this);
             mPlantAdapter.setOnItemClickListener(this);
+            mPlantAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+                @Override
+                public void onLoadMoreRequested() {
+                    onLoadMore();
+                }
+            });
         }
     }
 
@@ -58,7 +64,7 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        int id = currentList.get(position - 1).getPlant_id();
+        int id = currentList.get(position).getPlant_id();
         Intent intent = new Intent(mView.getViewContext(), ImageOperateActivity.class);
         intent.putExtra(IntentKey.KEY_PLANT_TYPE, id);
         intent.putExtra(IntentKey.KEY_OPEN_TYPE, ImageOperaOperateModel.TYPE_REQUEST_SHOW);

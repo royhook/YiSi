@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:background="#EDEDED"
+              android:layout_height="wrap_content">
+
+
+        <View
+            android:layout_width="@dimen/px20"
+            android:layout_height="@dimen/px20"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px20"
+            android:background="@drawable/shape_dot"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px100"
+            android:paddingBottom="@dimen/px20"
+            android:paddingLeft="@dimen/px20"
+            android:paddingTop="@dimen/px20"
+            android:text="精品壁纸推荐"
+            android:textColor="#8E8E8E"
+            android:textSize="@dimen/px40"
+            />
+
+
+</LinearLayout>

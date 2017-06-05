@@ -17,4 +17,17 @@
         android:id="@+id/error_view_tv"
         android:layout_below="@id/error_retry_view"
         android:text="@string/error_view_hint"/>
+
+    <TextView
+        android:id="@+id/error_retry"
+        android:layout_below="@+id/error_view_tv"
+        android:layout_width="@dimen/px180"
+        android:layout_height="@dimen/px80"
+        android:background="@drawable/shape_yisi_text"
+        android:textSize="@dimen/px30"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+
+        android:text="点我重试"/>
 </RelativeLayout>

@@ -10,7 +10,7 @@ import com.yisi.picture.baselib.base.inter.IBasePresenter;
 public abstract class BaseModelImpl<T extends IBasePresenter> implements IBaseModel {
     protected T mPresenter;
 
-    protected BaseModelImpl(T basePresenter) {
+    public BaseModelImpl(T basePresenter) {
         this.mPresenter = basePresenter;
     }
 }
