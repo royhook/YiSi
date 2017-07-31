@@ -1,6 +1,7 @@
 package com.yisi.picture.picturemodel.adapter;
 
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +53,15 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<AliAlbum, BaseView
 
         TextView fourceTvTitle = ViewUtils.findView(fourthView, R.id.tv_detiles_title);
         ImageView fourceIvImage = ViewUtils.findView(fourthView, R.id.iv_detiles_img);
+
+        final TextView moreView = helper.getView(R.id.aa_more);
+
+        moreView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(moreView, "暂无更多分类", Snackbar.LENGTH_SHORT).show();
+            }
+        });
 
 
         firstTvTitle.setText(aliAlbum.getList().get(0).getName());
