@@ -14,13 +14,4 @@
         android:textColor="#8E8E8E"/>
 
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/px20"
-        android:text="精品图片鉴赏↓"
-        android:textColor="#8E8E8E"/>
-
 </LinearLayout>

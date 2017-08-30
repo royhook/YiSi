@@ -66,8 +66,8 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<AliAlbum, BaseView
 
         firstTvTitle.setText(aliAlbum.getList().get(0).getName());
         secondTvTitle.setText(aliAlbum.getList().get(1).getName());
-        thridTvTitle.setText(aliAlbum.getList().get(2).getName());
-        fourceTvTitle.setText(aliAlbum.getList().get(3).getName());
+//        thridTvTitle.setText(aliAlbum.getList().get(2).getName());
+//        fourceTvTitle.setText(aliAlbum.getList().get(3).getName());
 
         firstView.setOnClickListener(new View.OnClickListener() {
             @Override

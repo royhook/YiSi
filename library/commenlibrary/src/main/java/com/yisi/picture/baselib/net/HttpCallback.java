@@ -1,5 +1,7 @@
 package com.yisi.picture.baselib.net;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.lzy.okgo.callback.StringCallback;
 import com.yisi.picture.baselib.utils.LogUtils;
@@ -21,6 +23,7 @@ public abstract class HttpCallback<T> extends StringCallback {
     @Override
     public void onSuccess(String s, Call call, Response response) {
         try {
+            Log.d("studio",s);
             T result = parseResponse(s);
             onSuccess(result);
 
