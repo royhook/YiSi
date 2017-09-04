@@ -45,3 +45,4 @@ dependencies {
     compile project(':library:xrecyclerview')
     compile project(':picture')
 }
+apply plugin: 'com.google.gms.google-services'
