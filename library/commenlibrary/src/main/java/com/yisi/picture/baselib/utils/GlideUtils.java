@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -129,6 +130,8 @@ public class GlideUtils {
      * @param imageView
      */
     public static void displayImageWithThrun(String url, ImageView imageView, final LoaderListener loaderListener) {
+        if (TextUtils.isEmpty(url))
+            return;
         Glide.with(mContext).load(url).thumbnail(0.1f).bitmapTransform(new CropTransform(mContext)).listener(new RequestListener<String, GlideDrawable>() {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {

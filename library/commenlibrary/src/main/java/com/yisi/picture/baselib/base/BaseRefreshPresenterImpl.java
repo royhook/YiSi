@@ -24,6 +24,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
     private static final int REFRESH_REFRESH = 2;
     private static final int REFRESH_LOADMORE = 3;
     protected List<T> currentList;
+    protected int mResponseSize;
 
     public void setInitPage(int initPage) {
         this.initPage = initPage;
@@ -37,6 +38,8 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
             currentList.clear();
         REFRESH_TYPE = 0;
     }
+
+    protected abstract void initAdapter();
 
     public abstract void bindLayouManagerAndAdapter();
 
@@ -60,12 +63,20 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
 
     @Override
     public void onSuccess(List<T> t) {
+        mResponseSize = t.size();
+        //小于10个不要加载更多了。说明本来就没那么多数据
         mView.onLoadingSuccess();
         if (currentList == null) {
             currentList = new ArrayList<>();
             currentList.addAll(t);
         }
-        bindLayouManagerAndAdapter();
+        if (getRefreshAdapter() == null) {
+            initAdapter();
+            bindLayouManagerAndAdapter();
+        }
+        if (t.size() < 10) {
+            getRefreshAdapter().loadMoreEnd();
+        }
         switch (REFRESH_TYPE) {
             case REFRESH_REFRESH:
                 currentList.clear();
@@ -96,7 +107,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
     public void onEmpty() {
         if (REFRESH_TYPE != REFRESH_LOADMORE) {
             mView.onEmpty();
-        }else {
+        } else {
             getRefreshAdapter().loadMoreEnd();
         }
     }

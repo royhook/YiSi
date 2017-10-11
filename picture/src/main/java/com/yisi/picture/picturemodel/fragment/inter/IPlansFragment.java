@@ -5,6 +5,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
 import com.yisi.picture.baselib.base.inter.IBaseAty;
+import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
+
+import java.util.List;
 
 /**
  * Created by roy on 2017/2/16.
@@ -19,5 +22,7 @@ public interface IPlansFragment extends IBaseAty {
     void dataOut();
 
     SwipeRefreshLayout getSwipeRefresh();
+
+    void bindBanner(List<RecommandPlantImage> list);
 
 }

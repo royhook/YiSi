@@ -1,8 +1,15 @@
 package com.yisi.picture.picturemodel.model;
 
+import com.kinvey.android.store.DataStore;
+import com.kinvey.java.store.StoreType;
+import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseModelImpl;
+import com.yisi.picture.picturemodel.bean.MainTab;
 import com.yisi.picture.picturemodel.model.inter.IMainFragmentModel;
+import com.yisi.picture.picturemodel.net.KinveyHelpCallback;
 import com.yisi.picture.picturemodel.presenter.inter.IMainFragmentPre;
+
+import java.util.List;
 
 /**
  * Created by roy on 2017/1/19.
@@ -15,40 +22,23 @@ public class MainFragmentModelImpl extends BaseModelImpl<IMainFragmentPre> imple
     }
 
     @Override
-    public void requestBannerData() {
-//        new BmobRequest.Builder()
-//                .addEqualTo("page", -1)
-//                .setCacheTime(1000 * 60 * 5)
-//                .setReadCache(true)
-//                .build()
-//                .request(new FindListener<PlantBrowse>() {
-//                    @Override
-//                    public void done(List<PlantBrowse> list, BmobException e) {
-//                        if (e == null) {
-//                            mPresenter.onSliderBannerSuccess(list);
-//                        } else {
-//                            LogUtils.d("error");
-//                        }
-//                    }
-//                });
-    }
+    public void request() {
+        DataStore<MainTab> dataStore = DataStore.collection("MainTab", MainTab.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        dataStore.find(new KinveyHelpCallback<MainTab>() {
+            @Override
+            public void onDataSuccess(List<MainTab> list) {
+                mPresenter.onSuccess(list);
+            }
 
-    @Override
-    public void requestContentData() {
+            @Override
+            public void onFail(Throwable throwable) {
+                mPresenter.onFail();
+            }
 
-//        new BmobRequest.Builder()
-//                .setReadCache(true)
-//                .setOrder("createdAt")
-//                .build()
-//                .request(new FindListener<MainPage>() {
-//                    @Override
-//                    public void done(List<MainPage> list, BmobException e) {
-//                        if (e == null) {
-//                            mPresenter.onContentSuccess(list);
-//                        } else {
-//                            LogUtils.d("error");
-//                        }
-//                    }
-//                });
+            @Override
+            public void onEmpty() {
+                mPresenter.onEmpty();
+            }
+        });
     }
 }

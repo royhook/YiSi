@@ -18,6 +18,7 @@ android {
 //                arguments = [moduleName: project.getName()]
             }
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -27,13 +28,19 @@ android {
         }
     }
 
-    lintOptions{
+    lintOptions {
         checkReleaseBuilds false
         abortOnError false
     }
-    allprojects {
-        repositories {
-            maven { url "https://jitpack.io" }
+
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        jcenter()
+        flatDir {
+            dirs './libs','../library/commenlibrary/libs'
         }
     }
 }
@@ -45,4 +52,3 @@ dependencies {
     compile project(':library:xrecyclerview')
     compile project(':picture')
 }
-apply plugin: 'com.google.gms.google-services'

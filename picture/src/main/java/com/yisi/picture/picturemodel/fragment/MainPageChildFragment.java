@@ -50,7 +50,6 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     protected void initData() {
         //防止重复请求数据
         mYiSiChildFragmentPre.request(true);
-        mYiSiChildFragmentPre.requestAli();
     }
 
     @Override
@@ -80,7 +79,7 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
 
     @Override
     public View getLastView() {
-        return  LayoutInflater.from(getContext()).inflate(R.layout.view_divide_last, null, false);
+        return LayoutInflater.from(getContext()).inflate(R.layout.view_divide_last, null, false);
     }
 
     @Override
@@ -91,7 +90,6 @@ public class MainPageChildFragment extends BaseFragment implements IMainPageChil
     @Override
     public void onRefreshComlete() {
         mSwipeRefreshLayout.setRefreshing(false);
-
     }
 
     @Override

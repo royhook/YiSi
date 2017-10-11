@@ -7,4 +7,6 @@ import com.yisi.picture.baselib.base.inter.IBaseModel;
  */
 
 public interface IMainAtyModel extends IBaseModel {
+
+    void request();
 }

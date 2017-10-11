@@ -8,7 +8,5 @@ import com.yisi.picture.baselib.base.inter.IBaseModel;
  */
 
 public interface IMainFragmentModel extends IBaseModel {
-    void requestBannerData();
-
-    void requestContentData();
+    void request();
 }

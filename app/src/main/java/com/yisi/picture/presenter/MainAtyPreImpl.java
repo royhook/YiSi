@@ -40,6 +40,7 @@ public class MainAtyPreImpl extends BasePresenterImpl<IMainAty, IMainAtyModel> i
 
     @Override
     public void initDatas() {
+        mModel.request();
         mView.getCommonTab().setTabData(buildMaintTab());
         mView.getCommonTab().setOnTabSelectListener(new OnTabSelectListener() {
             @Override

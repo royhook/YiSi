@@ -11,20 +11,15 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.IntentKey;
-import com.yisi.picture.baselib.utils.LogUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
-import com.yisi.picture.picturemodel.bean.PlantBrowse;
+import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 import com.yisi.picture.picturemodel.fragment.inter.IPlansFragment;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
-import com.yisi.picture.picturemodel.net.BmobRequest;
 import com.yisi.picture.picturemodel.presenter.PlantFragmentPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
 
 import java.util.List;
-
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by roy on 2017/1/14.
@@ -60,35 +55,17 @@ public class PlantFragment extends BaseFragment implements IPlansFragment, BaseS
         });
     }
 
-    private void requestBanner() {
-        new BmobRequest.Builder()
-                .addEqualTo("page", -1)
-                .setCacheTime(1000 * 60 * 5)
-                .setReadCache(true)
-                .build()
-                .request(new FindListener<PlantBrowse>() {
-                    @Override
-                    public void done(List<PlantBrowse> list, BmobException e) {
-                        if (e == null) {
-                            bindBanner(list);
-                        } else {
-                            LogUtils.d("error");
-                        }
-                    }
-                });
-    }
 
-    private void bindBanner(List<PlantBrowse> list) {
-        for (PlantBrowse plantBrowse : list) {
+    public void bindBanner(List<RecommandPlantImage> list) {
+        mSliderLayout.removeAllSliders();
+        for (RecommandPlantImage plantImage : list) {
             TextSliderView textSliderView = new TextSliderView(getContext());
             textSliderView
-                    .plant_id(plantBrowse.getPlant_id())
-                    .description(plantBrowse.getTitle())
-                    .image(plantBrowse.getImg_url());
+                    .description(plantImage.getName())
+                    .image(plantImage.getImage_url());
             textSliderView.setOnSliderClickListener(this);
             mSliderLayout.addSlider(textSliderView);
         }
-
     }
 
 
@@ -100,7 +77,6 @@ public class PlantFragment extends BaseFragment implements IPlansFragment, BaseS
     @Override
     protected void initData() {
         plantFragmentPre.request(true);
-        requestBanner();
     }
 
     @Override

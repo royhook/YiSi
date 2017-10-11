@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.view.PinchImageView;
 
 import java.util.LinkedList;
@@ -22,7 +22,7 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
 
     private int currentPostion;
 
-    private List<YiSiImage> yiSiImages;
+    private List<Image> images;
     private LinkedList<PinchImageView> pinchImageViews;
     private onPincherViewClickListener onPincherViewClickListener;
 
@@ -30,9 +30,9 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
         this.onPincherViewClickListener = onPincherViewClickListener;
     }
 
-    public ImageOperatePagerAdapter(List<YiSiImage> yiSiImages) {
+    public ImageOperatePagerAdapter(List<Image> images) {
         pinchImageViews = new LinkedList<>();
-        this.yiSiImages = yiSiImages;
+        this.images = images;
     }
 
     public int getCurrentPostion() {
@@ -41,7 +41,7 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return yiSiImages.size();
+        return images.size();
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.adapter_operate_image, container, false);
         PinchImageView piv = (PinchImageView) view.findViewById(R.id.operate_iv_show);
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.operate_pb);
-        GlideUtils.displayImageWithThrun(yiSiImages.get(position).getImg_url(), piv, new GlideUtils.LoaderListener() {
+        GlideUtils.displayImageWithThrun(images.get(position).getUrl(), piv, new GlideUtils.LoaderListener() {
             @Override
             public void loadSuccess() {
                 progressBar.setVisibility(View.GONE);

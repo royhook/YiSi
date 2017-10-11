@@ -41,24 +41,26 @@ public class AlbumAtyPreImpl extends BaseRefreshPresenterImpl<IAlbumAty, IAlbumA
     }
 
     @Override
+    protected void initAdapter() {
+        albumDetilsAdapter = new AlbumDetilsAdapter(currentList);
+    }
+
+    @Override
     public void bindLayouManagerAndAdapter() {
-        if (albumDetilsAdapter == null) {
-            albumDetilsAdapter = new AlbumDetilsAdapter(currentList);
-            mView.bindLayoutManager(new GridLayoutManager(mView.getViewContext(), 2, 1, false));
-            mView.bindAdapter(albumDetilsAdapter);
-            albumDetilsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                    startAlbumActivity(position);
-                }
-            });
-            albumDetilsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-                @Override
-                public void onLoadMoreRequested() {
-                    onLoadMore();
-                }
-            });
-        }
+        mView.bindLayoutManager(new GridLayoutManager(mView.getViewContext(), 2, 1, false));
+        mView.bindAdapter(albumDetilsAdapter);
+        albumDetilsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startAlbumActivity(position);
+            }
+        });
+        albumDetilsAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                onLoadMore();
+            }
+        });
     }
 
 

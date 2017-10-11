@@ -1,8 +1,7 @@
 package com.yisi.picture.picturemodel.presenter.inter;
 
 import com.yisi.picture.baselib.base.inter.IBasePresenter;
-import com.yisi.picture.picturemodel.bean.MainPage;
-import com.yisi.picture.picturemodel.bean.PlantBrowse;
+import com.yisi.picture.picturemodel.bean.MainTab;
 
 import java.util.List;
 
@@ -12,15 +11,10 @@ import java.util.List;
 
 public interface IMainFragmentPre extends IBasePresenter {
 
-    void onSliderBannerSuccess(List<PlantBrowse> mainSliderBanners);
+    void onSuccess(List<MainTab> tabs);
 
-    void onContentSuccess(List<MainPage> mainContents);
+    void requestTab();
 
-    void requestBannerAndShow();
-
-    void requestContentAndShow();
-
-    void onRecoverState(int currentFragment);
 
     void onEmpty();
 

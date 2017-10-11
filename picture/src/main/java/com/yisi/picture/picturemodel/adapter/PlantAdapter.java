@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.bean.PlantBrowse;
+import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ import java.util.List;
  * Created by roy on 2017/2/16.
  */
 
-public class PlantAdapter extends BaseQuickAdapter<PlantBrowse, BaseViewHolder> {
+public class PlantAdapter extends BaseQuickAdapter<RecommandPlantImage, BaseViewHolder> {
 
 
-    public PlantAdapter(List<PlantBrowse> dataList) {
+    public PlantAdapter(List<RecommandPlantImage> dataList) {
         super(R.layout.adapter_plant, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, PlantBrowse item, int position) {
+    protected void convert(BaseViewHolder helper, RecommandPlantImage item, int position) {
         ImageView imageView = helper.getView(R.id.adapter_plant_img);
         TextView textView = helper.getView(R.id.adapter_plant_title);
         if (position % 2 != 0) {
@@ -32,7 +32,7 @@ public class PlantAdapter extends BaseQuickAdapter<PlantBrowse, BaseViewHolder> 
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getImg_url(), imageView, R.mipmap.defult);
-        textView.setText(mData.get(position).getTitle());
+        GlideUtils.displayImage(mData.get(position).getImage_url(), imageView, R.mipmap.defult);
+        textView.setText(mData.get(position).getName());
     }
 }

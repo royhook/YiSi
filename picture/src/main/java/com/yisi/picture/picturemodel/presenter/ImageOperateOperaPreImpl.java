@@ -22,6 +22,7 @@ import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.ImageOperatePagerAdapter;
+import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.YiSiImage;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.model.inter.IImageOperateModel;
@@ -43,14 +44,13 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     private int open_type;
     private int mAllNum;//图片的总数
     private int mCurrentPosition;
-    private List<YiSiImage> mYiSiImages;
+    private List<Image> mYiSiImages;
     private ImageOperatePagerAdapter adapter;
 
     public ImageOperateOperaPreImpl(ImageOperateActivity baseView) {
         super(baseView);
         type_id = getChildIntent().getIntExtra(IntentKey.KEY_PLANT_TYPE, 0);
         open_type = getChildIntent().getIntExtra(IntentKey.KEY_OPEN_TYPE, TYPE_ONLY_SHOW);
-
     }
 
     @Override
@@ -69,12 +69,12 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     }
 
     @Override
-    public void onSuccess(List<YiSiImage> yiSiImages, int position) {
+    public void onSuccess(List<Image> images, int position) {
         mCurrentPosition = position;
-        mYiSiImages = yiSiImages;
+        mYiSiImages = images;
         if (adapter != null)
             adapter = null;
-        adapter = new ImageOperatePagerAdapter(yiSiImages);
+        adapter = new ImageOperatePagerAdapter(images);
         adapter.setOnPincherViewClickListener(new ImageOperatePagerAdapter.onPincherViewClickListener() {
             @Override
             public void onClick() {
@@ -103,9 +103,9 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
         PermissionUtils.requestWriteSDCard(new PermissionUtils.OnRequestCallback() {
             @Override
             public void onSuccess() {
-                YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
-                if (yiSiImage != null)
-                    GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url());
+                Image image = mYiSiImages.get(mCurrentPosition);
+                if (image != null)
+                    GlideUtils.displayImageAndDownLoad(image.getUrl());
                 Toast.makeText(mView, mView.getResources().getString(R.string.download_success), Toast.LENGTH_SHORT).show();
             }
 
@@ -119,9 +119,9 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     @Override
     public void setWallPaper() {
         final WallpaperManager wallpaperManager = WallpaperManager.getInstance(mView);
-        YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+        Image yiSiImage = mYiSiImages.get(mCurrentPosition);
         if (yiSiImage != null)
-            GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url(), new SimpleTarget<Bitmap>() {
+            GlideUtils.displayImageAndDownLoad(yiSiImage.getUrl(), new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                     try {
@@ -140,9 +140,9 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
         PermissionUtils.requestWriteSDCard(new PermissionUtils.OnRequestCallback() {
             @Override
             public void onSuccess() {
-                YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+                Image yiSiImage = mYiSiImages.get(mCurrentPosition);
                 if (yiSiImage != null)
-                    GlideUtils.displayImageAndDownLoad(yiSiImage.getImg_url(), new SimpleTarget<Bitmap>() {
+                    GlideUtils.displayImageAndDownLoad(yiSiImage.getUrl(), new SimpleTarget<Bitmap>() {
                         @Override
                         public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                             Intent intent = new Intent(Intent.ACTION_ATTACH_DATA);
@@ -164,7 +164,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void collectImg() {
-        List<YiSiImage> list = null;
+        List<Image> list = null;
         String result = PreferencesUtils.getString(mView, PreferenceKey.MY_COLLECT_IMAGE);
         if (TextUtils.isEmpty(result)) {
             list = new ArrayList<>();
@@ -172,7 +172,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
             list = new Gson().fromJson(result, new TypeToken<List<YiSiImage>>() {
             }.getType());
         }
-        YiSiImage yiSiImage = mYiSiImages.get(mCurrentPosition);
+        Image yiSiImage = mYiSiImages.get(mCurrentPosition);
         if (list != null)
             list.add(yiSiImage);
         PreferencesUtils.putString(mView, PreferenceKey.MY_COLLECT_IMAGE, new Gson().toJson(list));

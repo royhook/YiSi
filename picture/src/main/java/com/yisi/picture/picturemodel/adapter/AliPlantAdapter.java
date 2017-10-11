@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.bean.AliImage;
+import com.yisi.picture.picturemodel.bean.PlantImage;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ import java.util.List;
  * Created by roy on 2017/2/16.
  */
 
-public class AliPlantAdapter extends BaseQuickAdapter<AliImage, BaseViewHolder> {
+public class AliPlantAdapter extends BaseQuickAdapter<PlantImage, BaseViewHolder> {
 
 
-    public AliPlantAdapter(List<AliImage> dataList) {
+    public AliPlantAdapter(List<PlantImage> dataList) {
         super(R.layout.adapter_plant, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, AliImage item, int position) {
+    protected void convert(BaseViewHolder helper, PlantImage item, int position) {
         ImageView imageView = helper.getView(R.id.adapter_plant_img);
         TextView textView = helper.getView(R.id.adapter_plant_title);
         if (position % 2 != 0) {
@@ -32,7 +32,7 @@ public class AliPlantAdapter extends BaseQuickAdapter<AliImage, BaseViewHolder> 
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getList().get(0).getBig(), imageView, R.mipmap.defult);
-        textView.setText(mData.get(position).getTitle());
+        GlideUtils.displayImage(mData.get(position).getImage_url() + "!/format/webp", imageView, R.mipmap.defult);
+        textView.setText(mData.get(position).getName());
     }
 }

@@ -2,9 +2,7 @@ package com.yisi.picture.picturemodel.presenter.inter;
 
 
 import com.yisi.picture.baselib.base.inter.IBaseRefreshPresenter;
-import com.yisi.picture.picturemodel.bean.AliAlbum;
-import com.yisi.picture.picturemodel.bean.AliBody;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.bean.PlantModel;
 
 import java.util.List;
 
@@ -12,14 +10,10 @@ import java.util.List;
  * Created by roy on 2017/1/19.
  */
 
-public interface IMainPageChildFragmentPre extends IBaseRefreshPresenter<YiSiImage> {
-    void onSuccess(List<YiSiImage> yiSiImages);
+public interface IMainPageChildFragmentPre extends IBaseRefreshPresenter<PlantModel> {
+    void onSuccess(List<PlantModel> yiSiImages);
 
     void onError(int errorCode);
 
     void onEmpty();
-
-    void requestAli();
-
-    void onAliSuccess(AliBody aliBody);
 }

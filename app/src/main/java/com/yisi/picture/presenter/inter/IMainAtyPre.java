@@ -8,4 +8,5 @@ import com.yisi.picture.baselib.base.inter.IBasePresenter;
 
 public interface IMainAtyPre extends IBasePresenter {
     void initDatas();
+
 }

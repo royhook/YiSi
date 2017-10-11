@@ -3,7 +3,7 @@ package com.yisi.picture.picturemodel.presenter.inter;
 import android.content.Intent;
 
 import com.yisi.picture.baselib.base.inter.IBasePresenter;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.bean.Image;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IImageOperaPre extends IBasePresenter {
 
     void getData();
 
-    void onSuccess(List<YiSiImage> yiSiImages, int position);
+    void onSuccess(List<Image> yiSiImages, int position);
 
     void onEmpty();
 

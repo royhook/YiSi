@@ -2,7 +2,6 @@ package com.yisi.picture.picturemodel.presenter;
 
 
 import android.content.Intent;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -14,9 +13,7 @@ import com.yisi.picture.baselib.utils.LogUtils;
 import com.yisi.picture.picturemodel.activity.ImageDetilsActivity;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.MainPageChildAliAdapter;
-import com.yisi.picture.picturemodel.adapter.MainPageChildImageAdapter;
-import com.yisi.picture.picturemodel.bean.AliBody;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.bean.PlantModel;
 import com.yisi.picture.picturemodel.fragment.inter.IMainPageChildFragment;
 import com.yisi.picture.picturemodel.model.MainPageChildFragmentModelImpl;
 import com.yisi.picture.picturemodel.model.inter.IMainPageChildFragmentModel;
@@ -26,28 +23,33 @@ import com.yisi.picture.picturemodel.presenter.inter.IMainPageChildFragmentPre;
  * Created by roy on 2017/1/19.
  */
 
-public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMainPageChildFragment, IMainPageChildFragmentModel, YiSiImage> implements
+public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMainPageChildFragment, IMainPageChildFragmentModel, PlantModel> implements
         IMainPageChildFragmentPre {
-    private MainPageChildImageAdapter mMainPageChildImageAdapter;
+    private MainPageChildAliAdapter adapter;
 
     public MainPageChildFragmentPreImpl(IMainPageChildFragment baseView) {
         super(baseView);
     }
 
     @Override
+    protected void initAdapter() {
+        adapter = new MainPageChildAliAdapter(currentList);
+    }
+
+    @Override
     public void bindLayouManagerAndAdapter() {
         //初始化头部adapter
-        mMainPageChildImageAdapter = new MainPageChildImageAdapter(currentList);
-        mMainPageChildImageAdapter.setOnItemClickListener(new onImageClickListener());
-        mView.setOnRefreshListener(this);
-        mView.bindAdapter(mMainPageChildImageAdapter);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(mView.getRecycleView().getContext(), 3, 1, false);
-        mView.bindLayoutManager(gridLayoutManager);
+        adapter.setOnRecommandClickListener(new OnTypeClickListener());
+        adapter.setEnableLoadMore(false);
+        adapter.addFooterView(mView.getLastView());
+        mView.getRecycleView().setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mView.getRecycleView().getContext(), LinearLayoutManager.VERTICAL, false);
+        mView.getRecycleView().setLayoutManager(layoutManager);
     }
 
     @Override
     public BaseQuickAdapter getRefreshAdapter() {
-        return mMainPageChildImageAdapter;
+        return adapter;
     }
 
     @Override
@@ -57,8 +59,8 @@ public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMain
 
 
     @Override
-    public void request(boolean readCache) {
-        mModel.request(1, currentPage, readCache);
+    public void request(boolean cache) {
+        mModel.request();
     }
 
     @Override
@@ -72,31 +74,13 @@ public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMain
 
     }
 
-    @Override
-    public void requestAli() {
-        mModel.requestAli();
-    }
-
-    @Override
-    public void onAliSuccess(AliBody aliBody) {
-        MainPageChildAliAdapter adapter = new MainPageChildAliAdapter(aliBody.getList());
-        adapter.setOnAliClickListener(new OnAliClickListener());
-        adapter.addFooterView(mView.getDivideView());
-        adapter.addFooterView(mView.getTitleView());
-        adapter.addFooterView(mView.getHeadView());
-        adapter.addFooterView(mView.getLastView());
-        mView.getRecycleView().setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mView.getRecycleView().getContext(), LinearLayoutManager.VERTICAL, false);
-        mView.getRecycleView().setLayoutManager(layoutManager);
-    }
-
 
     private void refreshPage() {
 
     }
 
 
-    private class OnAliClickListener implements MainPageChildAliAdapter.OnAliClickListener {
+    private class OnTypeClickListener implements MainPageChildAliAdapter.OnTypeClickListener {
 
         @Override
         public void onClick(int id, String name) {

@@ -1,7 +1,7 @@
 package com.yisi.picture.picturemodel.fragment.inter;
 
 import com.yisi.picture.baselib.base.inter.IBaseAty;
-import com.yisi.picture.picturemodel.bean.PlantBrowse;
+import com.yisi.picture.picturemodel.bean.MainTab;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface IMainFragment extends IBaseAty {
 
-    void initSliderBannerData(List<PlantBrowse> mainSliderBanners);
+
+    void initMainPageChildPage(List<MainTab> mainTabs);
 
 }

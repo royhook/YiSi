@@ -76,7 +76,7 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
 
     @Override
     public void bindAdapter(BaseQuickAdapter adapter) {
-        mRecyclerView.setAdapter(adapter);
+        adapter.bindToRecyclerView(mRecyclerView);
     }
 
     @Override
