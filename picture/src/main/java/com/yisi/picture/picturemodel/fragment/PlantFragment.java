@@ -1,7 +1,6 @@
 package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -9,13 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.google.gson.Gson;
 import com.yisi.picture.baselib.base.BaseFragment;
-import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
+import com.yisi.picture.picturemodel.activity.ImageChoseActivity;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 import com.yisi.picture.picturemodel.fragment.inter.IPlansFragment;
-import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.presenter.PlantFragmentPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
 
@@ -61,6 +59,7 @@ public class PlantFragment extends BaseFragment implements IPlansFragment, BaseS
         for (RecommandPlantImage plantImage : list) {
             TextSliderView textSliderView = new TextSliderView(getContext());
             textSliderView
+                    .setImg_list(new Gson().toJson(plantImage.getImage_list()))
                     .description(plantImage.getName())
                     .image(plantImage.getImage_url());
             textSliderView.setOnSliderClickListener(this);
@@ -107,9 +106,6 @@ public class PlantFragment extends BaseFragment implements IPlansFragment, BaseS
     @Override
     public void onSliderClick(BaseSliderView slider) {
         TextSliderView textSliderView = (TextSliderView) slider;
-        Intent intent = new Intent(getContext(), ImageOperateActivity.class);
-        intent.putExtra(IntentKey.KEY_PLANT_TYPE, textSliderView.getPlant_id());
-        intent.putExtra(IntentKey.KEY_OPEN_TYPE, ImageOperaOperateModel.TYPE_REQUEST_SHOW);
-        startActivity(intent);
+        startActivity(ImageChoseActivity.getDateIntent(textSliderView.getImg_list()));
     }
 }

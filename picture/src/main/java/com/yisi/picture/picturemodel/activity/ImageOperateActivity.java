@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.inter.IImageOperaAty;
 import com.yisi.picture.picturemodel.presenter.ImageOperateOperaPreImpl;
@@ -126,5 +128,13 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     @Override
     public void onSystemSettingWallPageClick() {
         iImageOperaPre.setSystemWallPaper();
+    }
+
+    public static Intent getDataIntent(int position, String json) {
+        Intent intent = new Intent();
+        intent.setClass(YiSiApplication.mGlobleContext, ImageOperateActivity.class);
+        intent.putExtra(IntentKey.KEY_IMAGE_OPERA, json);
+        intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, position);
+        return intent;
     }
 }

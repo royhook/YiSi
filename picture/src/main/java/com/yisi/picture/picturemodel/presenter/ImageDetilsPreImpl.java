@@ -7,8 +7,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.yisi.picture.baselib.base.BaseRefreshPresenterImpl;
-import com.yisi.picture.baselib.utils.IntentKey;
-import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
+import com.yisi.picture.picturemodel.activity.ImageChoseActivity;
 import com.yisi.picture.picturemodel.activity.inter.IImageDetilsAty;
 import com.yisi.picture.picturemodel.adapter.AliPlantAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
@@ -85,10 +84,8 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
 
     private void startOperaActivity(int position) {
         List<Image> imageUrls = mAliImages.get(position).getImage_list();
-        Intent intent = new Intent(mView.getViewContext(), ImageOperateActivity.class);
         String json = new Gson().toJson(imageUrls);
-        intent.putExtra(IntentKey.KEY_IMAGE_OPERA, json);
-        intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, 1);
+        Intent intent = ImageChoseActivity.getDateIntent(json);
         mView.getViewContext().startActivity(intent);
     }
 }

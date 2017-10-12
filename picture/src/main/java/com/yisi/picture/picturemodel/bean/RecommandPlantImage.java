@@ -18,7 +18,7 @@ public class RecommandPlantImage extends GenericJson {
     @Key
     String img_url;
     @Key
-    List<Image> image_list;
+    List<Image> img_list;
     //这是第几期的套图推荐
     @Key
     int recommand_data;
@@ -42,7 +42,7 @@ public class RecommandPlantImage extends GenericJson {
 
 
     public void setImage_list(List<Image> image_list) {
-    this.image_list = image_list;
+    this.img_list = image_list;
 }
 
     public void setImage_url(String image_url) {
@@ -58,7 +58,7 @@ public class RecommandPlantImage extends GenericJson {
     }
 
     public List<Image> getImage_list() {
-        return image_list;
+        return img_list;
     }
 
     public String getName() {

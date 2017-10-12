@@ -13,6 +13,16 @@ import com.daimajia.slider.library.R;
  */
 public class TextSliderView extends BaseSliderView {
     private int plant_id;
+    String img_list;
+
+    public TextSliderView setImg_list(String img_list) {
+        this.img_list = img_list;
+        return this;
+    }
+
+    public String getImg_list() {
+        return img_list;
+    }
 
     public TextSliderView plant_id(int id) {
         this.plant_id = id;
