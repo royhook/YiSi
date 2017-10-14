@@ -12,6 +12,17 @@ public class Image extends GenericJson {
     @Key
     String img_url;//图片原质量Url
 
+    @Key
+    String type_id;//散图的图片类型id
+
+
+    public void setType_id(String type_id) {
+        this.type_id = type_id;
+    }
+
+    public String getType_id() {
+        return type_id;
+    }
 
     public void setUrl(String url) {
         this.img_url = url;
