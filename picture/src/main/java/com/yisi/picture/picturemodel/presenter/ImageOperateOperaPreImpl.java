@@ -6,30 +6,24 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.baselib.utils.PermissionUtils;
-import com.yisi.picture.baselib.utils.PreferenceKey;
-import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.ImageOperatePagerAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.database.ImageDatabase;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.model.inter.IImageOperateModel;
 import com.yisi.picture.picturemodel.presenter.inter.IImageOperaPre;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.yisi.picture.picturemodel.model.ImageOperaOperateModel.TYPE_ONLY_SHOW;
@@ -164,19 +158,8 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void collectImg() {
-        List<Image> list = null;
-        String result = PreferencesUtils.getString(mView, PreferenceKey.MY_COLLECT_IMAGE);
-        if (TextUtils.isEmpty(result)) {
-            list = new ArrayList<>();
-        } else {
-            list = new Gson().fromJson(result, new TypeToken<List<YiSiImage>>() {
-            }.getType());
-        }
-        Image yiSiImage = mYiSiImages.get(mCurrentPosition);
-        if (list != null)
-            list.add(yiSiImage);
-        PreferencesUtils.putString(mView, PreferenceKey.MY_COLLECT_IMAGE, new Gson().toJson(list));
-        Toast.makeText(mView, mView.getString(R.string.collect_success), Toast.LENGTH_SHORT).show();
+        Image image = mYiSiImages.get(mCurrentPosition);
+        ImageDatabase.getInstance().insertImage(image);
     }
 
 
