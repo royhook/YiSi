@@ -77,15 +77,15 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
     @Override
     public void onSuccess(List<PlantImage> t) {
         super.onSuccess(t);
-        mView.setHeadImageUrl(t.get(0).getImage_url());
         mAliImages = t;
     }
 
 
     private void startOperaActivity(int position) {
-        List<Image> imageUrls = mAliImages.get(position).getImage_list();
+        PlantImage image = mAliImages.get(position);
+        List<Image> imageUrls = image.getImage_list();
         String json = new Gson().toJson(imageUrls);
-        Intent intent = ImageChoseActivity.getDateIntent(json);
+        Intent intent = ImageChoseActivity.getDateIntent(json, image.getId(), image.getName(), image.getImage_url());
         mView.getViewContext().startActivity(intent);
     }
 }

@@ -10,6 +10,8 @@ import com.yisi.picture.picturemodel.model.inter.IMainPageChildFragmentModel;
 import com.yisi.picture.picturemodel.net.KinveyHelpCallback;
 import com.yisi.picture.picturemodel.presenter.inter.IMainPageChildFragmentPre;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -28,7 +30,15 @@ public class MainPageChildFragmentModelImpl extends BaseModelImpl<IMainPageChild
         dataStore.find(new KinveyHelpCallback<PlantModel>() {
             @Override
             public void onDataSuccess(List<PlantModel> list) {
+                Collections.sort(list, new Comparator<PlantModel>() {
+                    public int compare(PlantModel arg0, PlantModel arg1) {
+                        Integer time0 = arg0.getWeight();
+                        Integer time1 = arg1.getWeight();
+                        return time1.compareTo(time0);
+                    }
+                });
                 mPresenter.onSuccess(list);
+
             }
 
             @Override

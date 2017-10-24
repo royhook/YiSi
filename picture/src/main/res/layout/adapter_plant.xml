@@ -9,7 +9,9 @@
         android:id="@+id/adapter_plant_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px800"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:transitionName="@string/trs_plant"
+        />
 
     <TextView
         android:id="@+id/adapter_plant_title"
@@ -21,7 +23,6 @@
         android:maxLines="1"
         android:paddingLeft="@dimen/px50"
         android:paddingRight="@dimen/px50"
-        android:text="美丽少妇竟然..."
         android:textColor="#000000"
         android:textSize="@dimen/px30"/>
 

@@ -1,5 +1,6 @@
 package com.yisi.picture.baselib.base;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,13 +10,13 @@ import android.view.ViewGroup;
 
 import com.classic.common.MultipleStatusView;
 import com.yisi.picture.baselib.R;
-import com.yisi.picture.baselib.base.inter.IBaseAty;
+import com.yisi.picture.baselib.base.inter.IBaseFragment;
 
 /**
  * Created by roy on 2017/1/14.
  */
 
-public abstract class BaseFragment extends Fragment implements IBaseAty {
+public abstract class BaseFragment extends Fragment implements IBaseFragment {
     private View cacheView;
     protected MultipleStatusView mMultipleStatusView;
 
@@ -23,6 +24,11 @@ public abstract class BaseFragment extends Fragment implements IBaseAty {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public Activity getBaseActivity() {
+        return getActivity();
     }
 
     private void initMultyView() {

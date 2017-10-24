@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">YiSi</string>
-
     <string name="main_page">首页</string>
     <string name="album">影集</string>
     <string name="plans">套图</string>
@@ -10,8 +8,8 @@
     <string name="download_success">下载成功，文件保存到根目录/Yisi/download</string>
     <string name="download_fail_perssion_refused">您拒绝了读取权限，保存失败</string>
     <string name="wallpaper_fail_perssion_refused">您拒绝了读取权限，我们无法为您设置壁纸</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
     <string name="download_picture">保存图片</string>
     <string name="collect_picture">收藏图片</string>
     <string name="set_wallpaper">滚屏壁纸</string>
@@ -19,6 +17,10 @@
     <string name="operate_list_cancel">取消</string>
     <string name="set_wapper_success">设置壁纸成功</string>
     <string name="collect_success">收藏成功</string>
+    <string name="collect_failed_exist">收藏失败,该套图已经存在</string>
     <string name="title_activity_image_detils">ImageDetilsActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Setting</string>
+    <string name="trs_plant">plantimage</string>
+    <string name="trs_plant_operate">plant_operate</string>
+    <string name="trs_plant_detils">plant_detils</string>
 </resources>

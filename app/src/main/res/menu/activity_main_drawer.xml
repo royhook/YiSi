@@ -6,44 +6,25 @@
         <item
             android:id="@+id/nav_collect"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="我的收藏"/>
+            android:title="@string/my_ollect"/>
 
         <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_menu_manage"
-            android:title="设置"/>
+            android:title="@string/my_setting"/>
 
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"
-            android:title="分享"/>
+            android:title="@string/my_share"/>
         <item
             android:id="@+id/nav_send"
             android:icon="@drawable/ic_menu_send"
-            android:title="我来提需求"/>
+            android:title="@string/my_come_to"/>
 
         <item
             android:id="@+id/nav_version"
             android:icon="@mipmap/help"
-            android:title="版本信息:1.1"/>
+            android:title="@string/my_version"/>
     </group>
-
-    <!--<item android:title="其他">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_share"-->
-                <!--android:icon="@drawable/ic_menu_share"-->
-                <!--android:title="分享"/>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_send"-->
-                <!--android:icon="@drawable/ic_menu_send"-->
-                <!--android:title="建议"/>-->
-
-            <!--<item-->
-                <!--android:id="@+id/nav_version"-->
-                <!--android:icon="@mipmap/help"-->
-                <!--android:title="版本信息:1.1"/>-->
-        <!--</menu>-->
-    <!--</item>-->
-
 </menu>

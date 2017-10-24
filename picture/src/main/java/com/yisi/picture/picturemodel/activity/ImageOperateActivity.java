@@ -36,7 +36,6 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
     }
 
     @Override
@@ -63,7 +62,6 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
     }
 
     @Override
@@ -136,5 +134,10 @@ public class ImageOperateActivity extends BaseActivity implements IImageOperaAty
         intent.putExtra(IntentKey.KEY_IMAGE_OPERA, json);
         intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, position);
         return intent;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

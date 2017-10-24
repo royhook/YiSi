@@ -1,1 +1,2 @@
-include ':app', ':library:commenlibrary', ':library:image-slider', ':library:FlycoTabLayout_Lib', ':library:xrecyclerview', ':library', ':picture', ':library:radapter'
+include ':app', ':library:commenlibrary', ':library:image-slider', ':library:FlycoTabLayout_Lib', ':library:xrecyclerview', ':library', ':picture',
+        ':library:radapter', ':library:banner'

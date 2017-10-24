@@ -4,13 +4,14 @@ import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 import com.kinvey.java.model.KinveyMetaData;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by chenql on 2017/9/11.
  */
 
-public class PlantImage extends GenericJson {
+public class PlantImage extends GenericJson implements Serializable {
     @Key("_id")
     private String id;
     @Key
@@ -46,11 +47,23 @@ public class PlantImage extends GenericJson {
         return img_url;
     }
 
+    public String getWebpImageUrl() {
+        return img_url + "!/format/webp";
+    }
+
     public List<Image> getImage_list() {
         return image_list;
     }
 
     public String getName() {
         return title;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

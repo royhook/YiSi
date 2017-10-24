@@ -1,5 +1,6 @@
 package com.yisi.picture.picturemodel.fragment.inter;
 
+import android.app.Activity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,5 +26,7 @@ public interface IMainPageChildFragment extends IBaseRefreshAty {
     View getDivideView();
 
     View getLastView();
+
+    Activity getBaseActivity();
 
 }

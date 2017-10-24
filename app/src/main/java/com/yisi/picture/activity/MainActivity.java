@@ -13,14 +13,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
 import com.yisi.picture.baselib.base.BaseActivity;
-import com.yisi.picture.baselib.utils.EnvUtils;
-import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.fragment.MainPageFragment;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 
@@ -54,7 +51,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
         mCommonTabLayout = findView(R.id.main_commenTab);
         mNavigationView = findView(R.id.nav_view);
         mToolbar = findView(R.id.tl_fragment_main);
-        mToolbar.setTitle("首页");
+        mToolbar.setTitle(R.string.tab_picture);
         mToolbar.setNavigationIcon(R.mipmap.category);
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -142,15 +139,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 break;
 
             case R.id.nav_version:
-                if (!mCanClick)
-                    return true;
-                if (mClickTime != 10)
-                    mClickTime++;
-                else {
-                    Toast.makeText(this, "Yisi mode 需彻底退出应用并重启", Toast.LENGTH_SHORT).show();
-                    openYiSiMode();
-                    mCanClick = false;
-                }
+
                 break;
 
             case R.id.nav_share:
@@ -161,16 +150,11 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 Intent settingIntent = new Intent(this, SettingActivity.class);
                 startActivity(settingIntent);
                 break;
+            default:
+
+                break;
         }
         return true;
-    }
-
-    private void openYiSiMode() {
-        if (EnvUtils.isYisiMode()) {
-            PreferencesUtils.putString(this, PreferencesUtils.KEY.KEY_BMOB_ID, SplashAty.BMOB_APPID);
-        } else {
-            PreferencesUtils.putString(this, PreferencesUtils.KEY.KEY_BMOB_ID, SplashAty.BMOB_YISI_APPID);
-        }
     }
 
     private void showShare() {

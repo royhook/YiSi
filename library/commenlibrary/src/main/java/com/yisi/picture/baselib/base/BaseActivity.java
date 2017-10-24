@@ -18,10 +18,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
 
     private MultipleStatusView mMultipleStatusView;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.anim_zoom_in, R.anim.anim_zoom_out);
         initPresenter();
         initViews();
         initMultyView();
@@ -44,26 +44,30 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
 
     @Override
     public void onLoadingFail() {
-        if (mMultipleStatusView != null)
+        if (mMultipleStatusView != null) {
             mMultipleStatusView.showError();
+        }
     }
 
     @Override
     public void onLoadingPage() {
-        if (mMultipleStatusView != null)
+        if (mMultipleStatusView != null) {
             mMultipleStatusView.showLoading();
+        }
     }
 
     @Override
     public void onLoadingSuccess() {
-        if (mMultipleStatusView != null)
+        if (mMultipleStatusView != null) {
             mMultipleStatusView.showContent();
+        }
     }
 
     @Override
     public void onEmpty() {
-        if (mMultipleStatusView != null)
+        if (mMultipleStatusView != null) {
             mMultipleStatusView.showEmpty();
+        }
     }
 
     @Override

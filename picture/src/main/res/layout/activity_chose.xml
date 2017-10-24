@@ -7,27 +7,36 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px120"
+        android:layout_height="@dimen/px200"
         android:background="@color/colorAccent">
 
         <ImageView
             android:id="@+id/iv_chose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/px60"
+            android:layout_height="@dimen/px60"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/px20"
-            android:background="@mipmap/back"
-            android:foregroundGravity="center_vertical"/>
+            android:foregroundGravity="center_vertical"
+            android:src="@mipmap/back"/>
 
-        <TextView
-            android:id="@+id/tv_chose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/iv_icon_view"
+            android:layout_width="@dimen/px120"
+            android:layout_height="@dimen/px120"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/trs_plant"/>
+
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="@dimen/px50"
+            android:layout_height="@dimen/px50"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:layout_toRightOf="@id/iv_chose"
-            android:text="图片个数:"
-            android:textColor="@color/white"/>
+            android:layout_marginRight="@dimen/px20"
+            android:src="@mipmap/favorite_unselect"/>
+
 
     </RelativeLayout>
 

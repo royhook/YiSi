@@ -9,7 +9,6 @@ import com.yisi.picture.baselib.base.inter.IBaseRefreshAty;
  */
 
 public interface IImageDetilsAty extends IBaseRefreshAty {
-    void setHeadImageUrl(String imageUrl);
 
     Context getViewContext();
 

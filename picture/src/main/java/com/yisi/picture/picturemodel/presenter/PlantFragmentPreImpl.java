@@ -1,12 +1,16 @@
 package com.yisi.picture.picturemodel.presenter;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.yisi.picture.baselib.base.BaseRefreshPresenterImpl;
+import com.yisi.picture.baselib.utils.ViewUtils;
+import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageChoseActivity;
 import com.yisi.picture.picturemodel.adapter.PlantAdapter;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
@@ -46,6 +50,7 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
                 onLoadMore();
             }
         });
+        mPlantAdapter.addHeaderView(mView.getBanerView());
     }
 
     @Override
@@ -67,9 +72,18 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        String json = new Gson().toJson(currentList.get(position).getImage_list());
-        Intent intent = ImageChoseActivity.getDateIntent(json);
-        mView.getViewContext().startActivity(intent);
+        ImageView imageView = ViewUtils.findView(view, R.id.adapter_plant_img);
+        RecommandPlantImage image = currentList.get(position);
+        String json = new Gson().toJson(image.getImage_list());
+        Intent intent = ImageChoseActivity.getDateIntent(json,image.getId(),image.getName(),image.getImage_url());
+        ActivityOptions transitionActivityOptions = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(mView.getBaseActivity(), imageView, mView.getViewContext()
+                    .getString(R.string.trs_plant));
+            mView.getViewContext().startActivity(intent, transitionActivityOptions.toBundle());
+        } else {
+            mView.getViewContext().startActivity(intent);
+        }
     }
 
     @Override

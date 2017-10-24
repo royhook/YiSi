@@ -4,11 +4,12 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/base_multiplestatusview"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    custom:contentView="@layout/activity_img_detils_content"
-    custom:emptyView="@layout/custom_empty_view"
-    custom:errorView="@layout/custom_error_view"
-    custom:loadingView="@layout/custom_loading_view">
+    android:layout_weight="1"
+    custom:contentView="@layout/content_image_detils"
+    custom:emptyView="@layout/emptyview_detile"
+    custom:errorView="@layout/errorview_detile"
+    custom:layout_behavior="@string/appbar_scrolling_view_behavior"
+    custom:loadingView="@layout/activity_detils_loadingview">
 </com.classic.common.MultipleStatusView>
-

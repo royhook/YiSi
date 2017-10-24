@@ -24,8 +24,11 @@
             custom:tl_indicator_width="@dimen/px100"
             custom:tl_tab_space_equal="true"
             custom:tl_textBold="SELECT"
+            custom:tl_tab_width="@dimen/px320"
             custom:tl_textSelectColor="#ffffff"
             custom:tl_textUnselectColor="#fff5f5f5"
+            custom:tl_tab_padding="@dimen/px40"
+            android:textAlignment="center"
             custom:tl_textsize="@dimen/px35"
             custom:tl_underline_color="?attr/colorPrimary"
             custom:tl_underline_height="@dimen/px5">

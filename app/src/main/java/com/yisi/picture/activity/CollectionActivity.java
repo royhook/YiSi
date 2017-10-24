@@ -12,9 +12,8 @@ import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.ICollectAty;
 import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.picturemodel.adapter.CollectionPagerAdapter;
-import com.yisi.picture.picturemodel.fragment.AlbumCollectFragment;
 import com.yisi.picture.picturemodel.fragment.PictureCollectFragment;
-import com.yisi.picture.picturemodel.fragment.TaoCollectFragment;
+import com.yisi.picture.picturemodel.fragment.PlantCollectFragment;
 
 import java.util.ArrayList;
 
@@ -58,11 +57,12 @@ public class CollectionActivity extends BaseActivity implements ICollectAty {
 
     @Override
     protected void initData() {
-        titles = new String[]{"图片收藏", "专辑收藏", "套图收藏"};
+        String imgeCollect = this.getResources().getString(R.string.collect_image);
+        String plantCollect = getResources().getString(R.string.collect_plant);
+        titles = new String[]{imgeCollect, plantCollect};
         mFragments = new ArrayList<>();
         mFragments.add(new PictureCollectFragment());
-        mFragments.add(new AlbumCollectFragment());
-        mFragments.add(new TaoCollectFragment());
+        mFragments.add(new PlantCollectFragment());
         CollectionPagerAdapter adapter = new CollectionPagerAdapter(getSupportFragmentManager(), mFragments);
         mViewPager.setAdapter(adapter);
         mSlidingTabLayout.setViewPager(mViewPager, titles);

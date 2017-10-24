@@ -1,17 +1,17 @@
 package com.yisi.picture.picturemodel.presenter;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.gson.Gson;
 import com.yisi.picture.baselib.base.BaseRefreshPresenterImpl;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.baselib.utils.LogUtils;
+import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageDetilsActivity;
-import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.MainPageChildAliAdapter;
 import com.yisi.picture.picturemodel.bean.PlantModel;
 import com.yisi.picture.picturemodel.fragment.inter.IMainPageChildFragment;
@@ -83,24 +83,22 @@ public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMain
     private class OnTypeClickListener implements MainPageChildAliAdapter.OnTypeClickListener {
 
         @Override
-        public void onClick(int id, String name) {
+        public void onClick(int id, String name, String url, View view) {
             Intent intent = new Intent(mView.getRecycleView().getContext(), ImageDetilsActivity.class);
             intent.putExtra(IntentKey.KEY_KIND_ID, id);
             intent.putExtra(IntentKey.kEY_KIND_NAME, name);
-            mView.getRecycleView().getContext().startActivity(intent);
-        }
-    }
+            intent.putExtra(IntentKey.kEY_KIND_URL, url);
+            ActivityOptions transitionActivityOptions = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(
+                        mView.getBaseActivity(),
+                        view,
+                        mView.getBaseActivity().getString(R.string.trs_plant_detils));
+                mView.getRecycleView().getContext().startActivity(intent, transitionActivityOptions.toBundle());
+            } else {
+                mView.getRecycleView().getContext().startActivity(intent);
 
-    private class onImageClickListener implements BaseQuickAdapter.OnItemClickListener {
-
-        @Override
-        public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-            Gson gson = new Gson();
-            String json = gson.toJson(currentList);
-            Intent intent = new Intent(mView.getRecycleView().getContext(), ImageOperateActivity.class);
-            intent.putExtra(IntentKey.KEY_IMAGE_OPERA, json);
-            intent.putExtra(IntentKey.KEY_IMAGE_OPERA_POSITION, position);
-            mView.getRecycleView().getContext().startActivity(intent);
+            }
         }
     }
 }

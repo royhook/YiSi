@@ -9,6 +9,7 @@
         android:id="@+id/adapter_plant_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px800"
+        android:transitionName="@string/trs_plant_operate"
         android:scaleType="centerCrop"/>
 
 </RelativeLayout>

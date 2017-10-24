@@ -1,22 +1,19 @@
 package com.yisi.picture.picturemodel.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.yisi.picture.baselib.base.BaseFragment;
-import com.yisi.picture.baselib.utils.IntentKey;
+import com.yisi.picture.baselib.utils.DeviceUtils;
+import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
-import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.MainContentPagerAdapter;
 import com.yisi.picture.picturemodel.bean.MainTab;
 import com.yisi.picture.picturemodel.fragment.inter.IMainFragment;
-import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.presenter.MainFragmentPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IMainFragmentPre;
 
@@ -26,7 +23,7 @@ import java.util.List;
 /**
  * Created by roy on 2017/1/14.
  */
-public class MainPageFragment extends BaseFragment implements BaseSliderView.OnSliderClickListener, IMainFragment {
+public class MainPageFragment extends BaseFragment implements IMainFragment {
 
     private SlidingTabLayout mSlidingTabLayout;
     private IMainFragmentPre mainFragmentPre;
@@ -47,6 +44,10 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     @Override
     protected void initViews() {
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
+        String lan = DeviceUtils.getSystemLaungue();
+        if (!TextUtils.isEmpty(lan) && lan.contains("zh")) {
+            mSlidingTabLayout.setTabWidth(ViewUtils.getDimen(R.dimen.px100));
+        }
         mViewPager = findview(R.id.main_fragment_vp_content);
         mMultipleStatusView = findview(R.id.base_multiplestatusview);
     }
@@ -60,16 +61,6 @@ public class MainPageFragment extends BaseFragment implements BaseSliderView.OnS
     @Override
     protected void initData() {
         mainFragmentPre.requestTab();
-    }
-
-
-    @Override
-    public void onSliderClick(BaseSliderView slider) {
-        TextSliderView textSliderView = (TextSliderView) slider;
-        Intent intent = new Intent(getContext(), ImageOperateActivity.class);
-        intent.putExtra(IntentKey.KEY_PLANT_TYPE, textSliderView.getPlant_id());
-        intent.putExtra(IntentKey.KEY_OPEN_TYPE, ImageOperaOperateModel.TYPE_REQUEST_SHOW);
-        startActivity(intent);
     }
 
 

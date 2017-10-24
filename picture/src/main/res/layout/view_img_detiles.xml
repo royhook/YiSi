@@ -6,8 +6,8 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     card_view:cardBackgroundColor="@android:color/white"
-                                    card_view:cardElevation="1dp"
-                                    card_view:cardCornerRadius="3dp">
+                                    card_view:cardCornerRadius="3dp"
+                                    card_view:cardElevation="1dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             android:layout_height="@dimen/px300"
             android:layout_margin="@dimen/px5"
             android:scaleType="centerCrop"
+            android:transitionName="@string/trs_plant_detils"
             />
 
         <TextView

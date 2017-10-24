@@ -35,4 +35,9 @@ public class PlantAdapter extends BaseQuickAdapter<RecommandPlantImage, BaseView
         GlideUtils.displayImage(mData.get(position).getImage_url(), imageView, R.mipmap.defult);
         textView.setText(mData.get(position).getName());
     }
+
+    @Override
+    public int getItemCount() {
+        return super.getItemCount();
+    }
 }

@@ -64,4 +64,16 @@ public class RecommandPlantImage extends GenericJson {
     public String getName() {
         return title;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public List<Image> getImg_list() {
+        return img_list;
+    }
 }

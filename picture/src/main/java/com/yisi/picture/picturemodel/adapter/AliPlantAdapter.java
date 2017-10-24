@@ -32,7 +32,7 @@ public class AliPlantAdapter extends BaseQuickAdapter<PlantImage, BaseViewHolder
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getImage_url() + "!/format/webp", imageView, R.mipmap.defult);
+        GlideUtils.displayImage(mData.get(position).getWebpImageUrl(), imageView, R.mipmap.defult);
         textView.setText(mData.get(position).getName());
     }
 }

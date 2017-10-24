@@ -2,11 +2,11 @@ package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.baselib.adapter.inter.OnItemClickListener;
 import com.yisi.picture.baselib.base.BaseFragment;
 import com.yisi.picture.baselib.utils.IntentKey;
@@ -25,16 +25,13 @@ import java.util.List;
  */
 
 public class PictureCollectFragment extends BaseFragment {
-    XRecyclerView mXRecyclerView;
+    RecyclerView mXRecyclerView;
     PictureCollectAdapter mAdapter;
 
     @Override
     protected void initViews() {
         mXRecyclerView = findview(R.id.xr_picture_collect);
         mXRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        mXRecyclerView.setNoMore(true);
-        mXRecyclerView.setLoadingMoreEnabled(false);
-        mXRecyclerView.setPullRefreshEnabled(false);
     }
 
     @Override

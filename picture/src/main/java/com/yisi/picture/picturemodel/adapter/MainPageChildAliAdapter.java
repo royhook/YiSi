@@ -57,12 +57,15 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
         for (int i = 0; i < plantTypes.size(); i++) {
             if (plantTypes.get(i) != null) {
                 setTextView(mViews.get(i), plantTypes.get(i));
-                setImageView(mViews.get(i), plantTypes.get(i));
+                final ImageView imageView = setImageView(mViews.get(i), plantTypes.get(i));
                 final int finalI = i;
                 mViews.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mClickListener.onClick(plantTypes.get(finalI).getId(), "");
+                        mClickListener.onClick(plantTypes.get(finalI).getId(),
+                                plantTypes.get(finalI).getTitle(),
+                                plantTypes.get(finalI).getWebpImageUrl(),
+                                imageView);
                     }
                 });
             } else {
@@ -77,7 +80,7 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
 
 
     public interface OnTypeClickListener {
-        void onClick(int id, String name);
+        void onClick(int id, String name, String url, View view);
     }
 
     private void displayImage(String url, ImageView imageView) {
@@ -90,8 +93,9 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
             textView.setText(plantType.getTitle());
     }
 
-    public void setImageView(View parent, PlantType plantType) {
+    public ImageView setImageView(View parent, PlantType plantType) {
         ImageView imageView = ViewUtils.findView(parent, R.id.iv_detiles_img);
-        displayImage(plantType.getImage_url() + "!/format/webp", imageView);
+        displayImage(plantType.getWebpImageUrl(), imageView);
+        return imageView;
     }
 }

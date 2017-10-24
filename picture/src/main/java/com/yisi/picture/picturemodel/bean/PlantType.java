@@ -1,7 +1,10 @@
 package com.yisi.picture.picturemodel.bean;
 
+import android.text.TextUtils;
+
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
+import com.yisi.picture.baselib.utils.DeviceUtils;
 
 /**
  * Created by chenql on 2017/9/4.
@@ -15,7 +18,17 @@ public class PlantType extends GenericJson {
     public String img_url;
     @Key
     public String title;
+    @Key
+    public String title_cn;
 
+
+    public void setTitle_cn(String title_cn) {
+        this.title_cn = title_cn;
+    }
+
+    public String getTitle_cn() {
+        return title_cn;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -37,7 +50,17 @@ public class PlantType extends GenericJson {
         return img_url;
     }
 
+    public String getWebpImageUrl() {
+        return img_url + "!/format/webp";
+    }
+
     public String getTitle() {
+        String lan = DeviceUtils.getSystemLaungue();
+        if (!TextUtils.isEmpty(lan)) {
+            if (lan.contains("zh") && !TextUtils.isEmpty(title_cn)) {
+                return title_cn;
+            }
+        }
         return title;
     }
 }

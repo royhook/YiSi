@@ -2,16 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#000000"
                 android:orientation="vertical">
 
     <com.yisi.picture.picturemodel.view.PinchViewPager
         android:id="@+id/activity_operate_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:transitionName="@string/trs_plant_operate"
         android:layout_weight="1">
 
     </com.yisi.picture.picturemodel.view.PinchViewPager>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/activity_operate_num"
@@ -22,7 +26,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="1/20"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="@dimen/px40"/>
 
     <ImageView

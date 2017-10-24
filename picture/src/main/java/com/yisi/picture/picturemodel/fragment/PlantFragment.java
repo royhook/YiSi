@@ -1,70 +1,98 @@
 package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
+import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.google.gson.Gson;
 import com.yisi.picture.baselib.base.BaseFragment;
+import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageChoseActivity;
+import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 import com.yisi.picture.picturemodel.fragment.inter.IPlansFragment;
 import com.yisi.picture.picturemodel.presenter.PlantFragmentPreImpl;
 import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
+import com.yisi.picture.picturemodel.view.utils.GliderImageFragmentLoader;
+import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by roy on 2017/1/14.
  */
 
-public class PlantFragment extends BaseFragment implements IPlansFragment, BaseSliderView.OnSliderClickListener {
+public class PlantFragment extends BaseFragment implements IPlansFragment {
 
     RecyclerView mRecyclerView;
     IPlantFragmentPre plantFragmentPre;
-    private AppBarLayout mAppBarLayout;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private SliderLayout mSliderLayout;
+    private Banner mBanner;
 
 
     @Override
     protected void initViews() {
         mRecyclerView = findview(R.id.plans_fragment_recycler);
-        mSliderLayout = findview(R.id.main_fragment_slider);
         plantFragmentPre = new PlantFragmentPreImpl(this);
-        mAppBarLayout = findview(R.id.main_appbar);
         mSwipeRefreshLayout = findview(R.id.sr_fragment_plans);
-        mSwipeRefreshLayout.setProgressViewOffset(true, -20, 100);
+        mSwipeRefreshLayout.setProgressViewOffset(true, -20, ViewUtils.getDimen(R.dimen.px200));
+        mSwipeRefreshLayout.setProgressViewEndTarget(true, ViewUtils.getDimen(R.dimen.px200));
+        mSwipeRefreshLayout.setDistanceToTriggerSync(ViewUtils.getDimen(R.dimen.px200));
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset >= 0) {
-                    mSwipeRefreshLayout.setEnabled(true);
-                } else {
-                    mSwipeRefreshLayout.setEnabled(false);
-                }
-            }
-        });
+        mBanner = new Banner(getContext());
+        RecyclerView.LayoutParams params = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewUtils.getDimen(R.dimen.px600));
+        mBanner.setLayoutParams(params);
+        mBanner.setImageLoader(new GliderImageFragmentLoader());
     }
 
 
-    public void bindBanner(List<RecommandPlantImage> list) {
-        mSliderLayout.removeAllSliders();
-        for (RecommandPlantImage plantImage : list) {
-            TextSliderView textSliderView = new TextSliderView(getContext());
-            textSliderView
-                    .setImg_list(new Gson().toJson(plantImage.getImage_list()))
-                    .description(plantImage.getName())
-                    .image(plantImage.getImage_url());
-            textSliderView.setOnSliderClickListener(this);
-            mSliderLayout.addSlider(textSliderView);
+    @Override
+    public void bindBanner(final List<RecommandPlantImage> list) {
+        List<String> title = new ArrayList<>();
+        //遍历一下title
+        for (RecommandPlantImage image : list) {
+            title.add(image.getName());
         }
+        mBanner.setImages(list);
+        mBanner.setBannerTitles(title);
+        //设置banner动画效果
+        mBanner.setBannerAnimation(Transformer.DepthPage);
+        //设置自动轮播，默认为true
+        mBanner.isAutoPlay(true);
+        //设置轮播时间
+        mBanner.setDelayTime(3000);
+        mBanner.setIndicatorHeight(ViewUtils.getDimen(R.dimen.px20))
+                .setIndicatorWidth(ViewUtils.getDimen(R.dimen.px20))
+                .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
+                .setTitleHeight(ViewUtils.getDimen(R.dimen.px80))
+                .setTitleTextColor(Color.parseColor("#FFC0CB"))
+                .setTitleTextSize(ViewUtils.getDimen(R.dimen.px40));
+        //设置指示器位置（当banner模式中有指示器时）
+        mBanner.setIndicatorGravity(BannerConfig.CENTER);
+        mBanner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                RecommandPlantImage image = list.get(position);
+                List<Image> images = image.getImage_list();
+                String imgList = new Gson().toJson(images);
+                startActivity(ImageChoseActivity.getDateIntent(imgList, image.getId(), image.getName(), image.getImage_url()));
+            }
+        });
+        //banner设置方法全部调用完毕时最后调用
+        mBanner.start();
+    }
+
+    @Override
+    public View getBanerView() {
+        return mBanner;
     }
 
 
@@ -101,11 +129,5 @@ public class PlantFragment extends BaseFragment implements IPlansFragment, BaseS
     public void onRefreshComlete() {
         super.onRefreshComlete();
         mSwipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onSliderClick(BaseSliderView slider) {
-        TextSliderView textSliderView = (TextSliderView) slider;
-        startActivity(ImageChoseActivity.getDateIntent(textSliderView.getImg_list()));
     }
 }
