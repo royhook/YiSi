@@ -15,7 +15,7 @@ import com.yisi.picture.picturemodel.activity.ImageChoseActivity;
 import com.yisi.picture.picturemodel.adapter.AliPlantAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.PlantImage;
-import com.yisi.picture.picturemodel.database.PlantDatabase;
+import com.yisi.picture.picturemodel.database.table.PlantTable;
 
 import java.util.List;
 
@@ -42,20 +42,24 @@ public class PlantCollectFragment extends BaseFragment {
         YiSiApplication.postDelay(new Runnable() {
             @Override
             public void run() {
+                mPlants = PlantTable.getInstance().queryAllPlant();
+                if (mPlants == null || mPlants.size() == 0) {
+                    onEmpty();
+                    return;
+                }
                 onLoadingSuccess();
+                AliPlantAdapter adapter = new AliPlantAdapter(mPlants);
+                GridLayoutManager manager = new GridLayoutManager(getContext(), 2, 1, false);
+                mRecyclerView.setLayoutManager(manager);
+                mRecyclerView.setAdapter(adapter);
+                adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        startOperaActivity(position);
+                    }
+                });
             }
-        }, 2000);
-        mPlants = PlantDatabase.getInstance().queryAllPlant();
-        AliPlantAdapter adapter = new AliPlantAdapter(mPlants);
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 2, 1, false);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startOperaActivity(position);
-            }
-        });
+        }, 1000);
     }
 
     private void startOperaActivity(int position) {

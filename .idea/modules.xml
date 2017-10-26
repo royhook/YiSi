@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/library/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" filepath="$PROJECT_DIR$/library/FlycoTabLayout_Lib/FlycoTabLayout_Lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/YiSi.iml" filepath="$PROJECT_DIR$/YiSi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/adplugin/adplugin.iml" filepath="$PROJECT_DIR$/adplugin/adplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/banner/banner.iml" filepath="$PROJECT_DIR$/library/banner/banner.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/commenlibrary/commenlibrary.iml" filepath="$PROJECT_DIR$/library/commenlibrary/commenlibrary.iml" />

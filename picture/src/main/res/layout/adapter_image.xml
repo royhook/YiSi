@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/px10"
+                android:layout_marginBottom="@dimen/px4"
                 android:orientation="vertical">
 
     <ImageView
         android:id="@+id/adapter_plant_img"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px800"
-        android:transitionName="@string/trs_plant_operate"
-        android:scaleType="centerCrop"/>
+        android:layout_width="@dimen/px400"
+        android:layout_height="@dimen/px400"
+        android:scaleType="centerCrop"
+        android:transitionName="@string/trs_plant_operate"/>
 
 </RelativeLayout>

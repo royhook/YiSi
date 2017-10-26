@@ -1,53 +1,49 @@
-package com.yisi.picture.picturemodel.database;
+package com.yisi.picture.picturemodel.database.table;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.yisi.picture.baselib.application.YiSiApplication;
-import com.yisi.picture.baselib.database.BaseDatabase;
 import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.PlantImage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_EXCEPTION;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_EXIST;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_FAILED;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_SUCCESS;
+
 /**
- * Created by chenql on 2017/10/22.
+ * Created by chenql on 2017/10/24.
  */
 
-public class PlantDatabase extends BaseDatabase {
+public class PlantTable extends BaseTable {
 
-    public final static String DATABASE_NAME = "yisipic";
+
     public static String TABLE_NAME_OWNAD = "plant_db";
+    private static PlantTable mInstance = null;
 
-    public final static int VERSION = 1;
-    private static PlantDatabase mInstance = null;
+    private PlantTable() {
 
-    private PlantDatabase(Context context) {
-        super(context, DATABASE_NAME, null, VERSION);
-        mSqLiteDatabase = getDataBase();
     }
 
-    public static PlantDatabase getInstance() {
+    public static PlantTable getInstance() {
         if (mInstance == null) {
-            synchronized (PlantDatabase.class) {
+            synchronized (PlantTable.class) {
                 if (mInstance == null) {
-                    mInstance = new PlantDatabase(YiSiApplication.mGlobleContext);
+                    mInstance = new PlantTable();
                 }
             }
         }
         return mInstance;
     }
 
-
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        super.onCreate(db);
-        db.execSQL("CREATE TABLE " + TABLE_NAME_OWNAD + "("
+    public void createTable() {
+        mSqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME_OWNAD + "("
                 + PlantColumn.COLUMN_ID + " TEXT PRIMARY KEY ,"
                 + PlantColumn.COLUMN_PLANT_TITLE + " TEXT, "
                 + PlantColumn.COLUMN_PLANT_IMG_URL + " TEXT, "
@@ -107,6 +103,11 @@ public class PlantDatabase extends BaseDatabase {
     private Cursor queryPlantById(String id) {
         Cursor cursor = mSqLiteDatabase.query(TABLE_NAME_OWNAD, new String[]{PlantColumn.COLUMN_ID}, "_id=?", new String[]{id}, null, null, null);
         return cursor;
+    }
+
+    public boolean isExist(String id) {
+        Cursor cursor = queryPlantById(id);
+        return cursor.getCount() != 0;
     }
 
 

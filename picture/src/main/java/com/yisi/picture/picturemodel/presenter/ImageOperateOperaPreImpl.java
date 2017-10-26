@@ -18,7 +18,7 @@ import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.ImageOperatePagerAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
-import com.yisi.picture.picturemodel.database.ImageDatabase;
+import com.yisi.picture.picturemodel.database.table.PictureTable;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.model.inter.IImageOperateModel;
 import com.yisi.picture.picturemodel.presenter.inter.IImageOperaPre;
@@ -159,7 +159,7 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
     @Override
     public void collectImg() {
         Image image = mYiSiImages.get(mCurrentPosition);
-        ImageDatabase.getInstance().insertImage(image);
+        PictureTable.getInstance().insertImage(image);
     }
 
 

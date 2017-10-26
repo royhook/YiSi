@@ -16,7 +16,6 @@ import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.baselib.utils.BitmapUtils;
 import com.yisi.picture.baselib.utils.DirManager;
-import com.yisi.picture.baselib.utils.EnvUtils;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.PermissionUtils;
 import com.yisi.picture.baselib.utils.PreferencesUtils;
@@ -46,7 +45,6 @@ public class SplashAty extends BaseActivity implements ISplashAty {
         GlideUtils.initGlide(YiSiApplication.mGlobleContext);
         ViewUtils.init(YiSiApplication.mGlobleContext);
         DirManager.getInstance().init();
-        EnvUtils.init(YiSiApplication.mGlobleContext);
         PermissionUtils.init(YiSiApplication.mGlobleContext);
         BitmapUtils.initBitmapUtils(YiSiApplication.mGlobleContext);
     }

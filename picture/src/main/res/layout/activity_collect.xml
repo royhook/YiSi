@@ -25,7 +25,7 @@
                 android:id="@+id/collect_activity_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px150"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorAccent"
                 custom:layout_scrollFlags="scroll">
 
                 <ImageView

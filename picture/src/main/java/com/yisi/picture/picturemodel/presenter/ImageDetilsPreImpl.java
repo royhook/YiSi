@@ -15,6 +15,7 @@ import com.yisi.picture.picturemodel.bean.PlantImage;
 import com.yisi.picture.picturemodel.model.ImageDetilsModelImpl;
 import com.yisi.picture.picturemodel.model.inter.IImageDetilsModel;
 import com.yisi.picture.picturemodel.presenter.inter.IDetilsPre;
+import com.yisi.picture.picturemodel.utils.CoinUtils;
 
 import java.util.List;
 
@@ -63,7 +64,9 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
         mAliPlantAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                startOperaActivity(position);
+                if (CoinUtils.canBuy(mAliImages.get(position).getCoin(), view)) {
+                    startChoseActivity(position);
+                }
             }
         });
     }
@@ -81,7 +84,7 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
     }
 
 
-    private void startOperaActivity(int position) {
+    private void startChoseActivity(int position) {
         PlantImage image = mAliImages.get(position);
         List<Image> imageUrls = image.getImage_list();
         String json = new Gson().toJson(imageUrls);

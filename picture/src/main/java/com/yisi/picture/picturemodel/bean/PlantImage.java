@@ -19,6 +19,8 @@ public class PlantImage extends GenericJson implements Serializable {
     @Key
     private Integer plant_id;
     @Key
+    private int coin;
+    @Key
     String img_url;
     @Key
     List<Image> image_list;
@@ -61,6 +63,10 @@ public class PlantImage extends GenericJson implements Serializable {
 
     public String getId() {
         return id;
+    }
+
+    public int getCoin() {
+        return coin;
     }
 
     public void setId(String id) {

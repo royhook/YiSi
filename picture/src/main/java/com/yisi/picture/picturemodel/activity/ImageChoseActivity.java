@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
@@ -14,13 +15,12 @@ import com.google.gson.reflect.TypeToken;
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.baselib.database.BaseDatabase;
-import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.adapter.ImageChoseAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.PlantImage;
-import com.yisi.picture.picturemodel.database.PlantDatabase;
+import com.yisi.picture.picturemodel.database.table.PlantTable;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class ImageChoseActivity extends BaseActivity {
     public static final String KEY_IS_COLLECT = "key_is_collect";
     private RecyclerView mRecyclerView;
     private ImageView mImageView;
-    private ImageView mIconView;
+    TextView mTitleView;
     private ImageView mCollectView;
 
     @Override
@@ -49,8 +49,8 @@ public class ImageChoseActivity extends BaseActivity {
         setContentView(R.layout.activity_chose);
         mRecyclerView = findView(R.id.rv_chose);
         mImageView = findView(R.id.iv_chose);
-        mIconView = findView(R.id.iv_icon_view);
         mCollectView = findView(R.id.iv_collect);
+        mTitleView = findView(R.id.tv_plant_title);
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,17 +61,24 @@ public class ImageChoseActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        if (getIntent().getBooleanExtra(KEY_IS_COLLECT, false)) {
-            mCollectView.setVisibility(View.GONE);
-        }
+
         final String json = getIntent().getStringExtra(KEY_PLANT);
         final String id = getIntent().getStringExtra(KEY_PLANT_ID);
         final String title = getIntent().getStringExtra(KEY_PLANT_TITLE);
         final String imgUrl = getIntent().getStringExtra(KEY_PLANT_IMG);
+        if (PlantTable.getInstance().isExist(id)) {
+            mCollectView.setImageResource(R.mipmap.collect_chose);
+        }
+
+        if (getIntent().getBooleanExtra(KEY_IS_COLLECT, false)) {
+            mCollectView.setVisibility(View.GONE);
+        }
+
+
         Gson gson = new Gson();
+        mTitleView.setText(title);
         final List<Image> images = gson.fromJson(json, new TypeToken<List<Image>>() {
         }.getType());
-        GlideUtils.displayCircleImage(images.get(0).getUrl(), mIconView);
         ImageChoseAdapter adapter = new ImageChoseAdapter(images);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -97,8 +104,9 @@ public class ImageChoseActivity extends BaseActivity {
                 plantImage.setName(title);
                 plantImage.setImage_url(imgUrl);
                 plantImage.setImage_list(images);
-                int resCode = PlantDatabase.getInstance().insertPlantImage(plantImage);
+                int resCode = PlantTable.getInstance().insertPlantImage(plantImage);
                 if (resCode == BaseDatabase.DB_SUCCESS) {
+                    mCollectView.setImageResource(R.mipmap.collect_chose);
                     Snackbar.make(v, R.string.collect_success, Snackbar.LENGTH_SHORT).show();
                 } else if (resCode == BaseDatabase.DB_EXIST) {
                     Snackbar.make(v, R.string.collect_failed_exist, Snackbar.LENGTH_SHORT).show();

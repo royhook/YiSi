@@ -9,7 +9,7 @@ import com.yisi.picture.baselib.adapter.BaseAdapter;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.adapter.viewholder.PictureCollectViewHolder;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
+import com.yisi.picture.picturemodel.bean.Image;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import java.util.List;
  * Created by chenql on 2017/5/4.
  */
 
-public class PictureCollectAdapter extends BaseAdapter<PictureCollectViewHolder, YiSiImage> {
-    public PictureCollectAdapter(List<YiSiImage> dataList) {
+public class PictureCollectAdapter extends BaseAdapter<PictureCollectViewHolder, Image> {
+    public PictureCollectAdapter(List<Image> dataList) {
         super(dataList);
     }
 
@@ -35,6 +35,6 @@ public class PictureCollectAdapter extends BaseAdapter<PictureCollectViewHolder,
             layoutParams.leftMargin = holder.getImageView().getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             holder.getImageView().setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mDataList.get(position).getImg_url(), holder.getImageView());
+        GlideUtils.displayImage(mDataList.get(position).getUrl(), holder.getImageView());
     }
 }

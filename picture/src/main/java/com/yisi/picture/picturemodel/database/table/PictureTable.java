@@ -1,44 +1,31 @@
-package com.yisi.picture.picturemodel.database;
+package com.yisi.picture.picturemodel.database.table;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.yisi.picture.baselib.application.YiSiApplication;
-import com.yisi.picture.baselib.database.BaseDatabase;
 import com.yisi.picture.picturemodel.bean.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_EXCEPTION;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_EXIST;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_FAILED;
+import static com.yisi.picture.baselib.database.BaseDatabase.DB_SUCCESS;
+
 /**
  * Created by chenql on 2017/10/24.
  */
 
-public class ImageDatabase extends BaseDatabase {
+public class PictureTable extends BaseTable {
 
-    public final static String DATABASE_NAME = "yisipic";
     public static String TABLE_NAME_OWNAD = "image_db";
+    private static PictureTable mInstance = null;
 
-    public final static int VERSION = 1;
-    private static ImageDatabase mInstance = null;
+    private PictureTable() {
 
-    private ImageDatabase(Context context) {
-        super(context, DATABASE_NAME, null, VERSION);
-        mSqLiteDatabase = getDataBase();
     }
 
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        super.onCreate(db);
-        db.execSQL("CREATE TABLE " + TABLE_NAME_OWNAD + "("
-                + ImageColumn.COLUMN_ID + " TEXT PRIMARY KEY ,"
-                + ImageColumn.COLUMN_IMAGE_URL + " TEXT ,"
-                + ImageColumn.COLUMN_IMAGE_TYPE + " TEXT"
-                + ");");
-    }
 
     public ContentValues fillOwnAdValues(Image image) {
         ContentValues values = new ContentValues();
@@ -74,11 +61,11 @@ public class ImageDatabase extends BaseDatabase {
         return cursor;
     }
 
-    public static ImageDatabase getInstance() {
+    public static PictureTable getInstance() {
         if (mInstance == null) {
-            synchronized (ImageDatabase.class) {
+            synchronized (PictureTable.class) {
                 if (mInstance == null) {
-                    mInstance = new ImageDatabase(YiSiApplication.mGlobleContext);
+                    mInstance = new PictureTable();
                 }
             }
         }
@@ -110,6 +97,16 @@ public class ImageDatabase extends BaseDatabase {
             images.add(image);
         }
         return images;
+    }
+
+    @Override
+    public void createTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME_OWNAD + "("
+                + ImageColumn.COLUMN_ID + " TEXT PRIMARY KEY ,"
+                + ImageColumn.COLUMN_IMAGE_URL + " TEXT ,"
+                + ImageColumn.COLUMN_IMAGE_TYPE + " TEXT"
+                + ");";
+        mSqLiteDatabase.execSQL(sql);
     }
 
     public interface ImageColumn {

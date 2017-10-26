@@ -18,6 +18,7 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
 import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.picturemodel.database.YisiDatabase;
 import com.yisi.picture.picturemodel.fragment.MainPageFragment;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 
@@ -31,12 +32,11 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
-    private int mClickTime = 0;
-    private boolean mCanClick = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        YisiDatabase.getInstance().init();
         initFragment();
     }
 
