@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.utils.DesUtil;
+import com.yisi.picture.baselib.utils.LogUtils;
 import com.yisi.picture.baselib.utils.PreferenceKey;
 import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.R;
@@ -17,7 +18,16 @@ public class CoinUtils {
     private static int MOST_COIN = 5000;
 
     private static int getUsrCoin() {
-        return Integer.valueOf(DesUtil.decodeValue(PreferencesUtils.getString(YiSiApplication.mGlobleContext, PreferenceKey.USER_COIN, "")));
+        String encode = null;
+        try {
+            encode = DesUtil.encode(String.valueOf(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String defult = PreferencesUtils.getString(YiSiApplication.mGlobleContext, PreferenceKey.USER_COIN, encode);
+        String decode = DesUtil.decodeValue(defult);
+        LogUtils.d(decode);
+        return Integer.valueOf(decode);
     }
 
     private static void saveUsrCoin(int coin) {

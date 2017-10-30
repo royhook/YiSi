@@ -17,7 +17,7 @@ import javax.crypto.spec.IvParameterSpec;
  * Data  2016-12-17.
  */
 public class DesUtil {
-    public static final String ENCODE_KEY = "yisi@#pwd";
+    public static final String ENCODE_KEY = "yisi@pwd";
     public static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
 
     /**
