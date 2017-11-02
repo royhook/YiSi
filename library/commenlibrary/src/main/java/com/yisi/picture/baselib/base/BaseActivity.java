@@ -8,6 +8,7 @@ import android.view.View;
 import com.classic.common.MultipleStatusView;
 import com.yisi.picture.baselib.R;
 import com.yisi.picture.baselib.base.inter.IBaseAty;
+import com.yisi.picture.baselib.utils.ActivityLifestyle;
 
 /**
  * Created by roy on 2017/1/14.
@@ -78,5 +79,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
     @Override
     public void onLoadMoreComplete() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ActivityLifestyle.getInstance().setGameCurrentActivity(this);
     }
 }

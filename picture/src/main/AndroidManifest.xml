@@ -47,12 +47,12 @@
         <activity
             android:name=".activity.ImageDetilsActivity"
             android:label="@string/title_activity_image_detils"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppThemeNoTitle">
         </activity>
 
         <activity
             android:name=".activity.ImageChoseActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppThemeNoTitle"/>
     </application>
 
 </manifest>

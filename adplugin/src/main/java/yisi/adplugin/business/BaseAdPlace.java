@@ -1,8 +1,16 @@
 package yisi.adplugin.business;
 
-import yisi.adplugin.utils.KyxSDKGlobal;
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.yisi.picture.baselib.utils.ActivityLifestyle;
+
+import yisi.adplugin.R;
 import yisi.adplugin.bean.Ad;
 import yisi.adplugin.bean.AdTracker;
+import yisi.adplugin.utils.CoinUtils;
+import yisi.adplugin.utils.KyxSDKGlobal;
 
 /**
  * Created with Android Studio
@@ -13,6 +21,7 @@ import yisi.adplugin.bean.AdTracker;
  */
 
 public abstract class BaseAdPlace implements IAdCallProxy {
+
     protected Ad ad;
 
 
@@ -47,6 +56,10 @@ public abstract class BaseAdPlace implements IAdCallProxy {
         }
     }
 
+    protected boolean isVideo() {
+        return false;
+    }
+
     @Override
     public void onAdRequest() {
         if (isForget())
@@ -76,6 +89,10 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdSkip() {
+        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
+        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
+        View view = viewGroup.findViewById(R.id.btn_seead);
+        CoinUtils.addUsrCoin(300, view);
         if (isForget())
             return;
 

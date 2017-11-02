@@ -15,12 +15,14 @@
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
 
             <ImageView
                 android:id="@+id/iv_img_detils"
@@ -29,6 +31,21 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="pin"/>
 
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="">
+
+                <ImageView
+                    android:id="@+id/iv_img_close"
+                    android:layout_width="@dimen/px80"
+                    android:layout_height="@dimen/px80"
+                    android:background="@mipmap/back"/>
+
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

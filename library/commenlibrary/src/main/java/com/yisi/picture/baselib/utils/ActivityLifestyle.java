@@ -1,4 +1,4 @@
-package yisi.adplugin.utils;
+package com.yisi.picture.baselib.utils;
 
 import android.app.Activity;
 
@@ -7,10 +7,10 @@ import android.app.Activity;
  * <strong>Kamcord控制类（单例）</strong> <br/>
  * <font color="green">供SDKWrapper中的KamcordAssist类进行调用</font>
  *
- * @author jinyu
+ * @author chenql
  */
-public class GameAssist {
-    private static GameAssist mInstance;
+public class ActivityLifestyle {
+    private static ActivityLifestyle mInstance;
     /**
      * 游戏当前Activity上下文对象
      */
@@ -19,12 +19,12 @@ public class GameAssist {
     /**
      * 构造方法私有化
      */
-    private GameAssist(Activity activity) {
+    private ActivityLifestyle(Activity activity) {
 
         this.mActivity = activity;
     }
 
-    public GameAssist() {
+    public ActivityLifestyle() {
 
     }
 
@@ -38,11 +38,11 @@ public class GameAssist {
     }
 
 
-    public static GameAssist getInstance() {
+    public static ActivityLifestyle getInstance() {
         if (mInstance != null) {
             return mInstance;
         }
-        mInstance = new GameAssist();
+        mInstance = new ActivityLifestyle();
         return mInstance;
     }
 

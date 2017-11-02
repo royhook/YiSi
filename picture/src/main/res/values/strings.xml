@@ -24,11 +24,6 @@
     <string name="trs_plant_operate">plant_operate</string>
     <string name="trs_plant_detils">plant_detils</string>
     <string name="empty_view_hint">No Data</string>
-    <string name="notenough_coin">金币不足,请前往金币区赚取金币</string>
-    <string name="most_coin">最多只允许存5000个金币,先去消费吧</string>
-    <string name="add_coin">成功赚取%1$d枚金币,当前金币数为%2$d</string>
-    <string name="spand_coin">金币消费</string>
-    <string name="spand_coin_message">确认消费%d枚金币去观看此套图吗?</string>
     <string name="sure">确定</string>
     <string name="cancle">取消</string>
 </resources>

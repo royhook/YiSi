@@ -1,4 +1,4 @@
-package com.yisi.picture.picturemodel.rx;
+package com.yisi.picture.baselib.rx;
 
 import rx.Observable;
 import rx.subjects.PublishSubject;
@@ -24,23 +24,15 @@ public class RxBus {
         _bus.onNext(event);
     }
 
-    public Observable<Object> toObservable() {
-        return _bus;
+
+    public <T> Observable<T> toObservable(Class<T> eventType) {
+        return _bus.ofType(eventType);
+
     }
+
 
     private static class RxHolder {
         static final RxBus RX_BUS = new RxBus();
     }
-
-    public static class Event<T> {
-        String tag;
-        T values;
-
-        public Event(String tag, T values) {
-            this.tag = tag;
-            this.values = values;
-        }
-    }
-
 
 }

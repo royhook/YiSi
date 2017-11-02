@@ -34,4 +34,11 @@
         android:text="@string/app_thanks"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
+    <TextView
+        android:id="@+id/tv_coin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        />
+
 </LinearLayout>

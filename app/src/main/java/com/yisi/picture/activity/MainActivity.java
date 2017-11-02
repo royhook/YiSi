@@ -13,31 +13,45 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
+import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
+import com.yisi.picture.baselib.rx.Event;
+import com.yisi.picture.baselib.rx.RxBus;
+import com.yisi.picture.baselib.rx.RxKey;
+import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.database.YisiDatabase;
 import com.yisi.picture.picturemodel.fragment.MainPageFragment;
+import com.yisi.picture.baselib.utils.ReLockUtils;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import rx.functions.Action1;
+import yisi.adplugin.AdPlugin;
+import yisi.adplugin.activity.CoinActivity;
+import yisi.adplugin.utils.CoinUtils;
 
 public class MainActivity extends BaseActivity implements IMainAty, NavigationView.OnNavigationItemSelectedListener {
 
     private CommonTabLayout mCommonTabLayout;
     private MainAtyPreImpl mMainAtyPre;
     private MainPageFragment mMainFragment;
-    private NavigationView mNavigationView;
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
+    private TextView mCoinView;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         YisiDatabase.getInstance().init();
+        AdPlugin.init();
         initFragment();
+        ReLockUtils.startRelock();
     }
 
     @Override
@@ -49,7 +63,6 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     protected void initViews() {
         setContentView(R.layout.activity_main);
         mCommonTabLayout = findView(R.id.main_commenTab);
-        mNavigationView = findView(R.id.nav_view);
         mToolbar = findView(R.id.tl_fragment_main);
         mToolbar.setTitle(R.string.tab_picture);
         mToolbar.setNavigationIcon(R.mipmap.category);
@@ -65,8 +78,21 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 this, mDrawer, R.string.open, R.string.close);
         mDrawer.setDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        String coin = getText(R.string.my_coin) + String.valueOf(CoinUtils.getUsrCoin());
+        mNavigationView.setNavigationItemSelectedListener(this);
+        View view = mNavigationView.getHeaderView(0);
+        mCoinView = ViewUtils.findView(view, R.id.tv_coin);
+        mCoinView.setText(coin);
+        RxBus.getInstance().toObservable(Event.class).subscribe(new Action1<Event>() {
+            @Override
+            public void call(Event event) {
+                if (event.getTag().equals(RxKey.COIN_EXCHANGE)) {
+                    String coin = getText(R.string.my_coin) + String.valueOf(CoinUtils.getUsrCoin());
+                    mCoinView.setText(coin);
+                }
+            }
+        });
     }
 
     @Override
@@ -138,8 +164,9 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
                 break;
 
-            case R.id.nav_version:
-
+            case R.id.nav_coin:
+                Intent coinIntent = CoinActivity.getCoinIntent();
+                startActivity(coinIntent);
                 break;
 
             case R.id.nav_share:
@@ -154,6 +181,12 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
                 break;
         }
+        YiSiApplication.postDelay(new Runnable() {
+            @Override
+            public void run() {
+                mDrawer.closeDrawers();
+            }
+        }, 1000);
         return true;
     }
 
@@ -179,8 +212,13 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
         oks.setSite("Yisi");
         // siteUrl是分享此内容的网站地址，仅在QQ空间使用
         oks.setSiteUrl("http://sj.qq.com/myapp/detail.htm?apkName=com.yisi.picture");
-
-// 启动分享GUI
+        // 启动分享GUI
         oks.show(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ReLockUtils.saveRelock();
     }
 }

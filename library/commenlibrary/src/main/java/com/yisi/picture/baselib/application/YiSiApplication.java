@@ -27,13 +27,17 @@ public class YiSiApplication extends MultiDexApplication {
     public static boolean isChange = false;
     private static Client mKinveyClient;
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         mGlobleContext = this;
         mRefWatcher = LeakCanary.install(this);
-        mKinveyClient = new Client.Builder("kid_BJEr--R9b", "d7b13213fd244c238555b2655a42f687", this).build();
+        mKinveyClient = new Client
+                .Builder("kid_BJEr--R9b", "d7b13213fd244c238555b2655a42f687", this)
+                .build();
         try {
             UserStore.login(mKinveyClient, new KinveyCachedClientCallback<User>() {
                 @Override

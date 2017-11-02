@@ -28,6 +28,16 @@ public class RecommandPlantImage extends GenericJson {
     private KinveyMetaData.AccessControlList acl;
     @Key
     boolean rotation;
+    @Key
+    int coin;
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
 
     public void setRotation(boolean rotation) {
         this.rotation = rotation;

@@ -21,6 +21,8 @@ import com.yisi.picture.picturemodel.presenter.inter.IPlantFragmentPre;
 
 import java.util.List;
 
+import yisi.adplugin.utils.CoinUtils;
+
 /**
  * Created by roy on 2017/2/16.
  */
@@ -72,10 +74,23 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        ImageView imageView = ViewUtils.findView(view, R.id.adapter_plant_img);
         RecommandPlantImage image = currentList.get(position);
+        if (CoinUtils.canBuy(image.getId(), image.getCoin(), view)) {
+            startImageChoseActivity(view, image);
+        }
+
+    }
+
+    @Override
+    public void bindBanner(List<RecommandPlantImage> images) {
+        mView.bindBanner(images);
+    }
+
+
+    public void startImageChoseActivity(View view, RecommandPlantImage image) {
+        ImageView imageView = ViewUtils.findView(view, R.id.adapter_plant_img);
         String json = new Gson().toJson(image.getImage_list());
-        Intent intent = ImageChoseActivity.getDateIntent(json,image.getId(),image.getName(),image.getImage_url());
+        Intent intent = ImageChoseActivity.getDateIntent(json, image.getId(), image.getName(), image.getImage_url());
         ActivityOptions transitionActivityOptions = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(mView.getBaseActivity(), imageView, mView.getViewContext()
@@ -86,13 +101,4 @@ public class PlantFragmentPreImpl extends BaseRefreshPresenterImpl<IPlansFragmen
         }
     }
 
-    @Override
-    public void bindBanner(List<RecommandPlantImage> images) {
-        mView.bindBanner(images);
-    }
-
-    @Override
-    protected int skip() {
-        return 7;
-    }
 }

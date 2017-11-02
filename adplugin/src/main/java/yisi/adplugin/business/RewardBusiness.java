@@ -1,6 +1,7 @@
 package yisi.adplugin.business;
 
 
+import yisi.adplugin.place.AdMobInterstitialAd;
 import yisi.adplugin.place.BatNativeInterstitialAd;
 import yisi.adplugin.bean.Ad;
 import yisi.adplugin.bean.BaseAd;
@@ -26,6 +27,7 @@ public class RewardBusiness extends BaseAdBusiness {
     public void bindAdPlatform(Ad ad) {
         switch (ad.getProvider()) {
             case PLATFORM_ADMOB:
+                mBaseAdPlace = new AdMobInterstitialAd();
                 break;
 
             case PLATFORM_ADMOB_NATIVE:

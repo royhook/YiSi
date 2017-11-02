@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,6 +21,7 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
     int requestId;
     String name;
     ImageView mImageView;
+    ImageView mCloseView;
     RecyclerView mRecyclerView;
 
     @Override
@@ -46,6 +48,13 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
     protected void initViews() {
         setContentView(R.layout.activity_img_detils_content);
         mImageView = findView(R.id.iv_img_detils);
+        mCloseView = findView(R.id.iv_img_close);
+        mCloseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         String url = getIntent().getStringExtra(IntentKey.kEY_KIND_URL);
         GlideUtils.displayImage(url, mImageView);
     }

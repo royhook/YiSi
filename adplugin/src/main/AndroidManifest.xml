@@ -9,13 +9,22 @@
 
 
         <activity
-            android:name="com.etap.EtapActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:name="com.etap.EtapActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
 
-        <receiver android:name="com.etap.EtapBroadcastReceiver" > <intent-filter>
-            <action android:name="android.intent.action.PACKAGE_ADDED" /> <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-            <data android:scheme="package" /> </intent-filter>
+        <receiver android:name="com.etap.EtapBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
         </receiver>
+
+        <activity
+            android:name="yisi.adplugin.activity.CoinActivity"
+            android:theme="@style/AppThemeNoTitle"/>
 
     </application>
 

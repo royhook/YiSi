@@ -21,6 +21,7 @@ import com.yisi.picture.picturemodel.adapter.ImageChoseAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
 import com.yisi.picture.picturemodel.bean.PlantImage;
 import com.yisi.picture.picturemodel.database.table.PlantTable;
+import com.yisi.picture.baselib.utils.ReLockUtils;
 
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class ImageChoseActivity extends BaseActivity {
         final String id = getIntent().getStringExtra(KEY_PLANT_ID);
         final String title = getIntent().getStringExtra(KEY_PLANT_TITLE);
         final String imgUrl = getIntent().getStringExtra(KEY_PLANT_IMG);
+        ReLockUtils.saveId(id);
         if (PlantTable.getInstance().isExist(id)) {
             mCollectView.setImageResource(R.mipmap.collect_chose);
         }
@@ -130,6 +132,9 @@ public class ImageChoseActivity extends BaseActivity {
 
     public static Intent getDateIntent(String list, String id, String title, String imgurl) {
         return getDateIntent(list, id, title, imgurl, false);
+    }
+
+    private void saveId() {
     }
 
 

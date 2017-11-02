@@ -13,7 +13,7 @@ import java.util.List;
 public class BaseAd extends GenericJson {
 
     @Key
-    private boolean is_open;//控制该场景广告位是否打开 true 打开 false 关闭
+    private boolean is_open = true;//控制该场景广告位是否打开 true 打开 false 关闭
 
     @Key
     private List<Ad> ad_list;//控制该场景广告位的广告下发列表

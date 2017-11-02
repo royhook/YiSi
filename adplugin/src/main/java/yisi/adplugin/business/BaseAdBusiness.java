@@ -208,15 +208,20 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
 
     @Override
     public void onAdRequest() {
+        onEvent("Request");
     }
 
     @Override
     public void onAdPresent() {
+        onEvent("Present");
+
         mAdPresentTimes++;
     }
 
     @Override
     public void onAdClick() {
+        onEvent("Click");
+
     }
 
     @Override
@@ -227,6 +232,7 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
                 goNextAd();
             }
         }, 1000);
+        onEvent("Failed");
     }
 
     public void onEvent(String adEvent) {
@@ -271,6 +277,7 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
 
     @Override
     public void onAdLoad() {
+        onEvent("Load");
     }
 
 }

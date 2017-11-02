@@ -19,7 +19,7 @@ public class PlantImage extends GenericJson implements Serializable {
     @Key
     private Integer plant_id;
     @Key
-    private int coin;
+    private int coin = 200;
     @Key
     String img_url;
     @Key
