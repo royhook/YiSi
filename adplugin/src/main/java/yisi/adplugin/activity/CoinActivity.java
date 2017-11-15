@@ -10,6 +10,7 @@ import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
 
 import yisi.adplugin.AdPlugin;
+import yisi.adplugin.business.IAdCallback;
 
 /**
  * Created by chenql on 2017/10/30.
@@ -26,7 +27,7 @@ public class CoinActivity extends BaseActivity {
     @Override
     protected void initViews() {
         setContentView(R.layout.activity_coin);
-        Button button = findView(R.id.btn_seead);
+        final Button button = findView(R.id.btn_seead);
         mCloseView = findView(R.id.setting_activity_back);
         mCloseView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +38,24 @@ public class CoinActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdPlugin.showRewardAd();
+                button.setClickable(false);
+                AdPlugin.showRewardAd(new IAdCallback() {
+
+                    @Override
+                    public void onSkip() {
+                        button.setClickable(false);
+                    }
+
+                    @Override
+                    public void onLoad() {
+                        button.setClickable(true);
+                    }
+
+                    @Override
+                    public void onUnAvaliable() {
+
+                    }
+                });
             }
         });
     }

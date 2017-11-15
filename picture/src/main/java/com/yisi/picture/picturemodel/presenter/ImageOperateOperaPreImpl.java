@@ -1,15 +1,10 @@
 package com.yisi.picture.picturemodel.presenter;
 
-import android.app.WallpaperManager;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.yisi.picture.baselib.base.BasePresenterImpl;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.IntentKey;
@@ -18,12 +13,12 @@ import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.ImageOperatePagerAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
+import com.yisi.picture.picturemodel.database.YisiDatabase;
 import com.yisi.picture.picturemodel.database.table.PictureTable;
 import com.yisi.picture.picturemodel.model.ImageOperaOperateModel;
 import com.yisi.picture.picturemodel.model.inter.IImageOperateModel;
 import com.yisi.picture.picturemodel.presenter.inter.IImageOperaPre;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.yisi.picture.picturemodel.model.ImageOperaOperateModel.TYPE_ONLY_SHOW;
@@ -112,54 +107,23 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
 
     @Override
     public void setWallPaper() {
-        final WallpaperManager wallpaperManager = WallpaperManager.getInstance(mView);
-        Image yiSiImage = mYiSiImages.get(mCurrentPosition);
-        if (yiSiImage != null)
-            GlideUtils.displayImageAndDownLoad(yiSiImage.getUrl(), new SimpleTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                    try {
-                        wallpaperManager.setBitmap(resource);
-                        Toast.makeText(mView, mView.getString(R.string.set_wapper_success), Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+
     }
 
     @Override
     public void setSystemWallPaper() {
 
-        PermissionUtils.requestWriteSDCard(new PermissionUtils.OnRequestCallback() {
-            @Override
-            public void onSuccess() {
-                Image yiSiImage = mYiSiImages.get(mCurrentPosition);
-                if (yiSiImage != null)
-                    GlideUtils.displayImageAndDownLoad(yiSiImage.getUrl(), new SimpleTarget<Bitmap>() {
-                        @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                            Intent intent = new Intent(Intent.ACTION_ATTACH_DATA);
-                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                            intent.putExtra("mimeType", "image/*");
-                            Uri uri = Uri.parse(MediaStore.Images.Media.insertImage(mView.getContentResolver(), resource, null, null));
-                            intent.setData(uri);
-                            mView.startActivityForResult(intent, 100);
-                        }
-                    });
-            }
-
-            @Override
-            public void onFail() {
-                Toast.makeText(mView, mView.getResources().getString(R.string.wallpaper_fail_perssion_refused), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     public void collectImg() {
         Image image = mYiSiImages.get(mCurrentPosition);
-        PictureTable.getInstance().insertImage(image);
+        int result = PictureTable.getInstance().insertImage(image);
+        if (result == YisiDatabase.DB_SUCCESS) {
+            Snackbar.make(mView.getViewPager(), R.string.collect_success, Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(mView.getViewPager(), R.string.collect_failed_exist, Snackbar.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -176,13 +140,6 @@ public class ImageOperateOperaPreImpl extends BasePresenterImpl<ImageOperateActi
                 mView.updataTextView(position + 1 + "/" + (mYiSiImages.size() - 1));
         } else
             mView.updataTextView(position + 1 + "/" + (mYiSiImages.size()));
-
-        //仅仅在最后一张，并且套图模式的情况下 才请求下一套图
-        if (position == mYiSiImages.size() - 1 && open_type == 2) {
-            type_id = type_id - 1;
-            Toast.makeText(mView, R.string.next_plant, Toast.LENGTH_SHORT).show();
-            getData();
-        }
         mView.refreshFeaturesState();
     }
 

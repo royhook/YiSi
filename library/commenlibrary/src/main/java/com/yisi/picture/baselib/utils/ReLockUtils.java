@@ -34,7 +34,7 @@ public class ReLockUtils {
 
     public static void saveRelock() {
         String json = new Gson().toJson(sHadRelockList);
-        PreferencesUtils.putString(YiSiApplication.mGlobleContext, json, "");
+        PreferencesUtils.putString(YiSiApplication.mGlobleContext, PreferenceKey.MY_COLLECT_IMAGE, json);
     }
 
 }

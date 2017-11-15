@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yisi.picture.baselib.utils.GlideUtils;
+import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 
@@ -32,7 +33,7 @@ public class PlantAdapter extends BaseQuickAdapter<RecommandPlantImage, BaseView
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getImage_url(), imageView, R.mipmap.defult);
+        GlideUtils.displayImage(mData.get(position).getWrapWidth(ViewUtils.getDimen(R.dimen.px800)), imageView, R.mipmap.defult);
         textView.setText(mData.get(position).getName());
     }
 

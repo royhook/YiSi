@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.yisi.picture.baselib.utils.ViewUtils;
 
+import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.utils.ImitateClickUtils;
 import yisi.adplugin.utils.KyxSDKGlobal;
 import yisi.adplugin.R;
@@ -23,6 +24,11 @@ public abstract class InterstitialPreloadAdPlace extends WindowAdPlace {
 
     protected boolean isReady;
 
+    static IAdCallback mIAdCallback;
+
+    public void setIAdCallback(IAdCallback IAdCallback) {
+        mIAdCallback = IAdCallback;
+    }
 
     public abstract void showAd();
 
@@ -37,13 +43,22 @@ public abstract class InterstitialPreloadAdPlace extends WindowAdPlace {
     }
 
     @Override
+    public void onAdPresent() {
+        super.onAdPresent();
+    }
+
+    @Override
     public void onAdLoad() {
         isReady = true;
+        if (mIAdCallback != null)
+            mIAdCallback.onLoad();
         super.onAdLoad();
     }
 
     @Override
     public void onAdSkip() {
+        if (mIAdCallback != null)
+            mIAdCallback.onSkip();
         isReady = false;
         super.onAdSkip();
     }

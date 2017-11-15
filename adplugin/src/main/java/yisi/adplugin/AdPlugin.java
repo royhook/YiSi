@@ -11,6 +11,7 @@ import java.util.List;
 
 import yisi.adplugin.bean.AdConfig;
 import yisi.adplugin.business.BaseAdBusiness;
+import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.business.RewardBusiness;
 import yisi.adplugin.place.InterstitialPreloadAdPlace;
 import yisi.adplugin.utils.KyxSDKGlobal;
@@ -23,12 +24,13 @@ public class AdPlugin {
     /**
      * 展示广告
      */
-    public static void showRewardAd() {
+    public static void showRewardAd(final IAdCallback callback) {
         KyxSDKGlobal.runOnMainThread(new Runnable() {
             @Override
             public void run() {
                 InterstitialPreloadAdPlace adPlace = (InterstitialPreloadAdPlace) RewardBusiness.getInstance().mBaseAdPlace;
                 if (adPlace != null) {
+                    adPlace.setIAdCallback(callback);
                     adPlace.show();
                 }
             }
@@ -55,7 +57,7 @@ public class AdPlugin {
     }
 
     private static void requestAdConfig() {
-        DataStore<AdConfig> dataStore = DataStore.collection("AdConfig", AdConfig.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<AdConfig> dataStore = DataStore.collection("AdConfig", AdConfig.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         dataStore.find(new KinveyListCallback<AdConfig>() {
             @Override
             public void onSuccess(List<AdConfig> list) {

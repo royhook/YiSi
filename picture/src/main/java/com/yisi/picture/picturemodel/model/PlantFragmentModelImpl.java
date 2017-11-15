@@ -26,7 +26,8 @@ public class PlantFragmentModelImpl extends BaseModelImpl<IPlantFragmentPre<Reco
 
     @Override
     public void request(int page, boolean readCache) {
-        DataStore<RecommandPlantImage> dataStore = DataStore.collection("RecommandPlantImage", RecommandPlantImage.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<RecommandPlantImage> dataStore = DataStore.collection("RecommandPlantImage", RecommandPlantImage.class, StoreType.CACHE, YiSiApplication
+                .getKinveyClient());
         Query query = dataStore.query().setSkip(page * 10).setLimit(10);
         dataStore.find(query, new KinveyHelpCallback<RecommandPlantImage>() {
             @Override

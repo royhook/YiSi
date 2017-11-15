@@ -69,6 +69,14 @@ public class PlantImage extends GenericJson implements Serializable {
         return coin;
     }
 
+    public String getScaleUrl(int width, int height) {
+        return img_url + "!/crop/" + width + "x" + height + "a80a60";
+    }
+
+    public String getWrapWidth(int height) {
+        return img_url + "!/fh/" + height;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

@@ -29,25 +29,6 @@
 
 
     <TextView
-        android:id="@+id/tv_operate_set"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px200"
-        android:background="@drawable/selector_list_pop"
-        android:gravity="center"
-        android:text="@string/set_wallpaper"
-        android:textSize="@dimen/px40"/>
-
-
-    <TextView
-        android:id="@+id/tv_operate_system_warpper"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px200"
-        android:background="@drawable/selector_list_pop"
-        android:gravity="center"
-        android:text="@string/set_wallpaper_system"
-        android:textSize="@dimen/px40"/>
-
-    <TextView
         android:id="@+id/tv_operate_cancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px200"

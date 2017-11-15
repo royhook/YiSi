@@ -25,7 +25,7 @@ public class ImageDetilsModelImpl extends BaseModelImpl<IDetilsPre> implements I
 
     @Override
     public void request(int page, int id) {
-        DataStore<PlantImage> dataStore = DataStore.collection("PlantImage", PlantImage.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<PlantImage> dataStore = DataStore.collection("PlantImage", PlantImage.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         Query query = dataStore.query().setLimit(10).setSkip((page - 1) * 10).equals("plant_id", id);
         dataStore.find(query, new KinveyHelpCallback<PlantImage>() {
             @Override

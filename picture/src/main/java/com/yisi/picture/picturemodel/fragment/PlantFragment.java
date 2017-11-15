@@ -1,7 +1,6 @@
 package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,6 +24,8 @@ import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import yisi.adplugin.utils.CoinUtils;
 
 /**
  * Created by roy on 2017/1/14.
@@ -59,7 +60,7 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
         List<String> title = new ArrayList<>();
         //遍历一下title
         for (RecommandPlantImage image : list) {
-            title.add(image.getName());
+            title.add("a");
         }
         mBanner.setImages(list);
         mBanner.setBannerTitles(title);
@@ -68,13 +69,12 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
         //设置自动轮播，默认为true
         mBanner.isAutoPlay(true);
         //设置轮播时间
-        mBanner.setDelayTime(3000);
+        mBanner.setDelayTime(8000);
         mBanner.setIndicatorHeight(ViewUtils.getDimen(R.dimen.px20))
                 .setIndicatorWidth(ViewUtils.getDimen(R.dimen.px20))
                 .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
                 .setTitleHeight(ViewUtils.getDimen(R.dimen.px80))
-                .setTitleTextColor(Color.parseColor("#FFC0CB"))
-                .setTitleTextSize(ViewUtils.getDimen(R.dimen.px40));
+                .setTitleTextSize(0);
         //设置指示器位置（当banner模式中有指示器时）
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
         mBanner.setOnBannerListener(new OnBannerListener() {
@@ -83,7 +83,9 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
                 RecommandPlantImage image = list.get(position);
                 List<Image> images = image.getImage_list();
                 String imgList = new Gson().toJson(images);
-                startActivity(ImageChoseActivity.getDateIntent(imgList, image.getId(), image.getName(), image.getImage_url()));
+                if (CoinUtils.canBuy(image.getId(), image.getCoin(), mBanner)) {
+                    startActivity(ImageChoseActivity.getDateIntent(imgList, image.getId(), image.getName(), image.getImage_url()));
+                }
             }
         });
         //banner设置方法全部调用完毕时最后调用

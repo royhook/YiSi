@@ -26,7 +26,7 @@ public class MainPageChildFragmentModelImpl extends BaseModelImpl<IMainPageChild
 
     @Override
     public void request() {
-        DataStore<PlantModel> dataStore = DataStore.collection("PlantModel", PlantModel.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<PlantModel> dataStore = DataStore.collection("PlantModel", PlantModel.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         dataStore.find(new KinveyHelpCallback<PlantModel>() {
             @Override
             public void onDataSuccess(List<PlantModel> list) {

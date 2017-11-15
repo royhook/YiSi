@@ -22,7 +22,6 @@ import yisi.adplugin.activity.CoinActivity;
  */
 
 public class CoinUtils {
-    private static int MOST_COIN = 5000;
 
     public static int getUsrCoin() {
         String encode = null;
@@ -49,10 +48,6 @@ public class CoinUtils {
 
     public static void addUsrCoin(int coin, View view) {
         int currentCoin = getUsrCoin();
-        if (currentCoin >= MOST_COIN) {
-            Snackbar.make(view, R.string.most_coin, Snackbar.LENGTH_SHORT).show();
-            return;
-        }
         currentCoin = currentCoin + coin;
         saveUsrCoin(currentCoin);
         Snackbar.make(view, view.getResources().getString(R.string.add_coin, coin, currentCoin), Snackbar.LENGTH_LONG).show();
@@ -61,9 +56,6 @@ public class CoinUtils {
 
     public static boolean canBuy(String id, int price, View view) {
         int currentCoin = getUsrCoin();
-        if (currentCoin >= MOST_COIN) {
-            currentCoin = MOST_COIN;
-        }
         if (ReLockUtils.idIsExist(id)) {
             return true;
         }
@@ -81,6 +73,7 @@ public class CoinUtils {
             return false;
         } else {
             saveUsrCoin(currentCoin - price);
+            RxBus.getInstance().send(new Event<String>(RxKey.COIN_EXCHANGE, null));
             return true;
         }
     }

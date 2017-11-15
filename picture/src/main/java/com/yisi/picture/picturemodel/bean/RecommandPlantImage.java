@@ -29,7 +29,7 @@ public class RecommandPlantImage extends GenericJson {
     @Key
     boolean rotation;
     @Key
-    int coin;
+    int coin = 200;
 
     public void setCoin(int coin) {
         this.coin = coin;
@@ -52,8 +52,8 @@ public class RecommandPlantImage extends GenericJson {
 
 
     public void setImage_list(List<Image> image_list) {
-    this.img_list = image_list;
-}
+        this.img_list = image_list;
+    }
 
     public void setImage_url(String image_url) {
         this.img_url = image_url;
@@ -85,5 +85,13 @@ public class RecommandPlantImage extends GenericJson {
 
     public List<Image> getImg_list() {
         return img_list;
+    }
+
+    public String getScaleUrl(int width, int height) {
+        return img_url + "!/crop/" + width + "x" + height + "a80a60";
+    }
+
+    public String getWrapWidth(int height) {
+        return img_url + "!/fh/" + height;
     }
 }

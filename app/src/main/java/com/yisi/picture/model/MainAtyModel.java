@@ -25,7 +25,7 @@ public class MainAtyModel extends BaseModelImpl<IMainAtyPre> implements IMainAty
     @Override
     public void request() {
         //请求全局接口
-        DataStore<GlobalSetting> dataStore = DataStore.collection("GlobalSetting", GlobalSetting.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<GlobalSetting> dataStore = DataStore.collection("GlobalSetting", GlobalSetting.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         dataStore.find(new KinveyHelpCallback<GlobalSetting>() {
             @Override
             public void onDataSuccess(List<GlobalSetting> list) {

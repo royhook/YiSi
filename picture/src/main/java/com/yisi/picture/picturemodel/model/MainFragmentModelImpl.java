@@ -23,7 +23,7 @@ public class MainFragmentModelImpl extends BaseModelImpl<IMainFragmentPre> imple
 
     @Override
     public void request() {
-        DataStore<MainTab> dataStore = DataStore.collection("MainTab", MainTab.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        DataStore<MainTab> dataStore = DataStore.collection("MainTab", MainTab.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         dataStore.find(new KinveyHelpCallback<MainTab>() {
             @Override
             public void onDataSuccess(List<MainTab> list) {
