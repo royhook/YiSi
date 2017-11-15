@@ -62,7 +62,7 @@ public class CoinUtils {
         if (currentCoin < price) {
             Snackbar snackbar = Snackbar.make(view, R.string.notenough_coin, Snackbar.LENGTH_LONG);
             snackbar.setActionTextColor(YiSiApplication.mGlobleContext.getResources().getColor(R.color.imagepicker_pink));
-            snackbar.setAction("前往金币赚取专区", new View.OnClickListener() {
+            snackbar.setAction(R.string.go_earn, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = CoinActivity.getCoinIntent();

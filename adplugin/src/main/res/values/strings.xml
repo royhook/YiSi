@@ -2,4 +2,5 @@
     <string name="notenough_coin">Gold is not enough, please go to the gold coin area to earn gold</string>
     <string name="add_coin">success earn %1$d coin,current coin:%2$d</string>
     <string name="spand_coin">Gold coins consumption</string>
+    <string name="go_earn">Go to the gold coin earning area</string>
 </resources>

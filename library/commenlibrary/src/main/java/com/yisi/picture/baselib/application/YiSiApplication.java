@@ -66,5 +66,10 @@ public class YiSiApplication extends MultiDexApplication {
     public static Client getKinveyClient() {
         return mKinveyClient;
     }
+
+
+    public static String getStringResource(int id) {
+        return mGlobleContext.getResources().getString(id);
+    }
 }
 

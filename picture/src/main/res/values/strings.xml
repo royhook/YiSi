@@ -16,4 +16,5 @@
     <string name="empty_view_hint">No Data</string>
     <string name="sure">Sure</string>
     <string name="cancle">Cancel</string>
+    <string name="need_coin">need coin:</string>
 </resources>
