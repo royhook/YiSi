@@ -1,8 +1,11 @@
 package com.yisi.picture.picturemodel.bean;
 
+import android.text.TextUtils;
+
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
 import com.kinvey.java.model.KinveyMetaData;
+import com.yisi.picture.baselib.utils.DeviceUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -24,6 +27,8 @@ public class PlantImage extends GenericJson implements Serializable {
     String img_url;
     @Key
     List<Image> image_list;
+    @Key
+    private String title_cn;
     @Key("_kmd")
     private KinveyMetaData meta;
     @Key("_acl")
@@ -58,6 +63,12 @@ public class PlantImage extends GenericJson implements Serializable {
     }
 
     public String getName() {
+        String lan = DeviceUtils.getSystemLaungue();
+        if (!TextUtils.isEmpty(lan)) {
+            if (lan.contains("zh") && !TextUtils.isEmpty(title_cn)) {
+                return title_cn;
+            }
+        }
         return title;
     }
 
@@ -75,6 +86,14 @@ public class PlantImage extends GenericJson implements Serializable {
 
     public String getWrapWidth(int height) {
         return img_url + "!/fh/" + height;
+    }
+
+    public String getFwfhUrl(int width, int height) {
+        return img_url + "!/fwfh/" + width + "x" + height;
+    }
+
+    public String getScale(int scale) {
+        return img_url + "!/scale/" + scale;
     }
 
     public void setId(String id) {

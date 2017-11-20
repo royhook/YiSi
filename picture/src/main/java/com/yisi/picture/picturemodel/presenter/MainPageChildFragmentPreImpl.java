@@ -45,6 +45,7 @@ public class MainPageChildFragmentPreImpl extends BaseRefreshPresenterImpl<IMain
         mView.getRecycleView().setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mView.getRecycleView().getContext(), LinearLayoutManager.VERTICAL, false);
         mView.getRecycleView().setLayoutManager(layoutManager);
+        mView.setOnRefreshListener(this);
     }
 
     @Override

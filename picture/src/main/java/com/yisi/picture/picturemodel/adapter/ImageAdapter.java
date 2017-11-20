@@ -23,13 +23,13 @@ public class ImageAdapter extends BaseQuickAdapter<Image, BaseViewHolder> {
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Image item, int position) {
+    protected void convert(BaseViewHolder helper, Image item) {
         ImageView imageView = helper.getView(R.id.adapter_plant_img);
-        if (position % 2 != 0) {
+        if (helper.getPosition() % 2 != 0) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getUrl(), imageView, R.mipmap.defult);
+        GlideUtils.displayImage(item.getUrl(), imageView, R.mipmap.defult);
     }
 }

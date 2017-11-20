@@ -25,16 +25,16 @@ public class PlantAdapter extends BaseQuickAdapter<RecommandPlantImage, BaseView
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, RecommandPlantImage item, int position) {
+    protected void convert(BaseViewHolder helper, RecommandPlantImage item) {
         ImageView imageView = helper.getView(R.id.adapter_plant_img);
         TextView textView = helper.getView(R.id.adapter_plant_title);
-        if (position % 2 != 0) {
+        if (helper.getPosition() % 2 != 0) {
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(mData.get(position).getWrapWidth(ViewUtils.getDimen(R.dimen.px800)), imageView, R.mipmap.defult);
-        textView.setText(mData.get(position).getName());
+        GlideUtils.displayImage(item.getWrapWidth(ViewUtils.getDimen(R.dimen.px800)), imageView, R.mipmap.defult);
+        textView.setText(item.getName());
     }
 
     @Override

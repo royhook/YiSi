@@ -25,13 +25,13 @@ public class ImageChoseAdapter extends BaseQuickAdapter<Image, ImageChoseViewHol
     }
 
     @Override
-    protected void convert(ImageChoseViewHolder helper, Image item, int position) {
-        if (position != 0 || position % 3 != 1) {
+    protected void convert(ImageChoseViewHolder helper, Image item) {
+        if (helper.getPosition() != 0 || helper.getPosition() % 3 != 1) {
             View view = helper.getImageView();
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
             params.leftMargin = ViewUtils.getDimen(R.dimen.px4);
             view.setLayoutParams(params);
         }
-        GlideUtils.displayImage(item.getWrapWidth(ViewUtils.getDimen(R.dimen.px400)), helper.getImageView());
+        GlideUtils.displayImage(item.getFwfhUrl(500,500), helper.getImageView());
     }
 }

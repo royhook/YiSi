@@ -39,8 +39,13 @@ public class Image extends GenericJson {
     public String getScaleUrl(int width, int height) {
         return img_url + "!/crop/" + width + "x" + height + "a80a60";
     }
+
     public String getWrapWidth(int height) {
         return img_url + "!/fh/" + height;
+    }
+
+    public String getFwfhUrl(int width, int height) {
+        return img_url + "!/fwfh/" + width + "x" + height;
     }
 
 }

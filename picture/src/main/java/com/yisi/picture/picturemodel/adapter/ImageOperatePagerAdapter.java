@@ -55,7 +55,7 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
         PinchImageView piv = (PinchImageView) view.findViewById(R.id.operate_iv_show);
         final AVLoadingIndicatorView progressBar = (AVLoadingIndicatorView) view.findViewById(R.id.operate_pb);
         progressBar.show();
-        GlideUtils.displayImageWithThrun(images.get(position).getUrl(), piv, new GlideUtils.LoaderListener() {
+        GlideUtils.displayImageWithThrun(images.get(position).getFwfhUrl(1200, 1200), piv, new GlideUtils.LoaderListener() {
             @Override
             public void loadSuccess() {
                 progressBar.hide();

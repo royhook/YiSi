@@ -54,8 +54,8 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
     @Override
     public void bindLayouManagerAndAdapter() {
         GridLayoutManager manager = new GridLayoutManager(mView.getViewContext(), 2, 1, false);
-        mView.bindAdapter(mAliPlantAdapter);
         mView.bindLayoutManager(manager);
+        mView.bindAdapter(mAliPlantAdapter);
         mAliPlantAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {

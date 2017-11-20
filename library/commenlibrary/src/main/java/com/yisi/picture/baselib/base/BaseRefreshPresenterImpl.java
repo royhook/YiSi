@@ -3,7 +3,6 @@ package com.yisi.picture.baselib.base;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.loadmore.LoadMoreView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yisi.picture.baselib.base.inter.IBaseAty;
 import com.yisi.picture.baselib.base.inter.IBaseModel;
@@ -78,7 +77,7 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
         if (t.size() < skip()) {
             getRefreshAdapter().loadMoreEnd();
         } else {
-            getRefreshAdapter().getLoadMoreView().setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
+//            getRefreshAdapter().gelo().setLoadMoreStatus(LoadMoreView.STATUS_DEFAULT);
         }
         switch (REFRESH_TYPE) {
             case REFRESH_REFRESH:

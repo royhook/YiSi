@@ -35,7 +35,7 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
     private List<View> mViews = new ArrayList<>();
 
     @Override
-    protected void convert(BaseViewHolder helper, final PlantModel plantModel, int position) {
+    protected void convert(BaseViewHolder helper, final PlantModel plantModel) {
         TextView mainTitle = helper.getView(R.id.aa_title);
         mainTitle.setText(plantModel.getTitle());
         final List<PlantType> plantTypes = plantModel.getModel_list();

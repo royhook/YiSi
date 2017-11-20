@@ -18,7 +18,8 @@ public class AlbumDetilsAdapter extends BaseQuickAdapter<AlbumImage, AlbumDetail
     }
 
     @Override
-    protected void convert(AlbumDetailsViewHolder helper, AlbumImage item, int position) {
-        GlideUtils.displayImage(mData.get(position).getImg_url(), helper.getImageView());
+    protected void convert(AlbumDetailsViewHolder helper, AlbumImage item) {
+        GlideUtils.displayImage(item.getImg_url(), helper.getImageView());
     }
+
 }

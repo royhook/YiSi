@@ -1,5 +1,7 @@
 package com.yisi.picture.baselib.utils;
 
+import android.util.Log;
+
 /**
  * Created by roy on 2017/1/16.
  */
@@ -7,9 +9,7 @@ package com.yisi.picture.baselib.utils;
 public class LogUtils {
 
     public static void d(String content) {
-//        if (BuildConfig.DEBUG) {
-//            Log.d("ysssssss", content);
-//        }
+        Log.d("qinglin", content);
     }
 
 }

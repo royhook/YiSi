@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 .add(R.id.main_content, mMainFragment, "main")
                 .commitAllowingStateLoss();
         showMainPage();
-        mCommonTabLayout.setCurrentTab(0);
+//        mCommonTabLayout.setCurrentTab(0);
     }
 
     private void hideFragment(Fragment fragment) {
