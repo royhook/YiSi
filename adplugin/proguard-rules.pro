@@ -24,3 +24,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.etap.** { *; }
+-keep  class com.lm.**{*;} 
+-keep  class com.luomi.**{*;}
+-keep  class com.nostra13.**{*;}
+

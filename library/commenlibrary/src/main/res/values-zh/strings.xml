@@ -1,4 +1,7 @@
 <resources>
     <string name="own_coin">金币赚取</string>
-
+    <string name="writesd_permission">请务必给我们这个权限，我们需要这个权限去缓存一些应用初始化必备文件,这会占用您非常小的存储空间!</string>
+    <string name="readsd_permission">我们需要此权限记录您的喜好，以便给您推送您最喜欢的内容!</string>
+    <string name="accesslocation_permission">我们会根据此权限推送最适合您地区的内容!</string>
+    <string name="no_permission">抱歉,您拒绝了权限,我们无法为您提供服务!</string>
 </resources>

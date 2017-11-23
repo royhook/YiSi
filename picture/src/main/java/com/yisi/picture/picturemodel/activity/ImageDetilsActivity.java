@@ -84,4 +84,6 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
     public int getId() {
         return requestId;
     }
+
+
 }

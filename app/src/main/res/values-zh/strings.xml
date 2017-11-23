@@ -14,4 +14,6 @@
     <string name="my_version">当前版本信息</string>
     <string name="my_coin">当前金币数:</string>
     <string name="nav_coin">金币赚取专区</string>
+    <string name="exit_click_again">再点一次真的退出了哦!</string>
+
 </resources>

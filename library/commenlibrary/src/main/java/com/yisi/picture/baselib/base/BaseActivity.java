@@ -23,6 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAty
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityLifestyle.getInstance().setGameCurrentActivity(this);
         initPresenter();
         initViews();
         initMultyView();

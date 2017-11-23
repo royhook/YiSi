@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+
+    <LinearLayout
+        android:layout_width="@dimen/px1020"
+        android:layout_height="@dimen/px686"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_insert_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px530"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/iv_insertimg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                />
+
+            <ImageView
+                android:id="@+id/iv_insert_close"
+                android:layout_width="@dimen/px70"
+                android:layout_height="@dimen/px70"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="@dimen/px10"
+                android:layout_marginTop="@dimen/px10"
+                android:src="@drawable/tencent_close"
+                android:visibility="visible"
+                />
+
+            <ImageView
+                android:id="@+id/ivAdCorner"
+                android:layout_width="@dimen/px90"
+                android:layout_height="@dimen/px90"
+                android:visibility="visible"
+                />
+
+            <ImageView
+                android:id="@+id/ivAdLogo"
+                android:layout_width="@dimen/px72"
+                android:layout_height="@dimen/px72"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_inserttxt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px156"
+            android:layout_below="@+id/rl_insert_img"
+            android:background="#06bdf1"
+            >
+
+            <ImageView
+                android:id="@+id/iv_insert_icon"
+                android:layout_width="@dimen/px114"
+                android:layout_height="@dimen/px114"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="@dimen/px21"
+                android:layout_marginLeft="@dimen/px24"
+                android:layout_marginTop="@dimen/px21"
+                android:scaleType="fitXY"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_insert_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/px21"
+                android:layout_marginLeft="@dimen/px22"
+                android:layout_marginRight="@dimen/px24"
+                android:layout_marginTop="@dimen/px14"
+                android:layout_toRightOf="@+id/iv_insert_icon"
+                android:singleLine="true"
+                android:textColor="#404040"
+                android:textSize="@dimen/px32"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

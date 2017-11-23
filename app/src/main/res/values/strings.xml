@@ -14,4 +14,5 @@
     <string name="my_version">Version</string>
     <string name="my_coin">current coins:</string>
     <string name="nav_coin">earn coin Area</string>
+    <string name="exit_click_again">Click again to quit</string>
 </resources>

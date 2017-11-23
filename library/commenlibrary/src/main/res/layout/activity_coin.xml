@@ -1,48 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/collect_activity_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px150"
-        android:background="@color/colorPrimary"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/collect_activity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px150"
+            android:background="@color/colorPrimary"
+            >
+
+            <ImageView
+                android:id="@+id/setting_activity_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px20"
+                android:src="@mipmap/back"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/own_coin"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
 
         <ImageView
-            android:id="@+id/setting_activity_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/px20"
-            android:src="@mipmap/back"/>
-
-
-        <TextView
+            android:id="@+id/btn_seead"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/own_coin"
-            android:textColor="@color/white"
-            android:textSize="16sp"/>
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btn_seead"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px400"
-        android:text="点我看普通广告"/>
+            android:layout_height="@dimen/px800"
+            android:layout_marginTop="@dimen/px20"
+            android:background="@mipmap/timg_first"
+            />
 
 
-    <Button
-        android:id="@+id/btn_seevideoad"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px400"
-        android:text="点我看视频广告"/>
+        <ImageView
+            android:id="@+id/btn_seevideoad"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px800"
+            android:layout_marginTop="@dimen/px20"
+            android:background="@mipmap/timg_second"
+            />
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

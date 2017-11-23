@@ -32,6 +32,7 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
     public static final int PLATFORM_FB_NATIVE = 5;//FB Native
     public static final int PLATFORM_ADMOB_NATIVE = 6;//Admob Native
     public static final int PLATFORM_BAT = 8;//Bat Media广告
+    public static final int PLATFORM_LUOMI = 3;//洛米广告
 
 
     public List<Ad> mAdList = new ArrayList<>();
@@ -45,7 +46,7 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
 
     public SparseArray<AdTracker> mAdTracker;//每个广告位对应多个厂商，用map保存，key为privider
 
-    public static AdConfig mAdconfig;
+    public static AdConfig mAdconfig = new AdConfig();
 
 
     /***
@@ -262,6 +263,9 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
                 ad_origen = "BAT Native";
                 break;
 
+            case PLATFORM_LUOMI:
+                ad_origen = "Luomi Native";
+                break;
             default:
 
                 break;

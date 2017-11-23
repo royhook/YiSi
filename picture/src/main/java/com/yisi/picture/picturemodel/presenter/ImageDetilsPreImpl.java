@@ -27,7 +27,6 @@ import yisi.adplugin.utils.CoinUtils;
 public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty, IImageDetilsModel, PlantImage> implements IDetilsPre {
 
     AliPlantAdapter mAliPlantAdapter;
-    List<PlantImage> mAliImages;
 
     public ImageDetilsPreImpl(IImageDetilsAty baseView) {
         super(baseView);
@@ -65,7 +64,7 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
         mAliPlantAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PlantImage image = mAliImages.get(position);
+                PlantImage image = currentList.get(position);
                 if (CoinUtils.canBuy(image.getId(), image.getCoin(), view)) {
                     startChoseActivity(position);
                 }
@@ -82,12 +81,11 @@ public class ImageDetilsPreImpl extends BaseRefreshPresenterImpl<IImageDetilsAty
     @Override
     public void onSuccess(List<PlantImage> t) {
         super.onSuccess(t);
-        mAliImages = t;
     }
 
 
     private void startChoseActivity(int position) {
-        PlantImage image = mAliImages.get(position);
+        PlantImage image = currentList.get(position);
         List<Image> imageUrls = image.getImage_list();
         String json = new Gson().toJson(imageUrls);
         Intent intent = ImageChoseActivity.getDateIntent(json, image.getId(), image.getName(), image.getImage_url());

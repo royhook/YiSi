@@ -22,6 +22,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
+import com.yisi.picture.baselib.R;
 
 import java.io.File;
 
@@ -89,10 +90,11 @@ public class GlideUtils {
      * @param imageView
      * @param loadListener
      */
-    private static void displayImage(final String imageUrl, final ImageView imageView, int defultRes, final LoaderListener
+    public static void displayImage(final String imageUrl, final ImageView imageView, final LoaderListener
             loadListener) {
 
-        Glide.with(mContext).load(imageUrl).skipMemoryCache(true).thumbnail(0.1f).listener(new RequestListener<String, GlideDrawable>() {
+        Glide.with(mContext).load(imageUrl).skipMemoryCache(true).placeholder(R.mipmap.load_defult).thumbnail(0.1f).listener(new RequestListener<String, GlideDrawable>
+                () {
             @Override
             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                 if (loadListener != null)
@@ -110,12 +112,12 @@ public class GlideUtils {
     }
 
     public static void displayImage(String imageUrl, final ImageView imageView, int defultRes) {
-        displayImage(imageUrl, imageView, defultRes, null);
+        displayImage(imageUrl, imageView, null);
     }
 
 
     public static void displayImage(String imageUrl, ImageView imageView) {
-        displayImage(imageUrl, imageView, 0, null);
+        displayImage(imageUrl, imageView, null);
     }
 
 
@@ -151,7 +153,7 @@ public class GlideUtils {
 
     public static void displayCircleImage(String url, ImageView imageView) {
 //        Glide.with(mContext).load(url).transform(new GlideRoundTransform(mContext, 2)).into(imageView);
-        Glide.with(mContext).load(url).asBitmap().transform(new GlideRoundTransform(mContext, 10)).into(imageView);
+        Glide.with(mContext).load(url).asBitmap().placeholder(R.mipmap.load_defult).transform(new GlideRoundTransform(mContext, 10)).into(imageView);
     }
 
 

@@ -92,9 +92,12 @@ public abstract class BaseAdPlace implements IAdCallProxy {
         Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
         ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
         View view = viewGroup.findViewById(R.id.btn_seead);
-        CoinUtils.addUsrCoin(300, view);
-        if (isForget())
+        if (view != null) {
+            CoinUtils.addUsrCoin(300, view);
+        }
+        if (isForget()) {
             return;
+        }
 
         if (mBaseAdBusiness != null)
             mBaseAdBusiness.onAdSkip();
@@ -102,8 +105,9 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdFailed(String message) {
-        if (isForget())
+        if (isForget()) {
             return;
+        }
 
         if (mBaseAdBusiness != null) {
             //记录每个厂商失败的次数

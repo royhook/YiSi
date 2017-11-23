@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -23,15 +24,14 @@ import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.baselib.rx.Event;
 import com.yisi.picture.baselib.rx.RxBus;
 import com.yisi.picture.baselib.rx.RxKey;
+import com.yisi.picture.baselib.utils.ReLockUtils;
 import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.database.YisiDatabase;
 import com.yisi.picture.picturemodel.fragment.MainPageFragment;
-import com.yisi.picture.baselib.utils.ReLockUtils;
 import com.yisi.picture.presenter.MainAtyPreImpl;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import rx.functions.Action1;
-import yisi.adplugin.AdPlugin;
 import yisi.adplugin.activity.CoinActivity;
 import yisi.adplugin.utils.CoinUtils;
 
@@ -44,12 +44,13 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     private Toolbar mToolbar;
     private TextView mCoinView;
     private NavigationView mNavigationView;
+    private long mLastClickTime;
+    private long mCurrentClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         YisiDatabase.getInstance().init();
-        AdPlugin.init();
         initFragment();
         ReLockUtils.startRelock();
     }
@@ -113,7 +114,8 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 openDrawer();
             }
         });
-        getSupportFragmentManager().beginTransaction()
+        getSupportFragmentManager()
+                .beginTransaction()
                 .add(R.id.main_content, mMainFragment, "main")
                 .commitAllowingStateLoss();
         showMainPage();
@@ -220,5 +222,17 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
     protected void onDestroy() {
         super.onDestroy();
         ReLockUtils.saveRelock();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //两次间隔小于2s的时候才真正退出
+        mCurrentClickTime = System.currentTimeMillis();
+        if (Math.abs(mCurrentClickTime - mLastClickTime) > 2000) {
+            Snackbar.make(mCommonTabLayout, R.string.exit_click_again, Snackbar.LENGTH_SHORT).show();
+            mLastClickTime = mCurrentClickTime;
+        } else {
+            super.onBackPressed();
+        }
     }
 }

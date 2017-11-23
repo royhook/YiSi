@@ -1,6 +1,6 @@
 package yisi.adplugin;
 
-import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.kinvey.android.callback.KinveyListCallback;
 import com.kinvey.android.store.DataStore;
@@ -13,6 +13,7 @@ import yisi.adplugin.bean.AdConfig;
 import yisi.adplugin.business.BaseAdBusiness;
 import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.business.RewardBusiness;
+import yisi.adplugin.business.ScreenAdBusiness;
 import yisi.adplugin.place.InterstitialPreloadAdPlace;
 import yisi.adplugin.utils.KyxSDKGlobal;
 
@@ -37,6 +38,7 @@ public class AdPlugin {
         });
     }
 
+
     /**
      * 请求广告
      */
@@ -45,15 +47,19 @@ public class AdPlugin {
     }
 
 
-    public static void showScreenAd(View view) {
+    public static void showScreenAd(RelativeLayout container, final IAdCallback callback) {
+        ScreenAdBusiness.getInstance().mRelativeLayout = container;
+        ScreenAdBusiness.getInstance().setAdCallback(callback);
+        ScreenAdBusiness.getInstance().requestAdData();
+    }
 
-
+    public static void distoryScreenAd() {
+        ScreenAdBusiness.getInstance().mRelativeLayout = null;
     }
 
     public static void init() {
         KyxSDKGlobal.mContext = YiSiApplication.mGlobleContext;
         requestAdConfig();
-
     }
 
     private static void requestAdConfig() {
