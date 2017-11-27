@@ -12,11 +12,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.flyco.tablayout.CommonTabLayout;
+import com.tencent.stat.MtaSDkException;
+import com.tencent.stat.StatService;
 import com.yisi.picture.R;
 import com.yisi.picture.activity.inter.IMainAty;
 import com.yisi.picture.baselib.application.YiSiApplication;
@@ -94,6 +97,22 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 }
             }
         });
+
+        initStateEvent();
+    }
+
+    private void initStateEvent() {
+        String appkey = "AA23YHN56VBQ";
+// 初始化并启动MTA
+        try {
+// 第三个参数必须为：com.tencent.stat.common.StatConstants.VERSION
+            StatService.startStatService(this, appkey,
+                    com.tencent.stat.common.StatConstants.VERSION);
+            Log.d("MTA", "MTA初始化成功");
+        } catch (MtaSDkException e) {
+// MTA初始化失败
+            Log.d("MTA", "MTA初始化失败" + e);
+        }
     }
 
     @Override

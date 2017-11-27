@@ -112,3 +112,7 @@
 #okserver
 -dontwarn com.lzy.okserver.**
 -keep class com.lzy.okserver.**{*;}
+
+#tencentstate
+-keep class com.tencent.stat.* { ;}
+-keep class com.tencent.mid.* { ;}
