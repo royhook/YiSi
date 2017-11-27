@@ -77,12 +77,12 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 openDrawer();
             }
         });
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, R.string.open, R.string.close);
         mDrawer.setDrawerListener(toggle);
         toggle.syncState();
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
         String coin = getText(R.string.my_coin) + String.valueOf(CoinUtils.getUsrCoin());
         mNavigationView.setNavigationItemSelectedListener(this);
         View view = mNavigationView.getHeaderView(0);
