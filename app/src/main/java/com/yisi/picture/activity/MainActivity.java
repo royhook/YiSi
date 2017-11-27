@@ -162,18 +162,18 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 startActivity(intent);
                 break;
 
-            case R.id.nav_send:
-
-                break;
+//            case R.id.nav_send:
+//
+//                break;
 
             case R.id.nav_coin:
                 Intent coinIntent = CoinActivity.getCoinIntent();
                 startActivity(coinIntent);
                 break;
 
-            case R.id.nav_share:
-                showShare();
-                break;
+//            case R.id.nav_share:
+//                showShare();
+//                break;
 
             case R.id.nav_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);
