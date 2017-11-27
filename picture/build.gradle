@@ -41,7 +41,7 @@ dependencies {
     compile project(':library:FlycoTabLayout_Lib')
     compile project(':library:xrecyclerview')
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support:design:26.1.0'
     compile project(':library:banner')
     compile project(':adplugin')
 

@@ -26,6 +26,7 @@
         android:textColor="#000000"
         android:textSize="@dimen/px30"/>
 
+
     <TextView
         android:id="@+id/adapter_plant_coin"
         android:layout_width="wrap_content"
@@ -35,5 +36,15 @@
         android:layout_marginTop="@dimen/px10"
         android:text="@string/need_coin"
         android:textColor="#000000"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adapter_plant_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/px10"
+        android:layout_toLeftOf="@+id/adapter_plant_coin"
+        android:src="@mipmap/coin_cost"/>
+
 
 </RelativeLayout>

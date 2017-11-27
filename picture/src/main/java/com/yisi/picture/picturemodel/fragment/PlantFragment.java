@@ -93,6 +93,18 @@ public class PlantFragment extends BaseFragment implements IPlansFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mBanner.startAutoPlay();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBanner.stopAutoPlay();
+    }
+
+    @Override
     public View getBanerView() {
         return mBanner;
     }

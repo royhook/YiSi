@@ -2,6 +2,7 @@ package com.yisi.picture.picturemodel.model;
 
 import com.kinvey.android.store.DataStore;
 import com.kinvey.java.Query;
+import com.kinvey.java.query.AbstractQuery;
 import com.kinvey.java.store.StoreType;
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseModelImpl;
@@ -25,8 +26,8 @@ public class ImageDetilsModelImpl extends BaseModelImpl<IDetilsPre> implements I
 
     @Override
     public void request(int page, int id) {
-        DataStore<PlantImage> dataStore = DataStore.collection("PlantImage", PlantImage.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
-        Query query = dataStore.query().setLimit(10).setSkip((page - 1) * 10).equals("plant_id", id);
+        DataStore<PlantImage> dataStore = DataStore.collection("PlantImage", PlantImage.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        Query query = dataStore.query().addSort("_kmd", AbstractQuery.SortOrder.DESC).setLimit(10).setSkip((page - 1) * 10).equals("plant_id", id);
         dataStore.find(query, new KinveyHelpCallback<PlantImage>() {
             @Override
             public void onDataSuccess(List<PlantImage> list) {

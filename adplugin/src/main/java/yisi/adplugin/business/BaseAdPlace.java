@@ -71,6 +71,13 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdPresent() {
+        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
+        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
+        View view = viewGroup.findViewById(R.id.btn_seead);
+        if (view != null) {
+            CoinUtils.addUsrCoin(200, view);
+        }
+
         if (isForget())
             return;
 
@@ -80,6 +87,13 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdClick() {
+        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
+        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
+        View view = viewGroup.findViewById(R.id.btn_seead);
+        if (view != null) {
+            CoinUtils.addUsrCoin(300, view);
+        }
+
         if (isForget())
             return;
 
@@ -89,12 +103,6 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdSkip() {
-        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
-        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
-        View view = viewGroup.findViewById(R.id.btn_seead);
-        if (view != null) {
-            CoinUtils.addUsrCoin(300, view);
-        }
         if (isForget()) {
             return;
         }

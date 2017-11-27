@@ -3,7 +3,8 @@
 
     <group android:checkableBehavior="all">
 
-        <item android:id="@+id/nav_coin"
+        <item
+            android:id="@+id/nav_coin"
             android:icon="@mipmap/coin"
             android:title="@string/nav_coin"/>
 

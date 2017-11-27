@@ -2,6 +2,7 @@ package com.yisi.picture.picturemodel.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -23,6 +24,7 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
     ImageView mImageView;
     ImageView mCloseView;
     RecyclerView mRecyclerView;
+    FloatingActionButton mScollerUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,13 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
         });
         String url = getIntent().getStringExtra(IntentKey.kEY_KIND_URL);
         GlideUtils.displayImage(url, mImageView);
+        mScollerUpBtn = findView(R.id.float_scoll_up);
+        mScollerUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mRecyclerView.smoothScrollToPosition(0);
+            }
+        });
     }
 
     @Override

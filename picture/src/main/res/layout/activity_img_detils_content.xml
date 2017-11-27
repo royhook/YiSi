@@ -50,7 +50,22 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/activity_image_detils"/>
+
+    <include
+        layout="@layout/activity_image_detils"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/float_scoll_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px40"
+        android:src="@mipmap/scoll_up"
+        android:visibility="invisible"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_anchor="@id/base_multiplestatusview"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior="com.yisi.picture.picturemodel.view.behavior.ScrollAwareFABBehavior"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
