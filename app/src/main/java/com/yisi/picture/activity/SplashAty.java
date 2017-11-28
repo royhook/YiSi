@@ -74,7 +74,6 @@ public class SplashAty extends BaseActivity implements ISplashAty {
             permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE};
         }
-        //国外的广告不需要READ_PHONE_STATE权限
         PermissionUtils.requestPermissions(permissions, "请授予以下权限", new PermissionUtils.OnRequestCallback() {
             @Override
             public void onSuccess() {

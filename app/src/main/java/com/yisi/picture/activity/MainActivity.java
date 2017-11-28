@@ -103,14 +103,14 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
 
     private void initStateEvent() {
         String appkey = "AA23YHN56VBQ";
-// 初始化并启动MTA
+        // 初始化并启动MTA
         try {
-// 第三个参数必须为：com.tencent.stat.common.StatConstants.VERSION
+            // 第三个参数必须为：com.tencent.stat.common.StatConstants.VERSION
             StatService.startStatService(this, appkey,
                     com.tencent.stat.common.StatConstants.VERSION);
             Log.d("MTA", "MTA初始化成功");
         } catch (MtaSDkException e) {
-// MTA初始化失败
+            // MTA初始化失败
             Log.d("MTA", "MTA初始化失败" + e);
         }
     }
@@ -181,18 +181,10 @@ public class MainActivity extends BaseActivity implements IMainAty, NavigationVi
                 startActivity(intent);
                 break;
 
-//            case R.id.nav_send:
-//
-//                break;
-
             case R.id.nav_coin:
                 Intent coinIntent = CoinActivity.getCoinIntent();
                 startActivity(coinIntent);
                 break;
-
-//            case R.id.nav_share:
-//                showShare();
-//                break;
 
             case R.id.nav_setting:
                 Intent settingIntent = new Intent(this, SettingActivity.class);

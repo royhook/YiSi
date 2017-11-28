@@ -52,8 +52,8 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.adapter_operate_image, container, false);
-        PinchImageView piv = (PinchImageView) view.findViewById(R.id.operate_iv_show);
-        final AVLoadingIndicatorView progressBar = (AVLoadingIndicatorView) view.findViewById(R.id.operate_pb);
+        PinchImageView piv = view.findViewById(R.id.operate_iv_show);
+        final AVLoadingIndicatorView progressBar =view.findViewById(R.id.operate_pb);
         progressBar.show();
         GlideUtils.displayImageWithThrun(images.get(position).getFwfhUrl(1200, 1200), piv, new GlideUtils.LoaderListener() {
             @Override
