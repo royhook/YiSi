@@ -19,7 +19,7 @@ public class ImageAdapter extends BaseQuickAdapter<Image, BaseViewHolder> {
 
 
     public ImageAdapter(List<Image> dataList) {
-        super(R.layout.adapter_image, dataList);
+        super(R.layout.adapter_type_image, dataList);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class ImageAdapter extends BaseQuickAdapter<Image, BaseViewHolder> {
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(item.getUrl(), imageView, R.mipmap.defult);
+        GlideUtils.displayImage(item.getFwfhUrl(800, 800), imageView);
     }
 }

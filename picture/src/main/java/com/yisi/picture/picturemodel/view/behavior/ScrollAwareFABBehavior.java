@@ -41,12 +41,12 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
 
         if (dyConsumed > 0) {
             //向上滑
-            if (child.getVisibility() != View.VISIBLE) {
+            if (child.getVisibility() == View.VISIBLE) {
                 animateOut(child);
             }
         } else if (dyConsumed < -20) {
             //向下滑
-            if (child.getVisibility() == View.VISIBLE) {
+            if (child.getVisibility() != View.VISIBLE) {
                 animateIn(child);
             }
         }

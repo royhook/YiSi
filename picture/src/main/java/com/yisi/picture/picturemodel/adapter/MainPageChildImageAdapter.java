@@ -39,7 +39,7 @@ public class MainPageChildImageAdapter extends BaseQuickAdapter<YiSiImage, BaseV
             imageView.setLayoutParams(params);
             imageView.setImageResource(R.mipmap.more);
         } else {
-            GlideUtils.displayImage(item.getImg_scale(), imageView, R.mipmap.defult);
+            GlideUtils.displayImage(item.getImg_scale(), imageView);
         }
     }
 }

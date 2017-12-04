@@ -93,7 +93,7 @@ public class PictureTable extends BaseTable {
         while (cursor.moveToNext()) {
             Image image = new Image();
             image.setUrl(cursor.getString(ImageColumn.COLUMN_IMAGE_URL_INDEX));
-            image.setType_id(cursor.getString(ImageColumn.COLUMN_IMAGE_TYPE_INDEX));
+            image.setType_id(cursor.getInt(ImageColumn.COLUMN_IMAGE_TYPE_INDEX));
             images.add(image);
         }
         return images;

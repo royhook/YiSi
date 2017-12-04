@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/adapter_plant_img"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px400"
+        android:layout_height="@dimen/px800"
         android:scaleType="centerCrop"
         android:transitionName="@string/trs_plant_operate"/>
 

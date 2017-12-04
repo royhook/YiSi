@@ -10,8 +10,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.yisi.picture.baselib.R;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,7 +44,7 @@ public class BitmapUtils {
             return bitmap;
         // 设置想要的大小
         float sample = height / (float) width;
-        int newHeight = ViewUtils.getDimen(R.dimen.px1200);
+        int newHeight = 1200;
 
         int newWidth = (int) (newHeight / sample);
         // 计算缩放比例

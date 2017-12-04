@@ -42,7 +42,7 @@
         <ImageView
             android:id="@+id/btn_seead"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px800"
+            android:layout_height="@dimen/px500"
             android:layout_marginTop="@dimen/px20"
             android:background="@drawable/selector_normal_click"
             />
@@ -51,7 +51,7 @@
         <ImageView
             android:id="@+id/btn_seevideoad"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px800"
+            android:layout_height="@dimen/px500"
             android:layout_marginTop="@dimen/px20"
             android:background="@drawable/selector_video_click"
             />

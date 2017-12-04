@@ -33,6 +33,7 @@ public class LuomiNative extends InterstitialPreloadAdPlace {
             public void onAdClick(View view) {
                 DRAgent.getInstance().uploadShowCLick(ActivityLifestyle.getInstance().getActivity(), mAdvertisement);
                 goNextAd();
+                LuomiNative.super.onAdClick();
             }
         });
     }

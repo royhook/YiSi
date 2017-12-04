@@ -163,8 +163,9 @@ public abstract class InterstitialPreloadAdPlace extends WindowAdPlace {
             @Override
             public void onClick(View v) {
                 onAdClick();
-                if (callback != null)
+                if (callback != null) {
                     callback.onAdClick(v);
+                }
             }
         });
         closeView.setOnClickListener(new View.OnClickListener() {

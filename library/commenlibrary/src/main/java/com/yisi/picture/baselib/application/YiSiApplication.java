@@ -36,7 +36,7 @@ public class YiSiApplication extends MultiDexApplication {
         mRefWatcher = LeakCanary.install(this);
         mKinveyClient = new Client
                 .Builder("kid_BJEr--R9b", "d7b13213fd244c238555b2655a42f687", this)
-                .setBaseUrl("https://ys.xn--nqvpe700br9kjqa.com")
+//                .setBaseUrl("https://ys.xn--nqvpe700br9kjqa.com")
                 .build();
         try {
             UserStore.login(mKinveyClient, new KinveyCachedClientCallback<User>() {

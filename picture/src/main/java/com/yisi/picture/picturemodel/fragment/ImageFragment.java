@@ -1,11 +1,13 @@
 package com.yisi.picture.picturemodel.fragment;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yisi.picture.baselib.base.BaseFragment;
+import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.fragment.inter.IImageFragment;
 import com.yisi.picture.picturemodel.presenter.ImagePresenter;
@@ -18,6 +20,7 @@ public class ImageFragment extends BaseFragment implements IImageFragment {
     int mId;
     RecyclerView mRecyclerView;
     private ImagePresenter mImagePresenter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
     public void setId(int id) {
@@ -28,6 +31,11 @@ public class ImageFragment extends BaseFragment implements IImageFragment {
     protected void initViews() {
         mImagePresenter = new ImagePresenter(this);
         mRecyclerView = findview(R.id.rv_image);
+        mSwipeRefreshLayout = findview(R.id.sr_fragment_plans);
+        mSwipeRefreshLayout.setProgressViewOffset(true, -20, ViewUtils.getDimen(R.dimen.px200));
+        mSwipeRefreshLayout.setProgressViewEndTarget(true, ViewUtils.getDimen(R.dimen.px200));
+        mSwipeRefreshLayout.setDistanceToTriggerSync(ViewUtils.getDimen(R.dimen.px200));
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
     }
 
     @Override
@@ -63,5 +71,16 @@ public class ImageFragment extends BaseFragment implements IImageFragment {
     @Override
     public Context getViewContext() {
         return getContext();
+    }
+
+    @Override
+    public void setSwipeLayoutListenr(SwipeRefreshLayout.OnRefreshListener listener) {
+        mSwipeRefreshLayout.setOnRefreshListener(listener);
+    }
+
+    @Override
+    public void onRefreshComlete() {
+        super.onRefreshComlete();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

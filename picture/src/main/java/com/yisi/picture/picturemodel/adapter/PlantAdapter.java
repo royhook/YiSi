@@ -33,7 +33,7 @@ public class PlantAdapter extends BaseQuickAdapter<RecommandPlantImage, BaseView
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(item.getWrapWidth(ViewUtils.getDimen(R.dimen.px800)), imageView, R.mipmap.defult);
+        GlideUtils.displayImage(item.getWrapWidth(ViewUtils.getDimen(R.dimen.px800)), imageView);
         textView.setText(item.getName());
     }
 

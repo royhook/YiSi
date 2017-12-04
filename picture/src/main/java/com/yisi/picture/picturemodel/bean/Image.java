@@ -2,6 +2,7 @@ package com.yisi.picture.picturemodel.bean;
 
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
+import com.kinvey.java.model.KinveyMetaData;
 
 /**
  * Created by chenql on 2017/8/30.
@@ -9,18 +10,28 @@ import com.google.api.client.util.Key;
  */
 
 public class Image extends GenericJson {
+
+    @Key("_id")
+    private String id;
     @Key
-    String img_url;//图片原质量Url
-
+    private String img_url;
     @Key
-    String type_id;//散图的图片类型id
+    private Integer type_id;
 
+    public Image() {
+    }  //GenericJson classes must have a public empty constructor
 
-    public void setType_id(String type_id) {
+    @Key("_kmd")
+    private KinveyMetaData meta;
+
+    @Key("_acl")
+    private KinveyMetaData.AccessControlList acl;
+
+    public void setType_id(Integer type_id) {
         this.type_id = type_id;
     }
 
-    public String getType_id() {
+    public Integer getType_id() {
         return type_id;
     }
 
@@ -45,7 +56,14 @@ public class Image extends GenericJson {
     }
 
     public String getFwfhUrl(int width, int height) {
-        return img_url + "!/fwfh/" + width + "x" + height;
+        return img_url + "!/fwfh/" + width + "x" + height + "/rotate/auto";
     }
 
+    public String getBigImageUrl() {
+        return img_url + "!bigimg";
+    }
+
+    public String getNormalImageUrl() {
+        return img_url + "!normalimage";
+    }
 }

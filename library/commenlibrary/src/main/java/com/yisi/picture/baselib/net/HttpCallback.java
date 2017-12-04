@@ -23,7 +23,7 @@ public abstract class HttpCallback<T> extends StringCallback {
     @Override
     public void onSuccess(String s, Call call, Response response) {
         try {
-            Log.d("studio",s);
+            Log.d("studio", s);
             T result = parseResponse(s);
             onSuccess(result);
 

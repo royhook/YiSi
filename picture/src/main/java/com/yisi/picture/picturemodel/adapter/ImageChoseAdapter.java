@@ -32,6 +32,6 @@ public class ImageChoseAdapter extends BaseQuickAdapter<Image, ImageChoseViewHol
             params.leftMargin = ViewUtils.getDimen(R.dimen.px4);
             view.setLayoutParams(params);
         }
-        GlideUtils.displayImage(item.getFwfhUrl(500,500), helper.getImageView());
+        GlideUtils.displayImage(item.getFwfhUrl(500, 500), helper.getImageView(), true);
     }
 }

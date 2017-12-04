@@ -11,17 +11,15 @@
         android:id="@+id/operate_iv_show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        />
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/operate_pb"
         android:layout_width="@dimen/px100"
         android:layout_height="@dimen/px100"
         android:layout_centerInParent="true"
-        app:indicatorName="BallSpinFadeLoaderIndicator"
         app:indicatorColor="@color/colorAccent"
+        app:indicatorName="BallSpinFadeLoaderIndicator"
         />
 
 </RelativeLayout>

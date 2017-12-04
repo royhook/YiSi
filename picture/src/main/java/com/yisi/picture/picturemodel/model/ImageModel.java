@@ -27,8 +27,8 @@ public class ImageModel extends BaseModelImpl<IImagePresenter> implements IImage
      */
     @Override
     public void request(int id, int page) {
-        DataStore<Image> dataStore = DataStore.collection("Image", Image.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
-        Query query = dataStore.query().setLimit(10).setSkip((page - 1) * 10).equals("plant_id", id);
+        DataStore<Image> dataStore = DataStore.collection("Image", Image.class, StoreType.NETWORK, YiSiApplication.getKinveyClient());
+        Query query = dataStore.query().setLimit(10).setSkip((page) * 10).equals("type_id", id);
         dataStore.find(query, new KinveyHelpCallback<Image>() {
             @Override
             public void onDataSuccess(List<Image> list) {

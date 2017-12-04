@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,6 +39,13 @@ public class ImageDetilsActivity extends BaseActivity implements IImageDetilsAty
         super.onLoadingSuccess();
         if (mRecyclerView == null) {
             mRecyclerView = findView(R.id.rv_content_img_detils);
+            mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    Log.d("cql", "dx:" + dx + "dy:" + dy);
+                }
+            });
         }
     }
 

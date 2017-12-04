@@ -1,6 +1,7 @@
 package com.yisi.picture.picturemodel.adapter;
 
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,9 +54,10 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.adapter_operate_image, container, false);
         PinchImageView piv = view.findViewById(R.id.operate_iv_show);
-        final AVLoadingIndicatorView progressBar =view.findViewById(R.id.operate_pb);
+        final AVLoadingIndicatorView progressBar = view.findViewById(R.id.operate_pb);
         progressBar.show();
-        GlideUtils.displayImageWithThrun(images.get(position).getFwfhUrl(1200, 1200), piv, new GlideUtils.LoaderListener() {
+        Log.d("cql", images.get(position).getBigImageUrl());
+        GlideUtils.displayImage(images.get(position).getFwfhUrl(1200, 1200), piv, new GlideUtils.LoaderListener() {
             @Override
             public void loadSuccess() {
                 progressBar.hide();
@@ -65,7 +67,7 @@ public class ImageOperatePagerAdapter extends PagerAdapter {
             public void loadFail(String errorMessage) {
                 progressBar.hide();
             }
-        });
+        }, true, false);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

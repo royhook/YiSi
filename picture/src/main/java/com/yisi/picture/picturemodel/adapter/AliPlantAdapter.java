@@ -34,8 +34,7 @@ public class AliPlantAdapter extends BaseQuickAdapter<PlantImage, BaseViewHolder
             layoutParams.leftMargin = imageView.getContext().getResources().getDimensionPixelOffset(R.dimen.px1);
             imageView.setLayoutParams(layoutParams);
         }
-        GlideUtils.displayImage(item.getFwfhUrl(800, 1200), imageView, R.mipmap
-                .defult);
+        GlideUtils.displayImage(item.getFwfhUrl(500, 500), imageView);
         textView.setText(item.getName());
         String coin = YiSiApplication.getStringResource(R.string.need_coin) + item.getCoin();
         coinView.setText(coin);

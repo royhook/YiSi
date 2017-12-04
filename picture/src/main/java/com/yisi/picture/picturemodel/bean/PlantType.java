@@ -51,8 +51,13 @@ public class PlantType extends GenericJson {
     }
 
     public String getWebpImageUrl() {
-        return img_url + "!/format/webp";
+        return img_url + "!normalimage";
     }
+
+    public String getFwfhUrl(int width, int height) {
+        return img_url + "!/fwfh/" + width + "x" + height + "/rotate/auto";
+    }
+
 
     public String getTitle() {
         String lan = DeviceUtils.getSystemLaungue();

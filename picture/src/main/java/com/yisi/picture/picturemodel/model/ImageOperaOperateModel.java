@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.yisi.picture.baselib.base.BaseModelImpl;
 import com.yisi.picture.baselib.utils.IntentKey;
 import com.yisi.picture.picturemodel.bean.Image;
-import com.yisi.picture.picturemodel.bean.YiSiImage;
 import com.yisi.picture.picturemodel.model.inter.IImageOperateModel;
 import com.yisi.picture.picturemodel.presenter.inter.IImageOperaPre;
 
@@ -33,16 +32,4 @@ public class ImageOperaOperateModel extends BaseModelImpl<IImageOperaPre> implem
         }.getType());
         mPresenter.onSuccess(images, postion);
     }
-
-    /**
-     * 增加一张作为转换页面使用的
-     *
-     * @param yiSiImages
-     */
-    private void addChangeAlbum(List<YiSiImage> yiSiImages) {
-        YiSiImage yiSiImage = new YiSiImage();
-        yiSiImage.setImg_url("www");
-        yiSiImages.add(yiSiImage);
-    }
-
 }

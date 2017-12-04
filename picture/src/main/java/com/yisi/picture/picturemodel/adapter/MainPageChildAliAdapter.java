@@ -1,6 +1,7 @@
 package com.yisi.picture.picturemodel.adapter;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,7 +65,7 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
                     public void onClick(View v) {
                         mClickListener.onClick(plantTypes.get(finalI).getId(),
                                 plantTypes.get(finalI).getTitle(),
-                                plantTypes.get(finalI).getWebpImageUrl(),
+                                plantTypes.get(finalI).getFwfhUrl(500, 500),
                                 imageView);
                     }
                 });
@@ -84,7 +85,7 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
     }
 
     private void displayImage(String url, ImageView imageView) {
-        GlideUtils.displayCircleImage(url, imageView);
+        GlideUtils.displayImage(url, imageView);
     }
 
     public void setTextView(View parent, PlantType plantType) {
@@ -95,7 +96,8 @@ public class MainPageChildAliAdapter extends BaseQuickAdapter<PlantModel, BaseVi
 
     public ImageView setImageView(View parent, PlantType plantType) {
         ImageView imageView = ViewUtils.findView(parent, R.id.iv_detiles_img);
-        displayImage(plantType.getWebpImageUrl(), imageView);
+        Log.d("cql", plantType.getFwfhUrl(500, 500));
+        displayImage(plantType.getFwfhUrl(500, 500), imageView);
         return imageView;
     }
 }

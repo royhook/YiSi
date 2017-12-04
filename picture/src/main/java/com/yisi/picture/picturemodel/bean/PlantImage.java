@@ -55,8 +55,13 @@ public class PlantImage extends GenericJson implements Serializable {
     }
 
     public String getWebpImageUrl() {
-        return img_url + "!/format/webp";
+        return img_url + "!normalimage";
     }
+
+    public String getFwfhUrl(int width, int height) {
+        return img_url + "!/fwfh/" + width + "x" + height + "/rotate/auto";
+    }
+
 
     public List<Image> getImage_list() {
         return image_list;
@@ -86,10 +91,6 @@ public class PlantImage extends GenericJson implements Serializable {
 
     public String getWrapWidth(int height) {
         return img_url + "!/fh/" + height;
-    }
-
-    public String getFwfhUrl(int width, int height) {
-        return img_url + "!/fwfh/" + width + "x" + height;
     }
 
     public String getScale(int scale) {
