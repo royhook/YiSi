@@ -66,6 +66,7 @@ public class CoinUtils {
                 @Override
                 public void onClick(View v) {
                     Intent intent = CoinActivity.getCoinIntent();
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     YiSiApplication.mGlobleContext.startActivity(intent);
                 }
             });
