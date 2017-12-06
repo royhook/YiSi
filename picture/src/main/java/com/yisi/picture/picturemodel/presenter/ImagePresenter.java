@@ -15,6 +15,7 @@ import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.activity.ImageOperateActivity;
 import com.yisi.picture.picturemodel.adapter.ImageAdapter;
 import com.yisi.picture.picturemodel.bean.Image;
+import com.yisi.picture.picturemodel.bean.TypeImage;
 import com.yisi.picture.picturemodel.fragment.inter.IImageFragment;
 import com.yisi.picture.picturemodel.model.ImageModel;
 import com.yisi.picture.picturemodel.model.inter.IImageModel;
@@ -27,7 +28,7 @@ import java.util.List;
  * Created by chenql on 2017/10/14.
  */
 
-public class ImagePresenter extends BaseRefreshPresenterImpl<IImageFragment, IImageModel, Image> implements IImagePresenter {
+public class ImagePresenter extends BaseRefreshPresenterImpl<IImageFragment, IImageModel, TypeImage> implements IImagePresenter {
 
     ImageAdapter mImageAdapter;
 
@@ -67,9 +68,7 @@ public class ImagePresenter extends BaseRefreshPresenterImpl<IImageFragment, IIm
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 List<Image> imgs = new ArrayList<>();
                 for (int i = 0; i < currentList.size(); i++) {
-                    Image eImage = new Image();
-                    eImage.setUrl(currentList.get(i).getUrl());
-                    imgs.add(eImage);
+                    imgs.add(currentList.get(i).getImage());
                 }
 
                 ActivityOptions transitionActivityOptions = null;

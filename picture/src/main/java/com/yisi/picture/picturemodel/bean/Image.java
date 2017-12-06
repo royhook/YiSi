@@ -16,7 +16,7 @@ public class Image extends GenericJson {
     @Key
     private String img_url;
     @Key
-    private Integer type_id;
+    private int type_id;
 
     public Image() {
     }  //GenericJson classes must have a public empty constructor
@@ -27,11 +27,11 @@ public class Image extends GenericJson {
     @Key("_acl")
     private KinveyMetaData.AccessControlList acl;
 
-    public void setType_id(Integer type_id) {
+    public void setType_id(int type_id) {
         this.type_id = type_id;
     }
 
-    public Integer getType_id() {
+    public int getType_id() {
         return type_id;
     }
 

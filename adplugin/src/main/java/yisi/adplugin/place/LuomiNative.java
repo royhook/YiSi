@@ -50,7 +50,7 @@ public class LuomiNative extends InterstitialPreloadAdPlace {
                         mAdvertisement = advertisement;
                         mNativeAdInfo = new NativeAdInfo();
                         String text = advertisement.getWenzi();
-                        String title = text.substring(0, 2);
+                        String title = "Ad";
                         mNativeAdInfo.setTitle(title);
                         mNativeAdInfo.setDesc(advertisement.getWenzi());
                         mNativeAdInfo.setImageUrl(advertisement.getImgurl());

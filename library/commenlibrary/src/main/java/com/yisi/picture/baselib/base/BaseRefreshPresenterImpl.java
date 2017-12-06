@@ -110,7 +110,8 @@ public abstract class BaseRefreshPresenterImpl<V extends IBaseAty, M extends IBa
         if (REFRESH_TYPE != REFRESH_LOADMORE) {
             mView.onEmpty();
         } else {
-            getRefreshAdapter().loadMoreEnd();
+            if (getRefreshAdapter() != null)
+                getRefreshAdapter().loadMoreEnd();
         }
     }
 
