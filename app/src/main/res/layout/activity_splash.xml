@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/splash_ad_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px1300">
+        android:layout_height="@dimen/px1500">
     </RelativeLayout>
 
     <ImageView

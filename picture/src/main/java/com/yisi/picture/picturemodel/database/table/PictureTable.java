@@ -31,7 +31,6 @@ public class PictureTable extends BaseTable {
         ContentValues values = new ContentValues();
         values.put(ImageColumn.COLUMN_ID, image.getUrl());
         values.put(ImageColumn.COLUMN_IMAGE_URL, image.getUrl());
-        values.put(ImageColumn.COLUMN_IMAGE_TYPE, image.getType_id());
         return values;
     }
 
@@ -93,7 +92,6 @@ public class PictureTable extends BaseTable {
         while (cursor.moveToNext()) {
             Image image = new Image();
             image.setUrl(cursor.getString(ImageColumn.COLUMN_IMAGE_URL_INDEX));
-            image.setType_id(cursor.getInt(ImageColumn.COLUMN_IMAGE_TYPE_INDEX));
             images.add(image);
         }
         return images;

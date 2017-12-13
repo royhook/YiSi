@@ -94,4 +94,9 @@ public class RecommandPlantImage extends GenericJson {
     public String getWrapWidth(int height) {
         return img_url + "!/fh/" + height;
     }
+
+    public String getFwfhUrl(int width, int height) {
+        return img_url + "!/fwfh/" + width + "x" + height + "/rotate/auto";
+    }
+
 }

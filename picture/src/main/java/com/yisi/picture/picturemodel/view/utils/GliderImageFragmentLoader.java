@@ -4,8 +4,6 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.yisi.picture.baselib.utils.GlideUtils;
-import com.yisi.picture.baselib.utils.ViewUtils;
-import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 import com.youth.banner.loader.ImageLoader;
 
@@ -17,6 +15,6 @@ public class GliderImageFragmentLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         RecommandPlantImage recommandPlantImage = (RecommandPlantImage) path;
-        GlideUtils.displayImage(recommandPlantImage.getWrapWidth(ViewUtils.getDimen(R.dimen.px600)), imageView);
+        GlideUtils.displayImage(recommandPlantImage.getFwfhUrl(600, 600), imageView);
     }
 }

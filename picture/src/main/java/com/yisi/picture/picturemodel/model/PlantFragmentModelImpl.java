@@ -6,6 +6,8 @@ import com.kinvey.java.Query;
 import com.kinvey.java.store.StoreType;
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseModelImpl;
+import com.yisi.picture.baselib.utils.PreferenceKey;
+import com.yisi.picture.baselib.utils.PreferencesUtils;
 import com.yisi.picture.picturemodel.bean.RecommandPlantImage;
 import com.yisi.picture.picturemodel.model.inter.IPlantModel;
 import com.yisi.picture.picturemodel.net.KinveyHelpCallback;
@@ -26,9 +28,11 @@ public class PlantFragmentModelImpl extends BaseModelImpl<IPlantFragmentPre<Reco
 
     @Override
     public void request(int page, boolean readCache) {
+        //获取到推荐的期数
+        int data = PreferencesUtils.getInt(YiSiApplication.mGlobleContext, PreferenceKey.MY_RECOMMAND_DATA);
         DataStore<RecommandPlantImage> dataStore = DataStore.collection("RecommandPlantImage", RecommandPlantImage.class, StoreType.CACHE, YiSiApplication
                 .getKinveyClient());
-        Query query = dataStore.query().setSkip(page * 10).setLimit(10);
+        Query query = dataStore.query().setSkip(page * 10).setLimit(10).equals("recommand_data", data);
         dataStore.find(query, new KinveyHelpCallback<RecommandPlantImage>() {
             @Override
             public void onDataSuccess(List<RecommandPlantImage> list) {

@@ -2,7 +2,6 @@ package com.yisi.picture.picturemodel.bean;
 
 import com.google.api.client.json.GenericJson;
 import com.google.api.client.util.Key;
-import com.kinvey.java.model.KinveyMetaData;
 
 /**
  * Created by chenql on 2017/8/30.
@@ -15,25 +14,9 @@ public class Image extends GenericJson {
     private String id;
     @Key
     private String img_url;
-    @Key
-    private int type_id;
 
     public Image() {
     }  //GenericJson classes must have a public empty constructor
-
-    @Key("_kmd")
-    private KinveyMetaData meta;
-
-    @Key("_acl")
-    private KinveyMetaData.AccessControlList acl;
-
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
-    }
-
-    public int getType_id() {
-        return type_id;
-    }
 
     public void setUrl(String url) {
         this.img_url = url;

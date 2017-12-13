@@ -19,7 +19,7 @@ public class MainAtyPreImpl extends BasePresenterImpl<IMainAty, IMainAtyModel> i
 
     @Override
     public void initDatas() {
-
+        mModel.request();
     }
 
     @Override
