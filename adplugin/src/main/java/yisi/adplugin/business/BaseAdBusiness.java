@@ -31,7 +31,8 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
     public static final int PLATFORM_ADMOB = 2;//Admob
     public static final int PLATFORM_FB_NATIVE = 5;//FB Native
     public static final int PLATFORM_ADMOB_NATIVE = 6;//Admob Native
-    public static final int PLATFORM_BAT = 8;//Bat Media广告
+    public static final int PLATFORM_BAT_NATIVE = 8;//Bat Media广告
+    public static final int PLATFORM_BAT_FULL = 9;//Bat Full广告
     public static final int PLATFORM_LUOMI = 3;//洛米广告
 
 
@@ -259,7 +260,7 @@ public abstract class BaseAdBusiness implements IAdCallProxy {
                 ad_origen = "Admob Native";
                 break;
 
-            case PLATFORM_BAT:
+            case PLATFORM_BAT_NATIVE:
                 ad_origen = "BAT Native";
                 break;
 

@@ -2,10 +2,10 @@ package yisi.adplugin.business;
 
 
 import yisi.adplugin.place.AdMobInterstitialAd;
+import yisi.adplugin.place.BatFullInterstitialAd;
 import yisi.adplugin.place.BatNativeInterstitialAd;
 import yisi.adplugin.bean.Ad;
 import yisi.adplugin.bean.BaseAd;
-import yisi.adplugin.place.LuomiNative;
 
 /**
  * Created by chenql on 2017/6/5.
@@ -31,21 +31,21 @@ public class RewardBusiness extends BaseAdBusiness {
                 mBaseAdPlace = new AdMobInterstitialAd();
                 break;
 
-            case PLATFORM_ADMOB_NATIVE:
-                break;
-
             case PLATFORM_FACEBOOK:
                 break;
 
             case PLATFORM_FB_NATIVE:
 
                 break;
-            case PLATFORM_BAT:
+            case PLATFORM_BAT_NATIVE:
                 mBaseAdPlace = new BatNativeInterstitialAd();
                 break;
 
+            case PLATFORM_BAT_FULL:
+                mBaseAdPlace = new BatFullInterstitialAd();
+                break;
+
             case PLATFORM_LUOMI:
-                mBaseAdPlace = new LuomiNative();
                 break;
 
             default:
