@@ -50,7 +50,6 @@ public class BatScreenAd extends ScreenNativeAdPlace {
 
             @Override
             public void onAdShowed() {
-                onAdPresent();
             }
 
             @Override
@@ -85,6 +84,8 @@ public class BatScreenAd extends ScreenNativeAdPlace {
             showNativeAd(nativeAdInfo, new IAdCallback() {
                 @Override
                 public void onAdPresent(View view) {
+                    if (((ScreenAdBusiness) mBaseAdBusiness).mRelativeLayout == null)
+                        return;
                     mNative.registerView(view, ad);
                     ((ScreenAdBusiness) mBaseAdBusiness).mRelativeLayout.addView(view);
                 }

@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.yisi.picture.baselib.base.BaseFragment;
-import com.yisi.picture.baselib.utils.DeviceUtils;
 import com.yisi.picture.baselib.utils.ViewUtils;
 import com.yisi.picture.picturemodel.R;
 import com.yisi.picture.picturemodel.adapter.MainContentPagerAdapter;
@@ -44,10 +42,7 @@ public class MainPageFragment extends BaseFragment implements IMainFragment {
     @Override
     protected void initViews() {
         mSlidingTabLayout = findview(R.id.main_fragment_slidertab);
-        String lan = DeviceUtils.getSystemLaungue();
-        if (!TextUtils.isEmpty(lan) && lan.contains("zh")) {
-            mSlidingTabLayout.setTabWidth(ViewUtils.getDimen(R.dimen.px100));
-        }
+        mSlidingTabLayout.setTabWidth(ViewUtils.getDimen(R.dimen.px100));
         mViewPager = findview(R.id.main_fragment_vp_content);
         mMultipleStatusView = findview(R.id.base_multiplestatusview);
     }

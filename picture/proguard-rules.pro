@@ -27,3 +27,5 @@
 -keep class com.chad.library.adapter.** {
    *;
 }
+
+-keep class com.yisi.picture.picturemodel.bean.** {*;}

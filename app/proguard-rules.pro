@@ -16,7 +16,7 @@
 #   public *;
 #}
 -keep class com.yisi.picture.bean.**{*;}
-
+-keep class com.yisi.picture.picturemodel.** {*;}
 #bmob
 -keep class cn.bmob.v3.**{*;}
 
@@ -109,6 +109,7 @@
 -dontwarn com.lzy.okrx.**
 -keep class com.lzy.okrx.**{*;}
 
+
 #okserver
 -dontwarn com.lzy.okserver.**
 -keep class com.lzy.okserver.**{*;}
@@ -119,3 +120,12 @@
 
 #luomi
 -keep class com.luomi.**{*;}
+
+#kinvey
+-keep class com.kinvey.** {*;}
+
+#progressbar
+-keep class com.wang.** {*;}
+
+#Adplugin
+-keep class yisi.adplugin.bean.** {*;}

@@ -20,10 +20,6 @@
             android:exported="false"
             android:theme="@style/AppThemeNoTitle"/>
         <activity
-            android:name=".activity.AlbumActivity"
-            android:exported="false"
-            android:theme="@style/AppThemeNoTitle"/>
-        <activity
             android:name=".activity.AlbumDiagramDetilsActivity"
             android:exported="false"
             android:theme="@style/AppThemeNoTitle"/>

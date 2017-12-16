@@ -47,12 +47,18 @@ public class CoinUtils {
         }
     }
 
-    public static void addUsrCoin(int coin) {
+    public static void addUsrCoin(int coin, boolean toast) {
         int currentCoin = getUsrCoin();
         currentCoin = currentCoin + coin;
         saveUsrCoin(currentCoin);
-        Toast.makeText(KyxSDKGlobal.mContext, KyxSDKGlobal.mContext.getResources().getString(R.string.add_coin, coin, currentCoin), Toast.LENGTH_LONG).show();
+        if (toast) {
+            Toast.makeText(KyxSDKGlobal.mContext, KyxSDKGlobal.mContext.getResources().getString(R.string.add_coin, coin, currentCoin), Toast.LENGTH_LONG).show();
+        }
         RxBus.getInstance().send(new Event<String>(RxKey.COIN_EXCHANGE, null));
+    }
+
+    public static void addUsrCoin(int coin) {
+        addUsrCoin(coin, true);
     }
 
     public static boolean canBuy(String id, int price, View view) {

@@ -1,5 +1,7 @@
 package com.yisi.picture.model;
 
+import android.util.Log;
+
 import com.kinvey.android.store.DataStore;
 import com.kinvey.java.store.StoreType;
 import com.yisi.picture.baselib.application.YiSiApplication;
@@ -24,11 +26,13 @@ public class MainAtyModel extends BaseModelImpl<IMainAtyPre> implements IMainAty
 
     @Override
     public void request() {
+        Log.d("cql", "请求全局接口");
         //请求全局接口
         DataStore<GlobalSetting> dataStore = DataStore.collection("GlobalSetting", GlobalSetting.class, StoreType.CACHE, YiSiApplication.getKinveyClient());
         dataStore.find(new KinveyHelpCallback<GlobalSetting>() {
             @Override
             public void onDataSuccess(List<GlobalSetting> list) {
+                Log.d("cql", "请求全局success");
                 GlobalSetting globalSetting = list.get(0);
                 if (globalSetting != null) {
                     int data = globalSetting.getRecommand_data();
@@ -38,6 +42,8 @@ public class MainAtyModel extends BaseModelImpl<IMainAtyPre> implements IMainAty
 
             @Override
             public void onFail(Throwable throwable) {
+                Log.d("cql", "请求全局接口fail");
+
             }
 
             @Override

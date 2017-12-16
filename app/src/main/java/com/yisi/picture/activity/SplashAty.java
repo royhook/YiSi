@@ -11,16 +11,13 @@ import com.yisi.picture.activity.inter.ISplashAty;
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.base.BaseActivity;
 import com.yisi.picture.baselib.utils.BitmapUtils;
-import com.yisi.picture.baselib.utils.DeviceUtils;
 import com.yisi.picture.baselib.utils.DirManager;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.LogUtils;
 import com.yisi.picture.baselib.utils.PermissionUtils;
 import com.yisi.picture.baselib.utils.ViewUtils;
 
-import cn.sharesdk.framework.ShareSDK;
 import yisi.adplugin.AdPlugin;
-import yisi.adplugin.activity.CoinActivity;
 import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.business.ScreenAdBusiness;
 
@@ -67,14 +64,7 @@ public class SplashAty extends BaseActivity implements ISplashAty {
         relativeLayout = findView(R.id.splash_ad_view);
         PermissionUtils.init(YiSiApplication.mGlobleContext);
         String[] permissions;
-        if (DeviceUtils.isChinese()) {
-            permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.READ_PHONE_STATE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        } else {
-            permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        }
+        permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         PermissionUtils.requestPermissions(permissions, "请授予以下权限", new PermissionUtils.OnRequestCallback() {
             @Override
             public void onSuccess() {
@@ -129,11 +119,10 @@ public class SplashAty extends BaseActivity implements ISplashAty {
             return;
         }
         hasGoMain = true;
-        Intent intent = new Intent(SplashAty.this, CoinActivity.class);
+        Intent intent = new Intent(SplashAty.this, MainActivity.class);
         startActivity(intent);
         SplashAty.this.finish();
         overridePendingTransition(0, 0);
-        ShareSDK.initSDK(this);
     }
 
 

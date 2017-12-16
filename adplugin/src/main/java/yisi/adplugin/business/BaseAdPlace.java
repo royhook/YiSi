@@ -78,7 +78,7 @@ public abstract class BaseAdPlace implements IAdCallProxy {
     @Override
     public void onAdClick() {
 
-        CoinUtils.addUsrCoin(300);
+        CoinUtils.addUsrCoin(300, false);
 
         if (isForget())
             return;

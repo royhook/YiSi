@@ -76,14 +76,12 @@ public class ScreenAdBusiness extends BaseAdBusiness {
 
     @Override
     public void onAdSkip() {
-        super.onAdSkip();
         if (mAdCallback != null)
             mAdCallback.onSkip();
     }
 
     @Override
     public void onAdClick() {
-        super.onAdClick();
         isDoingClick = true;
     }
 
@@ -91,6 +89,5 @@ public class ScreenAdBusiness extends BaseAdBusiness {
     public void onAdFailed(String message) {
         if (mAdCallback != null)
             mAdCallback.onUnAvaliable();
-        super.onAdFailed(message);
     }
 }
