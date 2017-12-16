@@ -19,7 +19,7 @@ public class RewardVideoBusiness extends BaseAdBusiness {
 
     @Override
     protected BaseAd getAdPlanment() {
-        return mAdconfig.getRewardAd();
+        return mAdconfig.getReward_video();
     }
 
     @Override

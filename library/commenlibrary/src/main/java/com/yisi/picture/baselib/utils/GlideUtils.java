@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.DrawableRequestBuilder;
@@ -89,34 +88,40 @@ public class GlideUtils {
      * @param tranform     是否执行压缩
      */
     public static void displayImage(final String imageUrl, final ImageView imageView, final LoaderListener loadListener, boolean tranform, boolean placeholder) {
-        DrawableRequestBuilder builder = Glide.with(mContext)
-                .load(imageUrl)
-                .skipMemoryCache(true)
-                .error(R.mipmap.load_error)
-                .crossFade()
-                .listener(new RequestListener<String,
-                        GlideDrawable>
-                        () {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        if (loadListener != null)
-                            loadListener.loadFail(e.getMessage());
-                        return false;
-                    }
 
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        if (loadListener != null)
-                            loadListener.loadSuccess();
-                        return false;
-                    }
-                });
-        if (tranform)
-            builder.transform(new CropTransform(YiSiApplication.mGlobleContext));
-        if (placeholder)
-            builder.placeholder(R.mipmap.load_defult);
+        try {
+            DrawableRequestBuilder builder = Glide.with(mContext)
+                    .load(imageUrl)
+                    .skipMemoryCache(true)
+                    .error(R.mipmap.load_error)
+                    .crossFade()
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            if (loadListener != null)
+                                loadListener.loadFail(e.getMessage());
+                            return false;
+                        }
 
-        builder.into(imageView);
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            if (loadListener != null)
+                                loadListener.loadSuccess();
+                            return false;
+                        }
+                    });
+            if (tranform) {
+                builder.transform(new CropTransform(YiSiApplication.mGlobleContext));
+            }
+            if (placeholder) {
+                builder.placeholder(R.mipmap.load_defult);
+            }
+
+            builder.into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -134,37 +139,6 @@ public class GlideUtils {
 
     public static void displayImage(String imageUrl, ImageView imageView) {
         displayImage(imageUrl, imageView, null);
-    }
-
-    /**
-     * 加载缩略图
-     *
-     * @param url
-     * @param imageView
-     */
-    public static void displayImageWithThrun(String url, ImageView imageView, final LoaderListener loaderListener) {
-        if (TextUtils.isEmpty(url))
-            return;
-        Glide.with(mContext).load(url).thumbnail(0.1f).listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                if (loaderListener != null)
-                    loaderListener.loadFail(e.getMessage());
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                if (loaderListener != null)
-                    loaderListener.loadSuccess();
-                return false;
-            }
-        }).into(imageView);
-    }
-
-    public static void displayCircleImage(String url, ImageView imageView) {
-//        Glide.with(mContext).load(url).transform(new GlideRoundTransform(mContext, 2)).into(imageView);
-        Glide.with(mContext).load(url).asBitmap().placeholder(R.mipmap.load_defult).transform(new GlideRoundTransform(mContext, 10)).into(imageView);
     }
 
 

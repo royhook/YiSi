@@ -38,7 +38,7 @@ public class AdMobRewardVideo extends InterstitialPreloadAdPlace {
 
             @Override
             public void onRewardedVideoAdClosed() {
-
+                onAdSkip();
             }
 
             @Override

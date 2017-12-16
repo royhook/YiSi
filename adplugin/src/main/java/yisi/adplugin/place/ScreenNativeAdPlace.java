@@ -1,11 +1,16 @@
 package yisi.adplugin.place;
 
+import android.graphics.Bitmap;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.yisi.picture.baselib.utils.GlideUtils;
 import com.yisi.picture.baselib.utils.ViewUtils;
 
@@ -24,16 +29,18 @@ public abstract class ScreenNativeAdPlace extends BaseAdPlace {
 
     protected void showNativeAd(final NativeAdInfo nativeAdInfo, final IAdCallback callback) {
         final View view = LayoutInflater.from(KyxSDKGlobal.mContext).inflate(R.layout.screen_ad, null);
-        ImageView imageView = ViewUtils.findView(view, R.id.img_screen);
+        final ImageView imageView = ViewUtils.findView(view, R.id.img_screen);
         final TextView titleView = ViewUtils.findView(view, R.id.tv_title);
         final TextView descView = ViewUtils.findView(view, R.id.tv_desc);
         final ImageView iconView = ViewUtils.findView(view, R.id.img_icon);
         final TextView skipView = ViewUtils.findView(view, R.id.tv_skip);
         skipView.setClickable(false);
         GlideUtils.displayImage(nativeAdInfo.getIconUrl(), iconView);
-        GlideUtils.displayImage(nativeAdInfo.getImageUrl(), imageView, new GlideUtils.LoaderListener() {
+        Glide.with(KyxSDKGlobal.mContext).load(nativeAdInfo.getImageUrl()).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
-            public void loadSuccess() {
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                imageView.setImageBitmap(resource);
+                Log.d("cql", "loadSuccess");
                 iconView.setVisibility(View.VISIBLE);
                 titleView.setText(nativeAdInfo.getTitle());
                 descView.setText(nativeAdInfo.getDesc());
@@ -61,11 +68,6 @@ public abstract class ScreenNativeAdPlace extends BaseAdPlace {
                     }
                 };
                 timer.start();
-            }
-
-            @Override
-            public void loadFail(String errorMessage) {
-
             }
         });
     }

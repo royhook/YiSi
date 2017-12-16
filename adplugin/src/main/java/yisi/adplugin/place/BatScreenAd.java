@@ -27,10 +27,12 @@ public class BatScreenAd extends ScreenNativeAdPlace {
 
     @Override
     public void startShowAd(final Ad ad, String appid, String adid) {
+        onAdRequest();
         EtapLib.init(KyxSDKGlobal.mContext, appid);
         EtapBuild.Builder build = new EtapBuild.Builder(KyxSDKGlobal.mContext, adid, EtapAdType.NATIVE.getType(), new IAdListener() {
             @Override
             public void onAdLoadFinish(Object o) {
+                onAdLoad();
                 mNative = (EtapNative) o;
                 List<com.etap.Ad> ads = mNative.getAds();
                 if (ads.size() > 0) {

@@ -12,7 +12,9 @@ public class AdConfig extends GenericJson {
     boolean is_open;//广告总开关
     @Key
     RewardInsertAd reward_insert;
+    @Key
     RewardVideoAd reward_video;
+    @Key
     ScreenAd screen_ad;
 
     public void setScreen_ad(ScreenAd screen_ad) {
