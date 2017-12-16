@@ -1,12 +1,5 @@
 package yisi.adplugin.business;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.yisi.picture.baselib.utils.ActivityLifestyle;
-
-import yisi.adplugin.R;
 import yisi.adplugin.bean.Ad;
 import yisi.adplugin.bean.AdTracker;
 import yisi.adplugin.utils.CoinUtils;
@@ -73,12 +66,7 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdPresent() {
-        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
-        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
-        View view = viewGroup.findViewById(R.id.btn_seead);
-        if (view != null) {
-            CoinUtils.addUsrCoin(200, view);
-        }
+        CoinUtils.addUsrCoin(200);
 
         if (isForget())
             return;
@@ -89,12 +77,8 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdClick() {
-        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
-        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
-        View view = viewGroup.findViewById(R.id.btn_seead);
-        if (view != null) {
-            CoinUtils.addUsrCoin(300, view);
-        }
+
+        CoinUtils.addUsrCoin(300);
 
         if (isForget())
             return;
@@ -104,12 +88,7 @@ public abstract class BaseAdPlace implements IAdCallProxy {
     }
 
     protected void addCoin(int coin) {
-        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
-        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
-        View view = viewGroup.findViewById(R.id.btn_seead);
-        if (view != null) {
-            CoinUtils.addUsrCoin(coin, view);
-        }
+        CoinUtils.addUsrCoin(coin);
     }
 
     @Override

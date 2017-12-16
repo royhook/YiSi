@@ -3,6 +3,7 @@ package yisi.adplugin.utils;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.yisi.picture.baselib.application.YiSiApplication;
 import com.yisi.picture.baselib.rx.Event;
@@ -46,11 +47,11 @@ public class CoinUtils {
         }
     }
 
-    public static void addUsrCoin(int coin, View view) {
+    public static void addUsrCoin(int coin) {
         int currentCoin = getUsrCoin();
         currentCoin = currentCoin + coin;
         saveUsrCoin(currentCoin);
-        Snackbar.make(view, view.getResources().getString(R.string.add_coin, coin, currentCoin), 3000).show();
+        Toast.makeText(KyxSDKGlobal.mContext, KyxSDKGlobal.mContext.getResources().getString(R.string.add_coin, coin, currentCoin), Toast.LENGTH_LONG).show();
         RxBus.getInstance().send(new Event<String>(RxKey.COIN_EXCHANGE, null));
     }
 

@@ -13,6 +13,7 @@ import yisi.adplugin.business.BaseAdPlace;
 import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.business.RewardInsertBusiness;
 import yisi.adplugin.place.InterstitialPreloadAdPlace;
+import yisi.adplugin.utils.CoinUtils;
 
 /**
  * Created by chenql on 2017/10/30.
@@ -56,7 +57,14 @@ public class CoinActivity extends BaseActivity {
 
                     @Override
                     public void onUnAvaliable() {
-                        button.setClickable(true);
+                        YiSiApplication.postDelay(new Runnable() {
+                            @Override
+                            public void run() {
+                                button.setClickable(true);
+                            }
+                        }, 1500);
+                        //广告失败 也增加100金币
+                        CoinUtils.addUsrCoin(100);
                     }
                 });
             }
