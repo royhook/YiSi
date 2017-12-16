@@ -50,7 +50,7 @@ public class CoinUtils {
         int currentCoin = getUsrCoin();
         currentCoin = currentCoin + coin;
         saveUsrCoin(currentCoin);
-        Snackbar.make(view, view.getResources().getString(R.string.add_coin, coin, currentCoin), Snackbar.LENGTH_LONG).show();
+        Snackbar.make(view, view.getResources().getString(R.string.add_coin, coin, currentCoin), 3000).show();
         RxBus.getInstance().send(new Event<String>(RxKey.COIN_EXCHANGE, null));
     }
 

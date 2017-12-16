@@ -8,7 +8,7 @@ import java.util.List;
 import yisi.adplugin.bean.Ad;
 import yisi.adplugin.bean.BaseAd;
 import yisi.adplugin.bean.ScreenAd;
-import yisi.adplugin.place.LuomiScreenAd;
+import yisi.adplugin.place.BatScreenAd;
 
 /**
  * Created by chenql on 2017/11/22.
@@ -48,9 +48,10 @@ public class ScreenAdBusiness extends BaseAdBusiness {
     public void bindAdPlatform(Ad ad) {
         switch (ad.getProvider()) {
             case PLATFORM_LUOMI:
-                mBaseAdPlace = new LuomiScreenAd();
                 break;
-
+            case PLATFORM_BAT:
+                mBaseAdPlace = new BatScreenAd();
+                break;
             default:
                 break;
         }
@@ -63,12 +64,12 @@ public class ScreenAdBusiness extends BaseAdBusiness {
 
     public void initScreenAd() {
         List<Ad> ads = new ArrayList<>();
-        Ad luomiAd = new Ad();
-        luomiAd.setApp_id("0a2176b02af2902d825a29ef71fb9d58");
-        luomiAd.setAd_id("0a2176b02af2902d825a29ef71fb9d58");
-        luomiAd.setWeight(10);
-        luomiAd.setProvider(PLATFORM_LUOMI);
-        ads.add(luomiAd);
+        Ad batmob = new Ad();
+        batmob.setApp_id("WWDT0A60JKTXL1YECO6WUGUA");
+        batmob.setAd_id("12550_68533");
+        batmob.setWeight(10);
+        batmob.setProvider(BaseAdBusiness.PLATFORM_BAT);
+        ads.add(batmob);
         mScreenAd = new ScreenAd();
         mScreenAd.setAds(ads);
     }
@@ -84,5 +85,12 @@ public class ScreenAdBusiness extends BaseAdBusiness {
     public void onAdClick() {
         super.onAdClick();
         isDoingClick = true;
+    }
+
+    @Override
+    public void onAdFailed(String message) {
+        if (mAdCallback != null)
+            mAdCallback.onUnAvaliable();
+        super.onAdFailed(message);
     }
 }

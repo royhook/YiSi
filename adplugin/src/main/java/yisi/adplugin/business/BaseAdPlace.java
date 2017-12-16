@@ -62,11 +62,13 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
     @Override
     public void onAdRequest() {
-        if (isForget())
+        if (isForget()) {
             return;
+        }
 
-        if (mBaseAdBusiness != null)
+        if (mBaseAdBusiness != null) {
             mBaseAdBusiness.onAdRequest();
+        }
     }
 
     @Override
@@ -99,6 +101,15 @@ public abstract class BaseAdPlace implements IAdCallProxy {
 
         if (mBaseAdBusiness != null)
             mBaseAdBusiness.onAdClick();
+    }
+
+    protected void addCoin(int coin) {
+        Activity mCurrentActivity = ActivityLifestyle.getInstance().getActivity();
+        ViewGroup viewGroup = (ViewGroup) mCurrentActivity.getWindow().getDecorView();
+        View view = viewGroup.findViewById(R.id.btn_seead);
+        if (view != null) {
+            CoinUtils.addUsrCoin(coin, view);
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@ public class AdConfig extends GenericJson {
     boolean is_open;//广告总开关
     @Key
     RewardInsertAd reward_insert;
+    RewardVideoAd reward_video;
     ScreenAd screen_ad;
 
     public void setScreen_ad(ScreenAd screen_ad) {
@@ -27,6 +28,18 @@ public class AdConfig extends GenericJson {
     }
 
     public RewardInsertAd getRewardAd() {
+        return reward_insert;
+    }
+
+    public void setReward_video(RewardVideoAd reward_video) {
+        this.reward_video = reward_video;
+    }
+
+    public RewardVideoAd getReward_video() {
+        return reward_video;
+    }
+
+    public RewardInsertAd getReward_insert() {
         return reward_insert;
     }
 }

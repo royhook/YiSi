@@ -11,11 +11,11 @@ import yisi.adplugin.bean.BaseAd;
  * Created by chenql on 2017/6/5.
  */
 
-public class RewardBusiness extends BaseAdBusiness {
+public class RewardInsertBusiness extends BaseAdBusiness {
 
-    private static RewardBusiness ourInstance = new RewardBusiness();
+    private static RewardInsertBusiness ourInstance = new RewardInsertBusiness();
 
-    public static RewardBusiness getInstance() {
+    public static RewardInsertBusiness getInstance() {
         return ourInstance;
     }
 
@@ -37,7 +37,7 @@ public class RewardBusiness extends BaseAdBusiness {
             case PLATFORM_FB_NATIVE:
 
                 break;
-            case PLATFORM_BAT_NATIVE:
+            case PLATFORM_BAT:
                 mBaseAdPlace = new BatNativeInterstitialAd();
                 break;
 
@@ -56,5 +56,11 @@ public class RewardBusiness extends BaseAdBusiness {
     @Override
     public String getPlanmentString() {
         return "Reward Ad";
+    }
+
+    @Override
+    public void onAdFailed(String message) {
+
+        super.onAdFailed(message);
     }
 }

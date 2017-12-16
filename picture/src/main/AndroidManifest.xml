@@ -53,6 +53,9 @@
         <activity
             android:name=".activity.ImageChoseActivity"
             android:theme="@style/AppThemeNoTitle"/>
+        <activity
+            android:name="yisi.adplugin.activity.CoinActivity"
+            android:theme="@style/AppThemeNoTitle"/>
     </application>
 
 </manifest>

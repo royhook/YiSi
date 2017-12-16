@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_dec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/px200">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="@dimen/px150"
+            android:layout_height="@dimen/px150"
+            android:layout_margin="@dimen/px50"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/px800"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px50"
+            android:layout_toRightOf="@id/img_icon"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:maxLines="2"
+            android:layout_marginTop="@dimen/px40"
+            android:layout_toRightOf="@id/img_icon"
+            />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_dec"
+        android:layout_marginTop="@dimen/px50"
+        android:scaleType="fitStart"/>
+
+    <TextView
+        android:id="@+id/tv_skip"
+        android:layout_width="@dimen/px156"
+        android:layout_height="@dimen/px76"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/px54"
+        android:layout_marginTop="@dimen/px80"
+        android:background="@mipmap/splash_skip_1080"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/px38"
+        android:visibility="invisible"
+        />
+
+</RelativeLayout>

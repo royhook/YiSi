@@ -11,7 +11,7 @@ import com.yisi.picture.baselib.base.BaseActivity;
 import yisi.adplugin.AdPlugin;
 import yisi.adplugin.business.BaseAdPlace;
 import yisi.adplugin.business.IAdCallback;
-import yisi.adplugin.business.RewardBusiness;
+import yisi.adplugin.business.RewardInsertBusiness;
 import yisi.adplugin.place.InterstitialPreloadAdPlace;
 
 /**
@@ -30,6 +30,7 @@ public class CoinActivity extends BaseActivity {
     protected void initViews() {
         setContentView(R.layout.activity_coin);
         final ImageView button = findView(R.id.btn_seead);
+        final ImageView buttonVideo = findView(R.id.btn_seevideoad);
         mCloseView = findView(R.id.setting_activity_back);
         mCloseView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +56,29 @@ public class CoinActivity extends BaseActivity {
 
                     @Override
                     public void onUnAvaliable() {
+                        button.setClickable(true);
+                    }
+                });
+            }
+        });
+        buttonVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonVideo.setClickable(false);
+                AdPlugin.showRewardVideo(new IAdCallback() {
+                    @Override
+                    public void onSkip() {
+                        buttonVideo.setClickable(true);
+                    }
 
+                    @Override
+                    public void onLoad() {
+                        buttonVideo.setClickable(true);
+                    }
+
+                    @Override
+                    public void onUnAvaliable() {
+                        buttonVideo.setClickable(true);
                     }
                 });
             }
@@ -77,7 +100,7 @@ public class CoinActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         //被销毁后重置状态
-        BaseAdPlace adPlace = RewardBusiness.getInstance().mBaseAdPlace;
+        BaseAdPlace adPlace = RewardInsertBusiness.getInstance().mBaseAdPlace;
         if (adPlace != null && adPlace instanceof InterstitialPreloadAdPlace) {
             InterstitialPreloadAdPlace place = (InterstitialPreloadAdPlace) adPlace;
             place.setReady(false);

@@ -2,6 +2,7 @@ package yisi.adplugin;
 
 import android.widget.RelativeLayout;
 
+import com.etap.EtapLib;
 import com.kinvey.android.callback.KinveyListCallback;
 import com.kinvey.android.store.DataStore;
 import com.kinvey.java.store.StoreType;
@@ -12,7 +13,8 @@ import java.util.List;
 import yisi.adplugin.bean.AdConfig;
 import yisi.adplugin.business.BaseAdBusiness;
 import yisi.adplugin.business.IAdCallback;
-import yisi.adplugin.business.RewardBusiness;
+import yisi.adplugin.business.RewardInsertBusiness;
+import yisi.adplugin.business.RewardVideoBusiness;
 import yisi.adplugin.business.ScreenAdBusiness;
 import yisi.adplugin.place.InterstitialPreloadAdPlace;
 import yisi.adplugin.utils.KyxSDKGlobal;
@@ -29,10 +31,31 @@ public class AdPlugin {
         KyxSDKGlobal.runOnMainThread(new Runnable() {
             @Override
             public void run() {
-                InterstitialPreloadAdPlace adPlace = (InterstitialPreloadAdPlace) RewardBusiness.getInstance().mBaseAdPlace;
-                if (adPlace != null) {
+                InterstitialPreloadAdPlace adPlace = (InterstitialPreloadAdPlace) RewardInsertBusiness.getInstance().mBaseAdPlace;
+                if (adPlace != null && adPlace.isReady()) {
                     adPlace.setIAdCallback(callback);
                     adPlace.show();
+                } else {
+                    if (callback != null) {
+                        callback.onUnAvaliable();
+                    }
+                }
+            }
+        });
+    }
+
+    public static void showRewardVideo(final IAdCallback callback) {
+        KyxSDKGlobal.runOnMainThread(new Runnable() {
+            @Override
+            public void run() {
+                InterstitialPreloadAdPlace adPlace = (InterstitialPreloadAdPlace) RewardVideoBusiness.getInstance().mBaseAdPlace;
+                if (adPlace != null && adPlace.isReady()) {
+                    adPlace.setIAdCallback(callback);
+                    adPlace.show();
+                } else {
+                    if (callback != null) {
+                        callback.onUnAvaliable();
+                    }
                 }
             }
         });
@@ -43,7 +66,8 @@ public class AdPlugin {
      * 请求广告
      */
     private static void requestRewardAd() {
-        RewardBusiness.getInstance().requestAdData();
+        RewardInsertBusiness.getInstance().requestAdData();
+        RewardVideoBusiness.getInstance().requestAdData();
     }
 
 
@@ -60,6 +84,7 @@ public class AdPlugin {
     public static void init() {
         KyxSDKGlobal.mContext = YiSiApplication.mGlobleContext;
         requestAdConfig();
+        EtapLib.init(KyxSDKGlobal.mContext, "WWDT0A60JKTXL1YECO6WUGUA");
     }
 
     private static void requestAdConfig() {

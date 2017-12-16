@@ -20,6 +20,7 @@ import com.yisi.picture.baselib.utils.ViewUtils;
 
 import cn.sharesdk.framework.ShareSDK;
 import yisi.adplugin.AdPlugin;
+import yisi.adplugin.activity.CoinActivity;
 import yisi.adplugin.business.IAdCallback;
 import yisi.adplugin.business.ScreenAdBusiness;
 
@@ -91,7 +92,7 @@ public class SplashAty extends BaseActivity implements ISplashAty {
 
                     @Override
                     public void onUnAvaliable() {
-
+                        goMainPage();
                     }
                 });
                 //最多8s后进入主界面
@@ -100,7 +101,7 @@ public class SplashAty extends BaseActivity implements ISplashAty {
                     public void run() {
                         goMainPageAuto();
                     }
-                }, 8000);
+                }, 10000);
             }
 
             @Override
@@ -128,7 +129,7 @@ public class SplashAty extends BaseActivity implements ISplashAty {
             return;
         }
         hasGoMain = true;
-        Intent intent = new Intent(SplashAty.this, MainActivity.class);
+        Intent intent = new Intent(SplashAty.this, CoinActivity.class);
         startActivity(intent);
         SplashAty.this.finish();
         overridePendingTransition(0, 0);
