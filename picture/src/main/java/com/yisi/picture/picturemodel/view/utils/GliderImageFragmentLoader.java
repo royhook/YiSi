@@ -15,6 +15,6 @@ public class GliderImageFragmentLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         RecommandPlantImage recommandPlantImage = (RecommandPlantImage) path;
-        GlideUtils.displayImage(recommandPlantImage.getFwfhUrl(600, 600), imageView);
+        GlideUtils.displayImage(recommandPlantImage.getFwfhUrl(1200, 1200), imageView);
     }
 }
